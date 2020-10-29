@@ -1,13 +1,18 @@
+package dopeAgile;
+
 import java.util.Scanner;
 
 public class Main {
 
+    enum CharacterType {
+        RIDDARE, TJUV, MAGIKER;
+    }
+
     public static void main(String[] args) {
 
-        System.out.println("Välkommen till Dungeon Run");
+        System.out.println("\n\033[1mVälkommen till Dungeon Run\033[0m");
 
         mainMenu();
-        mapManu();
 
     }
 
@@ -19,7 +24,7 @@ public class Main {
 
             Scanner sc = new Scanner(System.in);
 
-            System.out.println("1: Highscorem\n" + "2: Skapa Karaktär\n" + "3: Ladda Karaktär\n" + "0: Avsluta");
+            System.out.println("1: Highscore\n" + "2: Skapa Karaktär\n" + "3: Ladda Karaktär\n" + "0: Avsluta");
 
             try {
                 input = Integer.parseInt(sc.nextLine());
@@ -34,12 +39,14 @@ public class Main {
         switch (input) {
             case 1:
                 System.out.println("Highscore");
+                mainMenu();
                 break;
             case 2:
-                int choice = characterChoice();
+                characterMenu();
                 break;
             case 3:
                 System.out.println("Välj Sparad Karaktär");
+                mainMenu();
                 break;
             default:
                 System.out.println("Avslutar Spelet");
@@ -49,17 +56,19 @@ public class Main {
     }
 
     public static void characterMenu() {
-        int character = characterChoice();
+        CharacterType character = characterChoice();
         String name = characterName();
-        System.out.println("Vald karaktär är " + character + "\nDitt namn är " + name);
+        System.out.println("\nKaraktären heter " + name + " och är en " + character + "\n");
+        mapMenu();
     }
 
-    public static int characterChoice() {
+    public static CharacterType characterChoice() {
 
-        int characterChoice = 0;
+        int characterMenuChoice = 0;
+        CharacterType characterChoice = null;
         boolean run = true;
 
-        System.out.println(" --- Välj en hjälte! --- ");
+        System.out.println("\033[1m --- Välj en hjälte! --- \033[0m");
         System.out.println("1. Riddaren");
         System.out.println(" Iniativ: 5, Tålighet: 9, Attack: 6, Smidighet: 4 \n");
 
@@ -73,9 +82,9 @@ public class Main {
 
             try {
                 Scanner sc = new Scanner(System.in);
-                characterChoice = Integer.parseInt(sc.nextLine());
+                characterMenuChoice = Integer.parseInt(sc.nextLine());
 
-                if (characterChoice > 0 && characterChoice < 4) {
+                if (characterMenuChoice > 0 && characterMenuChoice < 4) {
                     run = false;
                 } else {
                     System.out.println("Ange ett tal mellan 1 och 3");
@@ -86,17 +95,20 @@ public class Main {
 
         }
 
-        switch (characterChoice) {
+        switch (characterMenuChoice) {
             case 1:
                 System.out.println("Du har valt Riddaren!");
+                characterChoice = CharacterType.RIDDARE;
                 // Character player = new Knight();
                 break;
             case 2:
                 System.out.println("Du har valt Magikern!");
+                characterChoice = CharacterType.MAGIKER;
                 // Character player = new Magican();
                 break;
             case 3:
                 System.out.println("Du har valt Tjuven!");
+                characterChoice = CharacterType.TJUV;
                 // Character player = new Rouge();
                 break;
             default:
@@ -110,21 +122,20 @@ public class Main {
 
     public static String characterName() {
         String characterName;
-        System.out.println("Välj ett namn för din hjälte");
+        System.out.println("\nVälj ett namn för din hjälte");
         Scanner sc = new Scanner(System.in);
         characterName = sc.nextLine();
 
         return characterName;
     }
 
-    public static void mapManu() {
+    public static void mapMenu() {
 
         int mapChoice = 0;
-        System.out.println("Map menu");
-        System.out.println("Choose the size of your map.");
-        System.out.println("1 Small map 4x4");
-        System.out.println("2 Medium map 5x5");
-        System.out.println("3 Large map 8x8");
+        System.out.println("\033[1mVälj storlek på kartan:\033[0m");
+        System.out.println("1. Liten karta (4x4)");
+        System.out.println("2. Lagom karta (5x5)");
+        System.out.println("3. Stor karta (8x8)");
 
 
         for (int i = 0; i < 1; i++) {
@@ -132,23 +143,23 @@ public class Main {
                 Scanner sc = new Scanner(System.in);
                 mapChoice = sc.nextInt();
             } catch (Exception e) {
-                System.out.println("invalid input");
+                System.out.println("Ogiltigt kommando! Försök igen.");
                 --i;
             }
         }
 
         switch (mapChoice) {
             case 1:
-                System.out.println("You have chosen a small map");
+                System.out.println("Du har valt en liten karta.");
                 break;
             case 2:
-                System.out.println("You have chosen a medium map");
+                System.out.println("Du har valt en lagom karta.");
                 break;
             case 3:
-                System.out.println("You have chosen a large map");
+                System.out.println("Du har valt en stor karta.");
                 break;
             default:
-                System.out.println("The choices were 1, 2 and 3");
+                System.out.println("Valen var 1, 2 och 3");
         }
 
     }
