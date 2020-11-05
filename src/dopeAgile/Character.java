@@ -3,19 +3,15 @@ package dopeAgile;
 
 public class Character {
     
-    private int initiative;
-    private int endurance;
-    private int attack;
-    private int agility;
-    private int positionX;
-    private int positionY;
+    int initiative;
+    int endurance;
+    int attack;
+    int agility;
+    int positionX = 0;
+    int positionY = 0;
 
 public Character() {
     
-    this.initiative = initiative;
-    this.endurance = endurance;
-    this.attack = attack;
-    this.agility = agility;
     this.positionX = positionX;
     this.positionY = positionY;
 }    
