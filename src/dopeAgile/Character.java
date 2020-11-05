@@ -9,11 +9,14 @@ public class Character {
     int agility;
     int positionX = 0;
     int positionY = 0;
-
-public Character() {
+ 
+public Character(int initiative, int endurance, int attack, int agility) {
     
-    this.positionX = positionX;
-    this.positionY = positionY;
+    this.initiative = initiative;
+    this.endurance = endurance;
+    this.attack = attack;
+    this.agility = agility;
+    
 }    
 
     public int getInitiative() {
