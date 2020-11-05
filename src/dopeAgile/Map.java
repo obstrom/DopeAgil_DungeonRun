@@ -1,7 +1,6 @@
 package dopeAgile;
 
 // TODO:
-//  - getters
 //  - Create pick spawn point
 //  - Generate room content
 //  - Room hasMonster boolean
@@ -10,6 +9,14 @@ package dopeAgile;
 public class Map {
     private final mapSize currentMapSize;
     private final Room[][] mapArray;
+
+    public mapSize getCurrentMapSize() {
+        return currentMapSize;
+    }
+
+    public Room[][] getMapArray() {
+        return mapArray;
+    }
 
     Map (mapSize sizeEnum) {
         this.currentMapSize = sizeEnum;
