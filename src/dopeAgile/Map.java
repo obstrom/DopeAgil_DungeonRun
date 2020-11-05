@@ -2,18 +2,17 @@ package dopeAgile;
 
 // TODO:
 //  - getters
-//  - Print map view
 //  - Create pick spawn point
 //  - Generate room content
 //  - Room hasMonster boolean
 //  - Room hasTreasure boolean
 
 public class Map {
-    private final mapSize mapSize;
+    private final mapSize currentMapSize;
     private final Room[][] mapArray;
 
     Map (mapSize sizeEnum) {
-        this.mapSize = sizeEnum;
+        this.currentMapSize = sizeEnum;
         mapArray = createMapArray(sizeEnum.getSize());
     }
 
@@ -53,6 +52,18 @@ public class Map {
         }
 
         return returnObject;
+    }
+    
+    public void mapPrint(){
+        String result = "";
+        for (Room[] roomRows : mapArray) {
+            for (Room room : roomRows) {
+                result += "[x]";
+                
+            }
+          result += "\n";  
+        }
+        System.out.println(result);
     }
 
 }
