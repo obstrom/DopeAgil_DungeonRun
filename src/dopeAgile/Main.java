@@ -77,6 +77,7 @@ public class Main {
         System.out.println(" Iniativ: 6, Tålighet: 4, Attack: 9, Smidighet: 5 \n");
 
         System.out.println("3. Tjuv");
+        
 
         while (run) {
 
