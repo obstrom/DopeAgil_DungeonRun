@@ -13,6 +13,8 @@ public Rouge() {
 
 }
 
-
+public void specialAbility() {
+        
+    }
 }
 
