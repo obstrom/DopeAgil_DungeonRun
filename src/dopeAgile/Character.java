@@ -9,11 +9,13 @@ public class Character {
     int agility;
     int positionX;
     int positionY;
+    private String name;
  
 public Character() {
     
    this.positionX = 0;
    this.positionY = 0;
+   this.name = name;
     
 }    
 
@@ -64,6 +66,16 @@ public Character() {
     public void setPositionY(int positionY) {
         this.positionY = positionY;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    
 
     @Override
     public String toString() {
