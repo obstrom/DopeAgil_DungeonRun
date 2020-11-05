@@ -21,7 +21,7 @@ public class Map {
         spawnRoom = getSpawnRoom();
     }
 
-    public enum mapSize {
+    public static enum mapSize {
         SMALL(4),
         MEDIUM(5),
         LARGE(8);
@@ -37,7 +37,7 @@ public class Map {
         }
     }
 
-    public enum spawnCardinal {
+    public static enum spawnCardinal {
         NW, NE, SW, SE;
     }
 

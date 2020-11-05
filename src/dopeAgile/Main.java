@@ -131,6 +131,7 @@ public class Main {
 
     public static void mapMenu() {
 
+        // Choose map size
         int mapChoice = 0;
         System.out.println("\033[1mVälj storlek på kartan:\033[0m");
         System.out.println("1. Liten karta (4x4)");
@@ -146,6 +147,40 @@ public class Main {
                 System.out.println("Ogiltigt kommando! Försök igen.");
                 --i;
             }
+        }
+
+        // Choose spawn point
+        System.out.println("\033[1mVart på kartan vill du börja:\033[0m");
+        System.out.println("1. Nordväst");
+        System.out.println("2. Nordöst");
+        System.out.println("3. Sydväst");
+        System.out.println("4. Sydöst");
+
+        int spawnChoice = 0;
+        for (int i = 0; i < 1; i++) {
+            try {
+                Scanner sc = new Scanner(System.in);
+                spawnChoice = sc.nextInt();
+            } catch (Exception e) {
+                System.out.println("Ogiltigt kommando! Försök igen.");
+                --i;
+            }
+        }
+
+        Map.spawnCardinal cardinal = null;
+        switch (spawnChoice) {
+            case 1:
+                cardinal = Map.spawnCardinal.NW;
+                break;
+            case 2:
+                cardinal = Map.spawnCardinal.NE;
+                break;
+            case 3:
+                cardinal = Map.spawnCardinal.SW;
+                break;
+            case 4:
+                cardinal = Map.spawnCardinal.SE;
+                break;
         }
 
         switch (mapChoice) {
