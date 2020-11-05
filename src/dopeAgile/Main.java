@@ -43,7 +43,7 @@ public class Main {
                 mainMenu();
                 break;
             case 2:
-                characterMenu();
+                characterChoice();
                 break;
             case 3:
                 System.out.println("Välj Sparad Karaktär");
@@ -56,16 +56,17 @@ public class Main {
 
     }
 
-    public static void characterMenu() {
-        CharacterType character = characterChoice();
-        String name = characterName();
-        System.out.println("\nKaraktären heter " + name + " och är en " + character + "\n");
-        mapMenu();
-    }
+//    public static void characterMenu() {
+//        CharacterType character = characterChoice();
+//        String name = characterName();
+//        System.out.println("\nKaraktären heter " + name + " och är en " + character + "\n");
+//        mapMenu();
+//    }
 
     public static CharacterType characterChoice() {
 
         int characterMenuChoice = 0;
+        String name = " ";
         CharacterType characterChoice = null;
         boolean run = true;
 
@@ -77,8 +78,8 @@ public class Main {
         System.out.println(" Iniativ: 6, Tålighet: 4, Attack: 9, Smidighet: 5 \n");
 
         System.out.println("3. Tjuv");
-        
-
+        System.out.println(" Iniativ: 7, Tålighet: 5, Attack: 5, Smidighet: 7 \n");
+ 
         while (run) {
 
             try {
@@ -100,23 +101,30 @@ public class Main {
             case 1:
                 System.out.println("Du har valt Riddaren!");
                 characterChoice = CharacterType.RIDDARE;
-                // Character player = new Knight();
+                name = characterName();
+                //Character player = new Knight();
                 break;
             case 2:
                 System.out.println("Du har valt Magikern!");
                 characterChoice = CharacterType.MAGIKER;
+                name = characterName();
                 // Character player = new Magican();
                 break;
             case 3:
                 System.out.println("Du har valt Tjuven!");
                 characterChoice = CharacterType.TJUV;
-                // Character player = new Rouge();
+                Character player = new Rouge();
+                name = characterName();
+                player.setName(name);
                 break;
             default:
                 System.out.println("test");
                 break;
         }
-
+        
+        System.out.println("\nKaraktären heter " + name + " och är en "  + "\n");
+        mapMenu();
+        
         return characterChoice;
 
     }
