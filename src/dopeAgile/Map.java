@@ -9,12 +9,15 @@ package dopeAgile;
 //  - Room hasTreasure boolean
 
 public class Map {
-    private final mapSize mapSize;
+    private final mapSize currentMapSize;
     private final Room[][] mapArray;
+    private int[] spawnPointXYCoordinates;
+    private Room spawnRoom;
 
-    Map (mapSize sizeEnum) {
-        this.mapSize = sizeEnum;
+    Map (mapSize sizeEnum, spawnCardinal spawnCardinal) {
+        this.currentMapSize = sizeEnum;
         mapArray = createMapArray(sizeEnum.getSize());
+        spawnPointXYCoordinates = calcSpawnPointCoordinates(spawnCardinal);
     }
 
     public enum mapSize {
@@ -33,6 +36,10 @@ public class Map {
         }
     }
 
+    public enum spawnCardinal {
+        NW, NE, SW, SE;
+    }
+
     private Room[][] createMapArray(int size) {
         Room[][] mapArray = new Room[size][size];
         for (int i = 0; i < mapArray.length; i++) {
@@ -41,6 +48,23 @@ public class Map {
             }
         }
         return mapArray;
+    }
+
+    private int[] calcSpawnPointCoordinates(spawnCardinal spawnCardinal) {
+        int[] returnInt = new int[] {0, 0};
+        switch (spawnCardinal) {
+            case NE:
+                returnInt[1] = currentMapSize.getSize();
+                break;
+            case SE:
+                returnInt[0] = currentMapSize.getSize();
+                returnInt[1] = currentMapSize.getSize();
+                break;
+            case SW:
+                returnInt[0] = currentMapSize.getSize();
+                break;
+        }
+        return returnInt;
     }
 
     public Room getRoomFromArray(int x, int y) {
