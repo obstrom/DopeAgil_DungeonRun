@@ -185,15 +185,15 @@ public class Main {
 
         switch (mapChoice) {
             case 1:
-                Map smallMap = new Map(Map.mapSize.SMALL);
+                Map smallMap = new Map(Map.mapSize.SMALL, cardinal);
                 smallMap.mapPrint();
                 break;
             case 2:
-                Map mediumMap = new Map(Map.mapSize.MEDIUM);
+                Map mediumMap = new Map(Map.mapSize.MEDIUM, cardinal);
                 mediumMap.mapPrint();
                 break;
             case 3:
-                Map largeMap = new Map(Map.mapSize.LARGE);
+                Map largeMap = new Map(Map.mapSize.LARGE, cardinal);
                 largeMap.mapPrint();
                 break;
             default:
