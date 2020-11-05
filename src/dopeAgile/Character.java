@@ -1,7 +1,7 @@
 
 package dopeAgile;
 
-public abstract class Character {
+public class Character {
     
     private int initiative;
     private int endurance;
@@ -73,8 +73,9 @@ public Character() {
         return "Character{" + " initiative : " + initiative + ", endurance : " + endurance + ", attack : " + attack + ", agility : " + agility + '}';
     }
    
-    public abstract void specialAbility();
-
+    public void specialAbility() {
+        
+    }
 
 
 
