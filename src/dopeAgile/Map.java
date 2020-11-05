@@ -1,10 +1,5 @@
 package dopeAgile;
 
-// TODO:
-//  - Generate room content
-//  - Room hasMonster boolean
-//  - Room hasTreasure boolean
-
 public class Map {
     private final mapSize currentMapSize;
     private final Room[][] mapArray;
@@ -21,9 +16,8 @@ public class Map {
 
     Map (mapSize sizeEnum, spawnCardinal spawnCardinal) {
         this.currentMapSize = sizeEnum;
-        mapArray = createMapArray(sizeEnum.getSize());
         spawnPointXYCoordinates = calcSpawnPointCoordinates(spawnCardinal);
-        spawnRoom = getSpawnRoom();
+        mapArray = createMapArray(sizeEnum.getSize());
     }
 
     public static enum mapSize {
@@ -50,7 +44,13 @@ public class Map {
         Room[][] mapArray = new Room[size][size];
         for (int i = 0; i < mapArray.length; i++) {
             for (int j = 0; j < mapArray[i].length; j++) {
-                mapArray[i][j] = new Room();
+                if (i == spawnPointXYCoordinates[0] && j == spawnPointXYCoordinates[1]) {
+                    Room newRoom = new Room(true);
+                    mapArray[i][j] = newRoom;
+                    this.spawnRoom = newRoom;
+                } else {
+                    mapArray[i][j] = new Room(false);
+                }
             }
         }
         return mapArray;
