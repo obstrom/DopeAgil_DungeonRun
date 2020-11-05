@@ -134,7 +134,7 @@ public class Main {
         int mapChoice = 0;
         System.out.println("\033[1mVälj storlek på kartan:\033[0m");
         System.out.println("1. Liten karta (4x4)");
-        System.out.println("2. Lagom karta (5x5)");
+        System.out.println("2. Medium karta (5x5)");
         System.out.println("3. Stor karta (8x8)");
 
 
