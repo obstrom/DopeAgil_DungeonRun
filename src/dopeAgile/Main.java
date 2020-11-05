@@ -1,6 +1,5 @@
 package dopeAgile;
-// hej hej
-// hej hej igen
+
 import java.util.Scanner;
 
 public class Main {
@@ -96,33 +95,38 @@ public class Main {
             }
 
         }
-
-        switch (characterMenuChoice) {
+            
+        Character player = new Character();
+        
+        switch (characterMenuChoice) {  
             case 1:
                 System.out.println("Du har valt Riddaren!");
                 characterChoice = CharacterType.RIDDARE;
-                name = characterName();
-                //Character player = new Knight();
+                player = new Knight();
                 break;
             case 2:
                 System.out.println("Du har valt Magikern!");
                 characterChoice = CharacterType.MAGIKER;
-                name = characterName();
-                // Character player = new Magican();
+                player = new Wizard();
                 break;
             case 3:
                 System.out.println("Du har valt Tjuven!");
                 characterChoice = CharacterType.TJUV;
-                Character player = new Rouge();
-                name = characterName();
-                player.setName(name);
+                player = new Rouge();
                 break;
             default:
                 System.out.println("test");
                 break;
         }
         
-        System.out.println("\nKaraktären heter " + name + " och är en "  + "\n");
+        name = characterName();
+        player.setName(name);
+        
+        Utility u = new Utility();
+        u.playerList.add(player);
+ 
+             
+        System.out.println("\nKaraktären heter " + name + " och är en " + characterChoice + "\n");
         mapMenu();
         
         return characterChoice;
