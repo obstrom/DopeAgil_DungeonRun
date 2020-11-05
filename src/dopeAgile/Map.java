@@ -1,8 +1,6 @@
 package dopeAgile;
 
 // TODO:
-//  - getters
-//  - Create pick spawn point
 //  - Generate room content
 //  - Room hasMonster boolean
 //  - Room hasTreasure boolean
@@ -62,14 +60,14 @@ public class Map {
         int[] returnInt = new int[] {0, 0};
         switch (spawnCardinal) {
             case NE:
-                returnInt[1] = currentMapSize.getSize();
+                returnInt[1] = currentMapSize.getSize() - 1;
                 break;
             case SE:
-                returnInt[0] = currentMapSize.getSize();
-                returnInt[1] = currentMapSize.getSize();
+                returnInt[0] = currentMapSize.getSize() - 1;
+                returnInt[1] = currentMapSize.getSize() - 1;
                 break;
             case SW:
-                returnInt[0] = currentMapSize.getSize();
+                returnInt[0] = currentMapSize.getSize() - 1;
                 break;
         }
         return returnInt;
@@ -91,11 +89,16 @@ public class Map {
         String result = "";
         for (Room[] roomRows : mapArray) {
             for (Room room : roomRows) {
-                result += "[x]";
-                
+                if (room == getSpawnRoom()) {
+                    result += "[O]";
+                } else {
+                    result += "[ ]";
+                }
             }
           result += "\n";  
         }
+        System.out.println("[O] = Spawnpunkt");
+        System.out.println("[ ] = Obesökt rum\n");
         System.out.println(result);
     }
 
