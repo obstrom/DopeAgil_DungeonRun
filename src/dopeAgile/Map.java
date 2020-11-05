@@ -1,10 +1,18 @@
 package dopeAgile;
 
+// TODO:
+//  - getters
+//  - Print map view
+//  - Create pick spawn point
+//  - Generate room content
+//  - Room hasMonster boolean
+//  - Room hasTreasure boolean
+
 public class Map {
     private final mapSize mapSize;
     private final Room[][] mapArray;
 
-    Map(mapSize sizeEnum) {
+    Map (mapSize sizeEnum) {
         this.mapSize = sizeEnum;
         mapArray = createMapArray(sizeEnum.getSize());
     }
@@ -25,7 +33,7 @@ public class Map {
         }
     }
 
-    public Room[][] createMapArray(int size) {
+    private Room[][] createMapArray(int size) {
         Room[][] mapArray = new Room[size][size];
         for (int i = 0; i < mapArray.length; i++) {
             for (int j = 0; j < mapArray[i].length; j++) {
@@ -36,11 +44,15 @@ public class Map {
     }
 
     public Room getRoomFromArray(int x, int y) {
-        if ( x > (mapSize.getSize()) || y > (mapSize.getSize()) || x < 0 || y < 0 ) {
-            System.out.println("ERROR - getRoomFromArray() out of bound");
-            return null;
+        Room returnObject = null;
+
+        try {
+            returnObject = mapArray[x][y];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println(e.getMessage());
         }
-        return mapArray[x][y];
+
+        return returnObject;
     }
 
 }
