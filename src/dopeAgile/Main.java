@@ -150,13 +150,16 @@ public class Main {
 
         switch (mapChoice) {
             case 1:
-                System.out.println("Du har valt en liten karta.");
+                Map smallMap = new Map(Map.mapSize.SMALL);
+                smallMap.mapPrint();
                 break;
             case 2:
-                System.out.println("Du har valt en lagom karta.");
+                Map mediumMap = new Map(Map.mapSize.MEDIUM);
+                mediumMap.mapPrint();
                 break;
             case 3:
-                System.out.println("Du har valt en stor karta.");
+                Map largeMap = new Map(Map.mapSize.LARGE);
+                largeMap.mapPrint();
                 break;
             default:
                 System.out.println("Valen var 1, 2 och 3");
