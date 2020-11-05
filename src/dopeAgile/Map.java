@@ -97,7 +97,7 @@ public class Map {
             }
           result += "\n";  
         }
-        System.out.println("[O] = Spawnpunkt");
+        System.out.println("[O] = Startpunkt");
         System.out.println("[ ] = Obesökt rum\n");
         System.out.println(result);
     }
