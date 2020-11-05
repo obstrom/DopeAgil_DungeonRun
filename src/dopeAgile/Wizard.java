@@ -4,9 +4,7 @@ package dopeAgile;
 
 public class Wizard extends Character {
     
-    
-    
-    
+
     public Wizard(){
         
         super();
