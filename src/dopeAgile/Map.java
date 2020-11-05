@@ -2,7 +2,6 @@ package dopeAgile;
 
 // TODO:
 //  - getters
-//  - Print map view
 //  - Create pick spawn point
 //  - Generate room content
 //  - Room hasMonster boolean
@@ -13,6 +12,14 @@ public class Map {
     private final Room[][] mapArray;
     private int[] spawnPointXYCoordinates;
     private Room spawnRoom;
+
+    public mapSize getCurrentMapSize() {
+        return currentMapSize;
+    }
+
+    public Room[][] getMapArray() {
+        return mapArray;
+    }
 
     Map (mapSize sizeEnum, spawnCardinal spawnCardinal) {
         this.currentMapSize = sizeEnum;
@@ -78,6 +85,18 @@ public class Map {
         }
 
         return returnObject;
+    }
+    
+    public void mapPrint(){
+        String result = "";
+        for (Room[] roomRows : mapArray) {
+            for (Room room : roomRows) {
+                result += "[x]";
+                
+            }
+          result += "\n";  
+        }
+        System.out.println(result);
     }
 
     public Room getSpawnRoom() {
