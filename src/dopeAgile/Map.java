@@ -1,10 +1,12 @@
 package dopeAgile;
 
 public class Map {
-    private mapSize mapSize;
+    private final mapSize mapSize;
+    private final Room[][] mapArray;
 
     Map(mapSize sizeEnum) {
-        createMap(sizeEnum.getSize());
+        this.mapSize = sizeEnum;
+        mapArray = createMapArray(sizeEnum.getSize());
     }
 
     public enum mapSize {
@@ -23,12 +25,22 @@ public class Map {
         }
     }
 
-    public void createMap(int size) {
+    public Room[][] createMapArray(int size) {
         Room[][] mapArray = new Room[size][size];
         for (int i = 0; i < mapArray.length; i++) {
             for (int j = 0; j < mapArray[i].length; j++) {
                 mapArray[i][j] = new Room();
             }
         }
+        return mapArray;
     }
+
+    public Room getRoomFromArray(int x, int y) {
+        if ( x > (mapSize.getSize()) || y > (mapSize.getSize()) || x < 0 || y < 0 ) {
+            System.out.println("ERROR - getRoomFromArray() out of bound");
+            return null;
+        }
+        return mapArray[x][y];
+    }
+
 }
