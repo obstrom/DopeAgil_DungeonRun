@@ -18,6 +18,7 @@ public class Map {
         this.currentMapSize = sizeEnum;
         mapArray = createMapArray(sizeEnum.getSize());
         spawnPointXYCoordinates = calcSpawnPointCoordinates(spawnCardinal);
+        spawnRoom = getSpawnRoom();
     }
 
     public enum mapSize {
@@ -77,6 +78,16 @@ public class Map {
         }
 
         return returnObject;
+    }
+
+    public Room getSpawnRoom() {
+        if (this.spawnRoom == null) {
+            int x = spawnPointXYCoordinates[0];
+            int y = spawnPointXYCoordinates[1];
+            return getRoomFromArray(x, y);
+        } else {
+            return this.spawnRoom;
+        }
     }
 
 }
