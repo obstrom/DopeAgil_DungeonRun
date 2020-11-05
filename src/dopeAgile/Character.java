@@ -7,15 +7,13 @@ public class Character {
     int endurance;
     int attack;
     int agility;
-    int positionX = 0;
-    int positionY = 0;
+    int positionX;
+    int positionY;
  
-public Character(int initiative, int endurance, int attack, int agility) {
+public Character() {
     
-    this.initiative = initiative;
-    this.endurance = endurance;
-    this.attack = attack;
-    this.agility = agility;
+   this.positionX = 0;
+   this.positionY = 0;
     
 }    
 
