@@ -1,5 +1,6 @@
 package dopeAgile;
 
+import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Treasure {
@@ -11,54 +12,55 @@ public class Treasure {
        GEMSTONE(14),
        SMALLCHEST(20);
        
+       treasureTypes(int value){
+           this.value = value;
+           
+       }
+       private int value;
+
+        public int getValue() {
+            return value;
+        }
+        
+       
       
                 
     }
 
     public void treasureCreation() {
-      /*  final int coinPoints = 2;
-        final int moneyPouchPoints = 6;
-        final int goldJewelryPoints = 10;
-        final int gemStonePoints = 14;
-        final int smallChestPoints = 20;
-       
-        */
-      int spawnCoin = 0;
-      int spawnMoneyPouch = 0;
-      int spawnGoldJewelry = 0;
-      int spawnGemstone = 0;
-      int spawnSmallChest = 0;
+        
+       ArrayList<Treasure> treasure = new ArrayList<>();
       
-        int spawnTreasure = ThreadLocalRandom.current().nextInt(1, 100);
-        spawnTreasure = spawnCoin;
+        int spawnCoin= ThreadLocalRandom.current().nextInt(1, 100);
+       
         if (spawnCoin <= 40) {
             
         }
         
-        //int spawnMoneyPouch = ThreadLocalRandom.current().nextInt(1, 100);
-        spawnTreasure = spawnMoneyPouch;
+        int spawnMoneyPouch = ThreadLocalRandom.current().nextInt(1, 100);
+      
         if (spawnMoneyPouch <= 20) {
 
         }
 
-        //int spawnGoldJewelry = ThreadLocalRandom.current().nextInt(1, 100);
-        spawnTreasure = spawnGoldJewelry;
+        int spawnGoldJewelry = ThreadLocalRandom.current().nextInt(1, 100);
+        
         if (spawnGoldJewelry <= 15) {
 
         }
         
-        //int spawnGemstone = ThreadLocalRandom.current().nextInt(1, 100);
-        spawnTreasure = spawnGemstone;
+        int spawnGemstone = ThreadLocalRandom.current().nextInt(1, 100);
+       
         if (spawnGemstone <= 10) {
 
         }
         
-        //int spawnSmallChest = ThreadLocalRandom.current().nextInt(1, 100);
-        spawnTreasure = spawnSmallChest;
+        int spawnSmallChest = ThreadLocalRandom.current().nextInt(1, 100);
+    
         if (spawnSmallChest <= 5) {
 
         }
-
+        
     }
-
+    
 }
