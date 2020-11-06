@@ -11,8 +11,12 @@ public class Utility {
         playerList.add(player);
     }
 
-    public static Character getPlayer(int index) {
+    public static Character getSingleCharacter(int index) {
         return playerList.get(index);
+    }
+
+    public static ArrayList<Character> getPlayerList() {
+        return playerList;
     }
     
 }

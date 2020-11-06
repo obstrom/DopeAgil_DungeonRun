@@ -14,7 +14,7 @@ public class Main {
 
         mainMenu();
         Map loadedMap = mapMenu();
-        GameLoop gameSession = new GameLoop(loadedMap, Utility.getPlayer(0));
+        GameLoop gameSession = new GameLoop(loadedMap, Utility.getSingleCharacter(0));
 
     }
 
