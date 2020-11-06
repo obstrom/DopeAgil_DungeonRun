@@ -1,5 +1,7 @@
 package dopeAgile;
 
+import java.util.HashMap;
+
 public class GameLoop {
     private Map loadedMap;
     private Character loadedCharacter;
@@ -23,7 +25,13 @@ public class GameLoop {
     }
 
     public void navigation() {
-
+        System.out.println("This room X = " + currentRoom.getMapX() + ", Y = " + currentRoom.getMapY());
+        System.out.println("This room is an edge room? " + currentRoom.isEdgeRoom());
+        System.out.println("Try to display adjacent rooms:");
+        HashMap<Map.cardinalDirection, Room> allAdjacentRooms = currentRoom.getAdjacentRooms();
+        for (java.util.Map.Entry<Map.cardinalDirection, Room> entry: allAdjacentRooms.entrySet()) {
+            System.out.println(entry.getKey() + ": (" + entry.getValue().getMapX() + ", " + entry.getValue().getMapY() + ")");
+        }
     }
 
 }

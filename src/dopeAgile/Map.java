@@ -18,9 +18,10 @@ public class Map {
         this.currentMapSize = sizeEnum;
         spawnPointXYCoordinates = calcSpawnPointCoordinates(spawnCardinal);
         mapArray = createMapArray(sizeEnum.getSize());
+        calcAdjacentRooms();
     }
 
-    public static enum mapSize {
+    public enum mapSize {
         SMALL(4),
         MEDIUM(5),
         LARGE(8);
@@ -36,8 +37,8 @@ public class Map {
         }
     }
 
-    public static enum cardinalDirection {
-        N, W, S, E, NW, NE, SW, SE, LEAVE;
+    public enum cardinalDirection {
+        N, W, S, E, NW, NE, SW, SE;
     }
 
     private Room[][] createMapArray(int size) {
@@ -55,6 +56,34 @@ public class Map {
             }
         }
         return mapArray;
+    }
+
+    private void calcAdjacentRooms() {
+        for (Room[] mapRowArray: mapArray) {
+            for (Room thisRoom: mapRowArray) {
+                int xPos = thisRoom.getMapX();
+                int yPos = thisRoom.getMapY();
+
+                // ERROR IS HERE, TRYING TO ACCESS OUT OF BOUND
+
+                // Try to add north room
+                if (getRoomFromArray(xPos, yPos-1) != null) {
+                    thisRoom.addAdjacentRoom(cardinalDirection.N, getRoomFromArray(xPos, yPos-1));
+                }
+                // Try to add east room
+                if (getRoomFromArray(xPos+1, yPos) != null) {
+                    thisRoom.addAdjacentRoom(cardinalDirection.E, getRoomFromArray(xPos+1, yPos));
+                }
+                // Try to add south room
+                if (getRoomFromArray(xPos, yPos+1) != null) {
+                    thisRoom.addAdjacentRoom(cardinalDirection.S, getRoomFromArray(xPos, yPos+1));
+                }
+                // Try to add west room
+                if (getRoomFromArray(xPos-1, yPos) != null) {
+                    thisRoom.addAdjacentRoom(cardinalDirection.W, getRoomFromArray(xPos-1, yPos));
+                }
+            }
+        }
     }
 
     private int[] calcSpawnPointCoordinates(cardinalDirection spawnCardinal) {
@@ -75,15 +104,11 @@ public class Map {
     }
 
     public Room getRoomFromArray(int x, int y) {
-        Room returnObject = null;
-
         try {
-            returnObject = mapArray[x][y];
+            return mapArray[x][y];
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println(e.getMessage());
+            return null;
         }
-
-        return returnObject;
     }
     
     public String toString(){

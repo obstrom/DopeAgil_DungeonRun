@@ -127,8 +127,7 @@ public class Main {
         Utility.addPlayer(player);
 
         System.out.println("\nKaraktären heter " + name + " och är en " + characterChoice + "\n");
-        mapMenu();
-        
+
         return characterChoice;
 
     }
@@ -145,81 +144,100 @@ public class Main {
     public static Map mapMenu() {
         Map generatedMap = null;
 
-        // Choose map size
-        System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
-        System.out.println("\033[1m -- Välj storlek på kartan -- \033[0m");
-        System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
-        System.out.println("1. Liten karta (4x4)");
-        System.out.println("2. Medium karta (5x5)");
-        System.out.println("3. Stor karta (8x8)");
+        mapMenuLoop:
+        while (true) {
 
-        int mapChoice = 0;
-        for (int i = 0; i < 1; i++) {
-            Scanner sc = new Scanner(System.in);
-            String userInput = sc.nextLine().toLowerCase();
+            // Choose map size
+            System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
+            System.out.println("\033[1m -- Välj storlek på kartan -- \033[0m");
+            System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
+            System.out.println("1. Liten karta (4x4)");
+            System.out.println("2. Medium karta (5x5)");
+            System.out.println("3. Stor karta (8x8)");
 
-            if (userInput.equals("1") || userInput.contains("liten")) {
-                mapChoice = 1;
-            } else if (userInput.equals("2") || userInput.contains("medium")) {
-                mapChoice = 2;
-            } else if (userInput.equals("3") || userInput.contains("large")) {
-                mapChoice = 3;
-            } else {
-                System.out.println("Ogiltigt kommando! Försök igen.");
-                --i;
+            int mapChoice = 0;
+            for (int i = 0; i < 1; i++) {
+                Scanner sc = new Scanner(System.in);
+                String userInput = sc.nextLine().toLowerCase();
+
+                if (userInput.equals("1") || userInput.contains("liten")) {
+                    mapChoice = 1;
+                } else if (userInput.equals("2") || userInput.contains("medium")) {
+                    mapChoice = 2;
+                } else if (userInput.equals("3") || userInput.contains("large")) {
+                    mapChoice = 3;
+                } else {
+                    System.out.println("Ogiltigt kommando! Försök igen.");
+                    --i;
+                }
             }
-        }
 
-        // Choose spawn point
-        System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
-        System.out.println("\033[1m -- Vart på kartan vill du börja -- \033[0m");
-        System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
-        System.out.println("1. Nordvästra hörnet");
-        System.out.println("2. Nordöstra hörnet");
-        System.out.println("3. Sydvästra hörnet");
-        System.out.println("4. Sydöstra hörnet");
+            // Choose spawn point
+            System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
+            System.out.println("\033[1m -- Vart på kartan vill du börja -- \033[0m");
+            System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
+            System.out.println("1. Nordvästra hörnet");
+            System.out.println("2. Nordöstra hörnet");
+            System.out.println("3. Sydvästra hörnet");
+            System.out.println("4. Sydöstra hörnet");
 
-        Map.cardinalDirection cardinal = null;
-        for (int i = 0; i < 1; i++) {
-            Scanner sc = new Scanner(System.in);
-            String userInput = sc.nextLine().toLowerCase();
+            Map.cardinalDirection cardinal = null;
+            for (int i = 0; i < 1; i++) {
+                Scanner sc = new Scanner(System.in);
+                String userInput = sc.nextLine().toLowerCase();
 
-            if (userInput.equals("1") || userInput.contains("nordväst") || userInput.contains("nw")) {
-                cardinal = Map.cardinalDirection.NW;
-            } else if (userInput.equals("2") || userInput.contains("nordöst") || userInput.contains("ne")) {
-                cardinal = Map.cardinalDirection.NE;
-            } else if (userInput.equals("3") || userInput.contains("sydväst") || userInput.contains("sw")) {
-                cardinal = Map.cardinalDirection.SW;
-            } else if (userInput.equals("4") || userInput.contains("sydöst") || userInput.contains("se")) {
-                cardinal = Map.cardinalDirection.SE;
-            } else {
-                System.out.println("Ogiltigt kommando! Försök igen.");
-                --i;
+                if (userInput.equals("1") || userInput.contains("nordväst") || userInput.contains("nw")) {
+                    cardinal = Map.cardinalDirection.NW;
+                } else if (userInput.equals("2") || userInput.contains("nordöst") || userInput.contains("ne")) {
+                    cardinal = Map.cardinalDirection.NE;
+                } else if (userInput.equals("3") || userInput.contains("sydväst") || userInput.contains("sw")) {
+                    cardinal = Map.cardinalDirection.SW;
+                } else if (userInput.equals("4") || userInput.contains("sydöst") || userInput.contains("se")) {
+                    cardinal = Map.cardinalDirection.SE;
+                } else {
+                    System.out.println("Ogiltigt kommando! Försök igen.");
+                    --i;
+                }
             }
-        }
 
-        switch (mapChoice) {
-            case 1:
-                generatedMap = new Map(Map.mapSize.SMALL, cardinal);
-                break;
-            case 2:
-                generatedMap = new Map(Map.mapSize.MEDIUM, cardinal);
-                break;
-            case 3:
-                generatedMap = new Map(Map.mapSize.LARGE, cardinal);
-                break;
-            default:
-                System.out.println("MapChoice switchcase error!");
-        }
+            switch (mapChoice) {
+                case 1:
+                    generatedMap = new Map(Map.mapSize.SMALL, cardinal);
+                    break;
+                case 2:
+                    generatedMap = new Map(Map.mapSize.MEDIUM, cardinal);
+                    break;
+                case 3:
+                    generatedMap = new Map(Map.mapSize.LARGE, cardinal);
+                    break;
+                default:
+                    System.out.println("MapChoice switchcase error!");
+            }
 
-        System.out.println("\n\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
-        System.out.println("\033[1m -- Förhandsgranska karta -- \033[0m");
-        System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
-        System.out.println(generatedMap.toString());
-        System.out.println("[*] = Startpunkt | [?] = Obesökt rum | [ ] = Besökt rum");
+            System.out.println("\n\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
+            System.out.println("\033[1m -- Förhandsgranska karta -- \033[0m");
+            System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
+            System.out.println(generatedMap.toString());
+            System.out.println("[*] = Startpunkt | [?] = Obesökt rum | [ ] = Besökt rum");
+
+            for (int i = 0; i < 1; i++) {
+                System.out.print("\nAnvänd denna karta? (Y/N) ");
+                Scanner sc = new Scanner(System.in);
+                String userInput = sc.nextLine().toLowerCase();
+
+                if (userInput.equals("y") || userInput.contains("yes") || userInput.contains("ja")) {
+                    break mapMenuLoop;
+                } else if (userInput.equals("n") || userInput.contains("no") || userInput.contains("nej")) {
+                    break;
+                } else {
+                    System.out.println("Ogiltigt kommando! Försök igen.");
+                    --i;
+                }
+            }
+
+        }
 
         return generatedMap;
-
     }
 
 }

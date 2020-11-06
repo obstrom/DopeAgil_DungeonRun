@@ -1,5 +1,8 @@
 package dopeAgile;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Room {
 
     private boolean hasMonster = false;
@@ -7,6 +10,7 @@ public class Room {
     private boolean isSpawnRoom = false;
     private boolean isEdgeRoom = false;
     private boolean isRoomExplored = false;
+    private HashMap<Map.cardinalDirection, Room> adjacentRooms = new HashMap<Map.cardinalDirection, Room>();
     private int mapX;
     private int mapY;
 
@@ -17,10 +21,6 @@ public class Room {
         this.isSpawnRoom = isSpawnRoom;
         generateMonster();
         generateTreasure();
-    }
-
-    public boolean getIsRoomExplored() {
-        return isRoomExplored;
     }
 
     private void generateMonster() {
@@ -46,4 +46,31 @@ public class Room {
         }
     }
 
+    public boolean getIsRoomExplored() {
+        return isRoomExplored;
+    }
+
+    public HashMap<Map.cardinalDirection, Room> getAdjacentRooms() {
+        return adjacentRooms;
+    }
+
+    public Room getSpecificAdjacentRoom(Map.cardinalDirection direction) {
+        return adjacentRooms.get(direction);
+    }
+
+    public void addAdjacentRoom(Map.cardinalDirection direction, Room room) {
+        adjacentRooms.put(direction, room);
+    }
+
+    public int getMapX() {
+        return mapX;
+    }
+
+    public int getMapY() {
+        return mapY;
+    }
+
+    public boolean isEdgeRoom() {
+        return isEdgeRoom;
+    }
 }
