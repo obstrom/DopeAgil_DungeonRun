@@ -13,6 +13,8 @@ public class Main {
         System.out.println("\n\033[1mVälkommen till Dungeon Run\033[0m");
 
         mainMenu();
+        Map loadedMap = mapMenu();
+        GameLoop gameSession = new GameLoop(loadedMap);
 
     }
 
@@ -142,7 +144,8 @@ public class Main {
         return characterName;
     }
 
-    public static void mapMenu() {
+    public static Map mapMenu() {
+        Map generatedMap = null;
 
         // Choose map size
         System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
@@ -199,31 +202,24 @@ public class Main {
 
         switch (mapChoice) {
             case 1:
-                Map smallMap = new Map(Map.mapSize.SMALL, cardinal);
-                System.out.println("\n\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
-                System.out.println("\033[1m -- Förhandsgranska karta -- \033[0m");
-                System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
-                smallMap.mapPrint();
+                generatedMap = new Map(Map.mapSize.SMALL, cardinal);
                 break;
             case 2:
-                Map mediumMap = new Map(Map.mapSize.MEDIUM, cardinal);
-                System.out.println("\n\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
-                System.out.println("\033[1m -- Förhandsgranska karta -- \033[0m");
-                System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
-                mediumMap.mapPrint();
+                generatedMap = new Map(Map.mapSize.MEDIUM, cardinal);
                 break;
             case 3:
-                Map largeMap = new Map(Map.mapSize.LARGE, cardinal);
-                System.out.println("\n\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
-                System.out.println("\033[1m -- Förhandsgranska karta -- \033[0m");
-                System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
-                largeMap.mapPrint();
+                generatedMap = new Map(Map.mapSize.LARGE, cardinal);
                 break;
             default:
                 System.out.println("MapChoice switchcase error!");
         }
 
-        System.out.println();
+        System.out.println("\n\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
+        System.out.println("\033[1m -- Förhandsgranska karta -- \033[0m");
+        System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
+        generatedMap.mapPrint();
+
+        return generatedMap;
 
     }
 
