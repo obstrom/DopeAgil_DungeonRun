@@ -1,8 +1,10 @@
 
+
+// Metod som tittar om monsret träffar vid attack (tar emot dpelarens attack värde int
 package dopeAgile;
 
 
-public class Monster {
+public abstract class Monster {
     
     int initiative;
     int endurance;
@@ -50,6 +52,25 @@ public class Monster {
         this.common = common;
     }
     
+    abstract String getAttackMessage();
+    
+    // Metod för att sänka monstrets endurance. Tar en int som sänker endurance
+    public void lowerMonsterEndurance(){
+        this.endurance = this.endurance - 1;
+    }
+    // Metod som returnerar boolean som kollar om monsterets endurance är högre än 0
+    public boolean monsterEndurance(){
+        boolean monsterAlive;
+        
+        if (this.endurance < 0){
+            monsterAlive = false;
+        } else{
+            monsterAlive = true;
+        }
+        return monsterAlive;
+    }
+    
+    // Metod som tittar om monsret träffar vid attack (tar emot dpelarens attack värde int
     
     
 }
