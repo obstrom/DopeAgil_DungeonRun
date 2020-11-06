@@ -5,6 +5,14 @@ import java.util.ArrayList;
 
 public class Utility {
     
-    ArrayList<Character> playerList = new ArrayList<Character>();
+    private static final ArrayList<Character> playerList = new ArrayList<Character>();
+
+    public static void addPlayer(Character player) {
+        playerList.add(player);
+    }
+
+    public static Character getPlayer(int index) {
+        return playerList.get(index);
+    }
     
 }

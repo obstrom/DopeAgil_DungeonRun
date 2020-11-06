@@ -14,7 +14,7 @@ public class Main {
 
         mainMenu();
         Map loadedMap = mapMenu();
-        GameLoop gameSession = new GameLoop(loadedMap);
+        GameLoop gameSession = new GameLoop(loadedMap, Utility.getPlayer(0));
 
     }
 
@@ -124,10 +124,8 @@ public class Main {
         name = characterName();
         player.setName(name);
         
-        Utility u = new Utility();
-        u.playerList.add(player);
- 
-             
+        Utility.addPlayer(player);
+
         System.out.println("\nKaraktären heter " + name + " och är en " + characterChoice + "\n");
         mapMenu();
         
