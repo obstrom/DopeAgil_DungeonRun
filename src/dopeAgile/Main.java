@@ -8,7 +8,7 @@ public class Main {
         RIDDARE, TJUV, MAGIKER;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) { ///coment
 
         System.out.println("\n\033[1mVälkommen till Dungeon Run\033[0m");
 
@@ -42,7 +42,7 @@ public class Main {
                 mainMenu();
                 break;
             case 2:
-                characterMenu();
+                characterChoice();
                 break;
             case 3:
                 System.out.println("Välj Sparad Karaktär");
@@ -55,16 +55,17 @@ public class Main {
 
     }
 
-    public static void characterMenu() {
-        CharacterType character = characterChoice();
-        String name = characterName();
-        System.out.println("\nKaraktären heter " + name + " och är en " + character + "\n");
-        mapMenu();
-    }
+//    public static void characterMenu() {
+//        CharacterType character = characterChoice();
+//        String name = characterName();
+//        System.out.println("\nKaraktären heter " + name + " och är en " + character + "\n");
+//        mapMenu();
+//    }
 
     public static CharacterType characterChoice() {
 
         int characterMenuChoice = 0;
+        String name = " ";
         CharacterType characterChoice = null;
         boolean run = true;
 
@@ -77,7 +78,7 @@ public class Main {
 
         System.out.println("3. Tjuv");
         System.out.println(" Iniativ: 7, Tålighet: 5, Attack: 5, Smidighet: 7 \n");
-
+ 
         while (run) {
 
             try {
@@ -94,28 +95,40 @@ public class Main {
             }
 
         }
-
-        switch (characterMenuChoice) {
+            
+        Character player = new Character();
+        
+        switch (characterMenuChoice) {  
             case 1:
                 System.out.println("Du har valt Riddaren!");
                 characterChoice = CharacterType.RIDDARE;
-                // Character player = new Knight();
+                player = new Knight();
                 break;
             case 2:
                 System.out.println("Du har valt Magikern!");
                 characterChoice = CharacterType.MAGIKER;
-                // Character player = new Magican();
+                player = new Wizard();
                 break;
             case 3:
                 System.out.println("Du har valt Tjuven!");
                 characterChoice = CharacterType.TJUV;
-                // Character player = new Rouge();
+                player = new Rouge();
                 break;
             default:
                 System.out.println("test");
                 break;
         }
-
+        
+        name = characterName();
+        player.setName(name);
+        
+        Utility u = new Utility();
+        u.playerList.add(player);
+ 
+             
+        System.out.println("\nKaraktären heter " + name + " och är en " + characterChoice + "\n");
+        mapMenu();
+        
         return characterChoice;
 
     }
