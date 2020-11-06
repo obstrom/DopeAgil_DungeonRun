@@ -38,7 +38,30 @@ public class Map {
     }
 
     public enum cardinalDirection {
-        N, W, S, E, NW, NE, SW, SE;
+        N {
+            @Override
+            public String toString() {
+                return "Norr";
+            }
+        },
+        W {
+            @Override
+            public String toString() {
+                return "Väst";
+            }
+        },
+        S {
+            @Override
+            public String toString() {
+                return "Söder";
+            }
+        },
+        E {
+            @Override
+            public String toString() {
+                return "Öst";
+            }
+        }, NW, NE, SW, SE, LEAVE;
     }
 
     private Room[][] createMapArray(int size) {
@@ -63,8 +86,6 @@ public class Map {
             for (Room thisRoom: mapRowArray) {
                 int xPos = thisRoom.getMapX();
                 int yPos = thisRoom.getMapY();
-
-                // ERROR IS HERE, TRYING TO ACCESS OUT OF BOUND
 
                 // Try to add north room
                 if (getRoomFromArray(xPos, yPos-1) != null) {
@@ -111,7 +132,7 @@ public class Map {
         }
     }
     
-    public String toString(){
+    public String toString(boolean showLegend) {
         String result = "";
         for (Room[] roomRows : mapArray) {
             for (Room room : roomRows) {
@@ -125,6 +146,11 @@ public class Map {
             }
           result += "\n";  
         }
+
+        if (showLegend) {
+            result += "\n[*] = Startpunkt | [?] = Obesökt rum\n[ ] = Besökt rum | [^] = Rum med monster";
+        }
+
         return result;
     }
 

@@ -14,6 +14,10 @@ public class Main {
 
         mainMenu();
         Map loadedMap = mapMenu();
+
+        System.out.println("\n\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
+        System.out.println("\033[1m -- Ett nytt äventyr börjar! -- \033[0m");
+        System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
         GameLoop gameSession = new GameLoop(loadedMap, Utility.getSingleCharacter(0));
 
     }
@@ -217,8 +221,7 @@ public class Main {
             System.out.println("\n\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
             System.out.println("\033[1m -- Förhandsgranska karta -- \033[0m");
             System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
-            System.out.println(generatedMap.toString());
-            System.out.println("[*] = Startpunkt | [?] = Obesökt rum | [ ] = Besökt rum");
+            System.out.println(generatedMap.toString(true));
 
             for (int i = 0; i < 1; i++) {
                 System.out.print("\nAnvänd denna karta? (Y/N) ");
