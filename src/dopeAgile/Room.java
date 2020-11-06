@@ -5,8 +5,14 @@ public class Room {
     private boolean hasMonster = false;
     private boolean hasTreasure = false;
     private boolean isSpawnRoom = false;
+    private boolean isEdgeRoom = false;
+    private int mapX;
+    private int mapY;
 
-    Room(boolean isSpawnRoom) {
+    Room(int mapX, int mapY, boolean isEdgeRoom, boolean isSpawnRoom) {
+        this.mapX = mapX;
+        this.mapY = mapY;
+        this.isEdgeRoom = isEdgeRoom;
         this.isSpawnRoom = isSpawnRoom;
         generateMonster();
         generateTreasure();

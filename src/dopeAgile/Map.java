@@ -42,14 +42,15 @@ public class Map {
 
     private Room[][] createMapArray(int size) {
         Room[][] mapArray = new Room[size][size];
-        for (int i = 0; i < mapArray.length; i++) {
-            for (int j = 0; j < mapArray[i].length; j++) {
-                if (i == spawnPointXYCoordinates[0] && j == spawnPointXYCoordinates[1]) {
-                    Room newRoom = new Room(true);
-                    mapArray[i][j] = newRoom;
+        for (int y = 0; y < mapArray.length; y++) {
+            for (int x = 0; x < mapArray[y].length; x++) {
+                boolean isEdge = (y == 0 || x == 0 || y == (mapArray.length-1) || x == (mapArray.length-1));
+                if (y == spawnPointXYCoordinates[0] && x == spawnPointXYCoordinates[1]) {
+                    Room newRoom = new Room(x, y, isEdge, true);
+                    mapArray[y][x] = newRoom;
                     this.spawnRoom = newRoom;
                 } else {
-                    mapArray[i][j] = new Room(false);
+                    mapArray[y][x] = new Room(x, y, isEdge, false);
                 }
             }
         }
