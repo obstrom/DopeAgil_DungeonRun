@@ -3,14 +3,25 @@ package dopeAgile;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Treasure {
+    
+    public enum treasureTypes{
+       COIN(2),
+       MONEYPOUCH(6),
+       GOLDJEWELRY(10),
+       GEMSTONE(14),
+       SMALLCHEST(20);
+       
+      
+                
+    }
 
     public void treasureCreation() {
-        final int coinPoints = 2;
+      /*  final int coinPoints = 2;
         final int moneyPouchPoints = 6;
         final int goldJewelryPoints = 10;
         final int gemStonePoints = 14;
         final int smallChestPoints = 20;
-
+        */
         int spawnCoin = ThreadLocalRandom.current().nextInt(1, 100);
         if (spawnCoin <= 40) {
             
