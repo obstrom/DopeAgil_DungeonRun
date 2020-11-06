@@ -179,19 +179,19 @@ public class Main {
         System.out.println("3. Sydvästra hörnet");
         System.out.println("4. Sydöstra hörnet");
 
-        Map.spawnCardinal cardinal = null;
+        Map.cardinalDirection cardinal = null;
         for (int i = 0; i < 1; i++) {
             Scanner sc = new Scanner(System.in);
             String userInput = sc.nextLine().toLowerCase();
 
             if (userInput.equals("1") || userInput.contains("nordväst") || userInput.contains("nw")) {
-                cardinal = Map.spawnCardinal.NW;
+                cardinal = Map.cardinalDirection.NW;
             } else if (userInput.equals("2") || userInput.contains("nordöst") || userInput.contains("ne")) {
-                cardinal = Map.spawnCardinal.NE;
+                cardinal = Map.cardinalDirection.NE;
             } else if (userInput.equals("3") || userInput.contains("sydväst") || userInput.contains("sw")) {
-                cardinal = Map.spawnCardinal.SW;
+                cardinal = Map.cardinalDirection.SW;
             } else if (userInput.equals("4") || userInput.contains("sydöst") || userInput.contains("se")) {
-                cardinal = Map.spawnCardinal.SE;
+                cardinal = Map.cardinalDirection.SE;
             } else {
                 System.out.println("Ogiltigt kommando! Försök igen.");
                 --i;
@@ -215,7 +215,8 @@ public class Main {
         System.out.println("\n\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
         System.out.println("\033[1m -- Förhandsgranska karta -- \033[0m");
         System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
-        generatedMap.mapPrint();
+        System.out.println(generatedMap.toString());
+        System.out.println("[*] = Startpunkt | [?] = Obesökt rum | [ ] = Besökt rum");
 
         return generatedMap;
 

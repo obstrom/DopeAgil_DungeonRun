@@ -6,16 +6,21 @@ public class Room {
     private boolean hasTreasure = false;
     private boolean isSpawnRoom = false;
     private boolean isEdgeRoom = false;
+    private boolean isRoomExplored = false;
     private int mapX;
     private int mapY;
 
-    Room(int mapX, int mapY, boolean isEdgeRoom, boolean isSpawnRoom) {
+    Room (int mapX, int mapY, boolean isEdgeRoom, boolean isSpawnRoom) {
         this.mapX = mapX;
         this.mapY = mapY;
         this.isEdgeRoom = isEdgeRoom;
         this.isSpawnRoom = isSpawnRoom;
         generateMonster();
         generateTreasure();
+    }
+
+    public boolean getIsRoomExplored() {
+        return isRoomExplored;
     }
 
     private void generateMonster() {

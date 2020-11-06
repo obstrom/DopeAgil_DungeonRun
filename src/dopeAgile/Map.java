@@ -14,7 +14,7 @@ public class Map {
         return mapArray;
     }
 
-    Map (mapSize sizeEnum, spawnCardinal spawnCardinal) {
+    Map (mapSize sizeEnum, cardinalDirection spawnCardinal) {
         this.currentMapSize = sizeEnum;
         spawnPointXYCoordinates = calcSpawnPointCoordinates(spawnCardinal);
         mapArray = createMapArray(sizeEnum.getSize());
@@ -36,8 +36,8 @@ public class Map {
         }
     }
 
-    public static enum spawnCardinal {
-        NW, NE, SW, SE;
+    public static enum cardinalDirection {
+        N, W, S, E, NW, NE, SW, SE, LEAVE;
     }
 
     private Room[][] createMapArray(int size) {
@@ -57,7 +57,7 @@ public class Map {
         return mapArray;
     }
 
-    private int[] calcSpawnPointCoordinates(spawnCardinal spawnCardinal) {
+    private int[] calcSpawnPointCoordinates(cardinalDirection spawnCardinal) {
         int[] returnInt = new int[] {0, 0};
         switch (spawnCardinal) {
             case NE:
@@ -86,21 +86,21 @@ public class Map {
         return returnObject;
     }
     
-    public void mapPrint(){
+    public String toString(){
         String result = "";
         for (Room[] roomRows : mapArray) {
             for (Room room : roomRows) {
                 if (room == getSpawnRoom()) {
-                    result += "[O]";
-                } else {
+                    result += "[*]";
+                } else if (room.getIsRoomExplored()) {
                     result += "[ ]";
+                } else {
+                    result += "[?]";
                 }
             }
           result += "\n";  
         }
-        System.out.println("[O] = Startpunkt");
-        System.out.println("[ ] = Obesökt rum\n");
-        System.out.println(result);
+        return result;
     }
 
     public Room getSpawnRoom() {

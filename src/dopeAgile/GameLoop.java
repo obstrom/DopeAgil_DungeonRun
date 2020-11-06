@@ -17,11 +17,13 @@ public class GameLoop {
             if (loopIteration == 0) {
                 currentRoom = loadedMap.getSpawnRoom();
             }
-
-
-
+            navigation();
             break; // Remove when exit map is implemented
         }
+    }
+
+    public void navigation() {
+
     }
 
 }
