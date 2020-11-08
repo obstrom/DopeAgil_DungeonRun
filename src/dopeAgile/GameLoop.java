@@ -25,7 +25,6 @@ public class GameLoop {
             keepGoing = navigation();
 
             ++loopIteration;
-            break; // Remove when exit map is implemented
         }
     }
 
@@ -39,7 +38,7 @@ public class GameLoop {
             System.out.println(entry.getKey() + ": (" + entry.getValue().getMapX() + ", " + entry.getValue().getMapY() + ")");
         }*/
 
-        loadedMap.toString(true);
+        System.out.println(loadedMap.toString(true));
         System.out.println("\n\033[1m-*-*-*-*-*-*-*-*-*-*-\033[0m");
         System.out.println("\033[1m -- Välj riktning -- \033[0m");
         System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-\033[0m");
@@ -49,6 +48,9 @@ public class GameLoop {
             System.out.println("ÄVENTYRET ÄR SLUT (PLACEHOLDER!)");
             return false;
         }
+
+        currentRoom.setIsRoomExplored(true);
+        currentRoom = currentRoom.getSpecificAdjacentRoom(chosenDirection);
 
         return true;
     }
@@ -82,9 +84,9 @@ public class GameLoop {
                 int userInputInt = Integer.parseInt(userInput);
                 returnDirection = menuOptions.get(userInputInt-1);
             } catch (NumberFormatException e) {
-                if (menuOptions.toString().contains(userInput)) {
+                if (menuOptions.toString().toLowerCase().contains(userInput)) {
                     for (Map.cardinalDirection direction: menuOptions) {
-                        if (direction.toString().contains(userInput)) {
+                        if (direction.toString().toLowerCase().contains(userInput)) {
                             returnDirection = direction;
                         }
                     }
@@ -92,6 +94,9 @@ public class GameLoop {
                     System.out.println("Ogiltigt kommando! Försök igen.");
                     --i;
                 }
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Ogiltigt kommando! Försök igen.");
+                --i;
             }
 
         }

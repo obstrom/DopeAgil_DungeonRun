@@ -1,6 +1,5 @@
 package dopeAgile;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Room {
@@ -48,6 +47,10 @@ public class Room {
 
     public boolean getIsRoomExplored() {
         return isRoomExplored;
+    }
+
+    public void setIsRoomExplored(boolean isExplored) {
+        isRoomExplored = isExplored;
     }
 
     public HashMap<Map.cardinalDirection, Room> getAdjacentRooms() {

@@ -148,7 +148,7 @@ public class Map {
         }
 
         if (showLegend) {
-            result += "\n[*] = Startpunkt | [?] = Obesökt rum\n[ ] = Besökt rum | [^] = Rum med monster";
+            result += "\n[*] = Hjälte | [?] = Obesökt rum\n[ ] = Besökt rum | [^] = Rum med monster";
         }
 
         return result;
