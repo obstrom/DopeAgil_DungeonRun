@@ -23,6 +23,6 @@ public class Orc extends Monster {
     }
 
     @Override
-    public String getEntryMessage() { return "en orc kommer ut ur skuggan."; }
+    public String getEntryMessage() { return "En orc kommer ut ur skuggan!"; }
 }
 

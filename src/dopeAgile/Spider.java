@@ -23,6 +23,6 @@ public class Spider extends Monster {
     }
 
     @Override
-    public String getEntryMessage() { return "en spindel faller ner från taket"; }
+    public String getEntryMessage() { return "En spindel faller ner från taket!"; }
     
 }

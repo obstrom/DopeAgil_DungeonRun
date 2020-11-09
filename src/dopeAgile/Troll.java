@@ -23,6 +23,6 @@ public class Troll extends Monster {
     }
 
     @Override
-    public String getEntryMessage() { return "ett troll kommer in genom en av dörrarna."; }
+    public String getEntryMessage() { return "Ett troll kommer in genom en av dörrarna!"; }
     
 }

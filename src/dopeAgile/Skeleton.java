@@ -23,6 +23,6 @@ public class Skeleton extends Monster {
     }
 
     @Override
-    public String getEntryMessage() { return "ett skelett reser sig från marken"; }
+    public String getEntryMessage() { return "Ett skelett reser sig från marken!"; }
     
 }

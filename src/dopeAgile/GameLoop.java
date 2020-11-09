@@ -31,10 +31,14 @@ public class GameLoop {
 
     public void displayRoom() {
 
+        System.out.println("\n\033[1mHändelser:\033[0m");
         if (!currentRoom.isSpawnRoom()) {
             System.out.println("\u001B[3m" + currentRoom.getRoomMessage() + "\033[0m");
             for (Monster monster: currentRoom.getRoomMonsters()) {
-                System.out.println(monster.getEntryMessage());
+                System.out.println("\u001B[31m" + monster.getEntryMessage() + "\033[0m");
+            }
+            if (currentRoom.getRoomMonsters().size() > 0) {
+                System.out.println("Du besegrar alla monster.");
             }
         }
 
@@ -101,9 +105,10 @@ public class GameLoop {
 
         // Creating a temporary ArrayList to hold the dynamic menu options
         ArrayList<Map.cardinalDirection> menuOptions = new ArrayList<Map.cardinalDirection>();
-        for (java.util.Map.Entry<Map.cardinalDirection, Room> entry: currentRoom.getAdjacentRooms().entrySet()) {
-            menuOptions.add(entry.getKey());
-        }
+        menuOptions.add(Map.cardinalDirection.N);
+        menuOptions.add(Map.cardinalDirection.E);
+        menuOptions.add(Map.cardinalDirection.S);
+        menuOptions.add(Map.cardinalDirection.W);
 
         // Check if player can leave map at this point...
         // ... add it to the menu options
@@ -114,9 +119,14 @@ public class GameLoop {
         // Print dynamic menu options
         for (int i = 0; i < menuOptions.size(); i++) {
             if (menuOptions.get(i) == Map.cardinalDirection.LEAVE) {
-                System.out.println(i+1 + ". Lämna dungeon och avsluta äventyret (SPARA).");
+                System.out.println("5. Lämna dungeon och avsluta äventyret (SPARA).");
             } else {
-                System.out.println(i+1 + ". Gå mot " + menuOptions.get(i).toString().toLowerCase() + ".");
+                if(currentRoom.getSpecificAdjacentRoom(menuOptions.get(i)) == null) {
+                    System.out.println("\u001B[31m" + (i+1) + ". - \033[0m");
+                    menuOptions.set(i, null);
+                } else {
+                    System.out.println(i+1 + ". Gå mot " + menuOptions.get(i).toString().toLowerCase() + ".");
+                }
             }
         }
 
@@ -129,6 +139,10 @@ public class GameLoop {
             try {
                 int userInputInt = Integer.parseInt(userInput);
                 returnDirection = menuOptions.get(userInputInt-1);
+                if (returnDirection == null) {
+                    System.out.println("Ogiltigt kommando! Försök igen.");
+                    --i;
+                }
             } catch (NumberFormatException e) {
                 if (menuOptions.toString().toLowerCase().contains(userInput)) {
                     for (Map.cardinalDirection direction: menuOptions) {
@@ -137,7 +151,7 @@ public class GameLoop {
                         }
                     }
                 } else {
-                    System.out.println("Ogiltigt kommando! Försök igen.");
+                    System.out.println("Ogiltigt riktning! Försök igen.");
                     --i;
                 }
             } catch (IndexOutOfBoundsException e) {
