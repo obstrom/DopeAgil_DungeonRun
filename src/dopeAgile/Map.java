@@ -137,18 +137,18 @@ public class Map {
         for (Room[] roomRows : mapArray) {
             for (Room room : roomRows) {
                 if (playerCurrentRoom == room) {
-                    result += "[*]";
+                    result += "[\u001B[32m*\u001B[0m]";
                 } else if (room.getIsRoomExplored()) {
                     result += "[ ]";
                 } else {
-                    result += "[?]";
+                    result += "[\u001B[34m?\u001B[0m]";
                 }
             }
           result += "\n";  
         }
 
         if (showLegend) {
-            result += "\n[*] = Din position | [?] = Obesökt rum\n[ ] = Besökt rum | [X] = Rum med monster";
+            result += "\n[\u001B[32m*\u001B[0m] = Din position | [\u001B[34m?\u001B[0m] = Obesökt rum\n[ ] = Besökt rum | [\u001B[31m!\u001B[0m] = Rum med monster";
         }
 
         return result;

@@ -14,15 +14,15 @@ public class Character {
     int playerId;
     int idGenerator;
 
-public Character() {
-    
-   this.positionX = 0;
-   this.positionY = 0;
-   this.name = name;
-   this.points = 0;
-   this.playerId = idGenerator;
-    
-}    
+    public Character() {
+
+       this.positionX = 0;
+       this.positionY = 0;
+       this.name = name;
+       this.points = 0;
+       this.playerId = idGenerator;
+
+    }
 
     public int getInitiative() {
         return initiative;
