@@ -1,5 +1,6 @@
 package dopeAgile;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Room {
@@ -9,6 +10,7 @@ public class Room {
     private boolean isEdgeRoom = false;
     private boolean isRoomExplored = false;
     private Treasure roomTreasure = new Treasure();
+    private ArrayList<Monster> roomMonsters;
     private HashMap<Map.cardinalDirection, Room> adjacentRooms = new HashMap<Map.cardinalDirection, Room>();
     private String roomMessage;
     private int mapX;
@@ -22,19 +24,34 @@ public class Room {
         if (isSpawnRoom) {
             clearTreasure();
         }
-        generateMonster();
+        roomMonsters = generateMonster();
         roomMessage = generateRoomMessage();
     }
 
-    private void generateMonster() {
-        double rand = Math.random(); // Random number 0.0 -> 1.0
-        // Jättespindel = 20%
-        // Skelett = 15%
-        // Orc = 10%
-        // Troll = 5%
-        if (rand < 0.5 && !isSpawnRoom) {
-            hasMonster = true;
+    private ArrayList<Monster> generateMonster() {
+        ArrayList<Monster> monsterList = new ArrayList<Monster>();
+
+        double spawnOrc = Math.random();
+        if (spawnOrc <= Orc.getCommon()) {
+            monsterList.add(new Orc());
         }
+
+        double spawnSkeleton = Math.random();
+        if (spawnSkeleton <= Skeleton.getCommon()) {
+            monsterList.add(new Skeleton());
+        }
+
+        double spawnSpider = Math.random();
+        if (spawnSpider <= Spider.getCommon()) {
+            monsterList.add(new Spider());
+        }
+
+        double spawnTroll = Math.random();
+        if (spawnTroll <= Troll.getCommon()) {
+            monsterList.add(new Troll());
+        }
+
+        return monsterList;
     }
 
     private String generateRoomMessage() {
@@ -125,5 +142,9 @@ public class Room {
 
     public boolean isSpawnRoom() {
         return isSpawnRoom;
+    }
+
+    public ArrayList<Monster> getRoomMonsters() {
+        return roomMonsters;
     }
 }

@@ -30,10 +30,12 @@ public class GameLoop {
     }
 
     public void displayRoom() {
-        // TODO: VISA MONSTER
 
         if (!currentRoom.isSpawnRoom()) {
             System.out.println("\u001B[3m" + currentRoom.getRoomMessage() + "\033[0m");
+            for (Monster monster: currentRoom.getRoomMonsters()) {
+                System.out.println(monster.getEntryMessage());
+            }
         }
 
         if (currentRoom.getRoomTreasure().getTreasureList() == null) {

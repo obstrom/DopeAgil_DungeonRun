@@ -2,6 +2,8 @@
 package dopeAgile;
 
 public class Orc extends Monster {
+
+    public static final double COMMON = 0.1;
     
     public Orc(){
         super();
@@ -9,12 +11,18 @@ public class Orc extends Monster {
         this.endurance = 3;
         this.attack = 4;
         this.agility = 4;
-        this.common = 0.1;
+    }
+
+    public static double getCommon() {
+        return COMMON;
     }
 
     @Override
     public String getAttackMessage() {
-        return "";
+        return "Orc";
     }
+
+    @Override
+    public String getEntryMessage() { return "en orc kommer ut ur skuggan."; }
 }
 

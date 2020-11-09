@@ -8,7 +8,6 @@ public abstract class Monster {
     int endurance;
     int attack;
     int agility;
-    double common;
 
     public int getInitiative() {
         return initiative;
@@ -42,15 +41,8 @@ public abstract class Monster {
         this.agility = agility;
     }
 
-    public double getCommon() {
-        return common;
-    }
-
-    public void setCommon(double common) {
-        this.common = common;
-    }
-    
     abstract String getAttackMessage();
+    abstract String getEntryMessage();
     
     // Metod för att sänka monstrets endurance. Tar en int som sänker endurance
     public void lowerMonsterEndurance(){

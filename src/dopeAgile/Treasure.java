@@ -52,7 +52,7 @@ public class Treasure {
     }
 
     Treasure() {
-      
+
         int spawnCoin = ThreadLocalRandom.current().nextInt(1, 100);
         if (spawnCoin <= 40) {
             treasureList.add(treasureTypes.COIN);

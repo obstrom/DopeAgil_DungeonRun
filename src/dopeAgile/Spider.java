@@ -2,6 +2,8 @@
 package dopeAgile;
 
 public class Spider extends Monster {
+
+    private static final double COMMON = 0.2;
     
     public Spider() {
         super();
@@ -9,12 +11,18 @@ public class Spider extends Monster {
         this.endurance = 1;
         this.attack = 2;
         this.agility = 3;
-        this.common = 0.2;
+    }
+
+    public static double getCommon() {
+        return COMMON;
     }
 
     @Override
     public String getAttackMessage() {
         return "";
     }
+
+    @Override
+    public String getEntryMessage() { return "en spindel faller ner från taket"; }
     
 }
