@@ -15,7 +15,7 @@ public class Character {
     int idGenerator;
 
     public Character() {
-
+       this.role = role;
        this.positionX = 0;
        this.positionY = 0;
        this.name = name;
@@ -84,6 +84,18 @@ public class Character {
         return points;
     }
 
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+    
     @Override
     public String toString() {
         return "Character{" + " initiative : " + initiative + ", endurance : " + endurance + ", attack : " + attack + ", agility : " + agility + '}';
