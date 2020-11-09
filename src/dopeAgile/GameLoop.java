@@ -7,7 +7,6 @@ public class GameLoop {
     private final Map loadedMap;
     private Character loadedCharacter;
     private Room currentRoom;
-    private int loopIteration = 0;
 
     GameLoop(Map loadedMap, Character loadedCharacter) {
         this.loadedMap = loadedMap;
@@ -15,16 +14,17 @@ public class GameLoop {
         loop();
     }
 
+    // Game logic loop
     public void loop() {
         Boolean keepGoing = true;
         while (keepGoing) {
 
             keepGoing = navigation();
 
-            ++loopIteration;
         }
     }
 
+    // General method for navigating the dungeon
     public boolean navigation() {
         // Get the current room of player, if this is
         // the first iteration it will get the spawn room
@@ -58,18 +58,23 @@ public class GameLoop {
         return true;
     }
 
+    // Input method for getting movement direction from user
     public Map.cardinalDirection getDirectionFromUser() {
         Map.cardinalDirection returnDirection = null;
 
+        // Creating a temporary ArrayList to hold the dynamic menu options
         ArrayList<Map.cardinalDirection> menuOptions = new ArrayList<Map.cardinalDirection>();
         for (java.util.Map.Entry<Map.cardinalDirection, Room> entry: currentRoom.getAdjacentRooms().entrySet()) {
             menuOptions.add(entry.getKey());
         }
 
+        // Check if player can leave map at this point...
+        // ... add it to the menu options
         if (currentRoom.isEdgeRoom()) {
             menuOptions.add(Map.cardinalDirection.LEAVE);
         }
 
+        // Print dynamic menu options
         for (int i = 0; i < menuOptions.size(); i++) {
             if (menuOptions.get(i) == Map.cardinalDirection.LEAVE) {
                 System.out.println(i+1 + ". Lämna dungeon och avsluta äventyret (SPARA).");
@@ -78,6 +83,7 @@ public class GameLoop {
             }
         }
 
+        // Handle user input and map it to correct menu option
         Map.cardinalDirection chosenDirection = null;
         for (int i = 0; i < 1; i++) {
             Scanner sc = new Scanner(System.in);
@@ -104,9 +110,11 @@ public class GameLoop {
 
         }
 
+        // Return chosen option
         return returnDirection;
     }
 
+    // Message for leaving the dungeon map
     private String leaveMapMessage() {
         return "Hjälten " + loadedCharacter.getName() + " lämnar dungeon efter att ha samlat på sig skatter värda " + loadedCharacter.getPoints() + " poäng.";
     }
