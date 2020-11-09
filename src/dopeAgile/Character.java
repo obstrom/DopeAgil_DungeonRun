@@ -79,8 +79,10 @@ public Character() {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
+
+    public int getPoints() {
+        return points;
+    }
 
     @Override
     public String toString() {

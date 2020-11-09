@@ -26,27 +26,25 @@ public class GameLoop {
     }
 
     public boolean navigation() {
-        // DEBUG CODE
-        /*System.out.println("This room X = " + currentRoom.getMapX() + ", Y = " + currentRoom.getMapY());
-        System.out.println("This room is an edge room? " + currentRoom.isEdgeRoom());
-        System.out.println("Try to display adjacent rooms:");
-        HashMap<Map.cardinalDirection, Room> allAdjacentRooms = currentRoom.getAdjacentRooms();
-        for (java.util.Map.Entry<Map.cardinalDirection, Room> entry: allAdjacentRooms.entrySet()) {
-            System.out.println(entry.getKey() + ": (" + entry.getValue().getMapX() + ", " + entry.getValue().getMapY() + ")");
-        }*/
-
         // Get the current room of player, if this is
         // the first iteration it will get the spawn room
         currentRoom = loadedMap.getPlayerCurrentRoom();
 
+        // Print map and headline
         System.out.println(loadedMap.toString(true));
         System.out.println("\n\033[1m-*-*-*-*-*-*-*-*-*-*-\033[0m");
         System.out.println("\033[1m -- Välj riktning -- \033[0m");
         System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-\033[0m");
+
+        // Get direction choice from user
         Map.cardinalDirection chosenDirection = getDirectionFromUser();
 
+        // If user picked to leave map
         if (chosenDirection == Map.cardinalDirection.LEAVE) {
-            System.out.println("ÄVENTYRET ÄR SLUT (PLACEHOLDER!)");
+            System.out.println("\n\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
+            System.out.println("\033[1m -- Äventyret slutar -- \033[0m");
+            System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
+            System.out.println(leaveMapMessage());
             return false;
         }
 
@@ -107,6 +105,10 @@ public class GameLoop {
         }
 
         return returnDirection;
+    }
+
+    private String leaveMapMessage() {
+        return "Hjälten " + loadedCharacter.getName() + " lämnar dungeon efter att ha samlat på sig skatter värda " + loadedCharacter.getPoints() + " poäng.";
     }
 
 }
