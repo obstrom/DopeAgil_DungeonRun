@@ -13,9 +13,10 @@ public class Character {
     int points;
     int playerId;
     int idGenerator;
+    String role;
  
 public Character() {
-    
+   this.role = role;
    this.positionX = 0;
    this.positionY = 0;
    this.name = name;
@@ -78,6 +79,22 @@ public Character() {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
     
     

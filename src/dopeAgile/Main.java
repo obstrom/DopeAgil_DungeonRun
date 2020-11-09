@@ -17,6 +17,7 @@ public class Main {
     }
 
     public static void mainMenu() {
+        FileOption op = new FileOption();
         String Adventure;
         int input = -1;
         int inputA = -1;
@@ -39,14 +40,14 @@ public class Main {
         switch (input) {
             case 1:
                 System.out.println("Highscore");
-                mainMenu();
+                op.options(1);
                 break;
             case 2:
                 characterChoice();
                 break;
             case 3:
                 System.out.println("Välj Sparad Karaktär");
-                mainMenu();
+                op.options(2);
                 break;
             default:
                 System.out.println("Avslutar Spelet");

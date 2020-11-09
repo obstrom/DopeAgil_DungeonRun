@@ -5,7 +5,7 @@ public class Room {
     private boolean hasMonster = false;
     private boolean hasTreasure = false;
     private boolean isSpawnRoom = false;
-
+    
     Room(boolean isSpawnRoom) {
         this.isSpawnRoom = isSpawnRoom;
         generateMonster();
