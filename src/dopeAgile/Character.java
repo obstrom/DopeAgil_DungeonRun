@@ -2,7 +2,7 @@
 package dopeAgile;
 
 public class Character {
-    
+
     int initiative;
     int endurance;
     int attack;
@@ -13,17 +13,16 @@ public class Character {
     int points;
     int playerId;
     int idGenerator;
-    String role;
- 
-public Character() {
-   this.role = role;
-   this.positionX = 0;
-   this.positionY = 0;
-   this.name = name;
-   this.points = 0;
-   this.playerId = idGenerator;
-    
-}    
+
+    public Character() {
+       this.role = role;
+       this.positionX = 0;
+       this.positionY = 0;
+       this.name = name;
+       this.points = 0;
+       this.playerId = idGenerator;
+
+    }
 
     public int getInitiative() {
         return initiative;
@@ -97,8 +96,6 @@ public Character() {
         this.role = role;
     }
     
-    
-
     @Override
     public String toString() {
         return "Character{" + " initiative : " + initiative + ", endurance : " + endurance + ", attack : " + attack + ", agility : " + agility + '}';
@@ -107,7 +104,5 @@ public Character() {
     public void specialAbility() {
         
     }
-
-
 
 }
