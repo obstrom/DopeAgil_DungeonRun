@@ -1,11 +1,9 @@
 
 package dopeAgile;
 
-
 public class Orc extends Monster {
     
     public Orc(){
-        
         super();
         this.initiative = 6;
         this.endurance = 3;
@@ -13,4 +11,10 @@ public class Orc extends Monster {
         this.agility = 4;
         this.common = 0.1;
     }
+
+    @Override
+    public String getAttackMessage() {
+        return "";
+    }
 }
+

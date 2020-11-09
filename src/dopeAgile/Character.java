@@ -1,7 +1,7 @@
 
 package dopeAgile;
 
-public class Character {
+public abstract class Character {
 
     int initiative;
     int endurance;
@@ -13,15 +13,18 @@ public class Character {
     int points;
     int playerId;
     int idGenerator;
+    Role role;
 
     public Character() {
-       this.role = role;
        this.positionX = 0;
        this.positionY = 0;
        this.name = name;
        this.points = 0;
        this.playerId = idGenerator;
+    }
 
+    public enum Role {
+        WIZARD, ROUGE, KNIGHT;
     }
 
     public int getInitiative() {
@@ -88,13 +91,9 @@ public class Character {
         this.points = points;
     }
 
-    public String getRole() {
-        return role;
-    }
+    abstract Role getRole();
 
-    public void setRole(String role) {
-        this.role = role;
-    }
+    abstract void setRole(Role newRole);
     
     @Override
     public String toString() {

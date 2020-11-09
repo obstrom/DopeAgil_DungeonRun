@@ -5,9 +5,13 @@ import java.io.IOException;
 
 public class SaveFile {
 //Utility array = new Utility();
-    Character ch = new Character();
+    static Character ch = new Wizard(); // FIX THIS - GET PLAYER CHAR INSTEAD
 
-    public void savingToFile() {
+    SaveFile() {
+        // GET PLAYER CHAR
+    }
+
+    public static void savingToFile() {
         try {
             FileWriter mySave = new FileWriter(ch.getName()+".txt");
             mySave.write(ch.getName() + " " + ch.getPoints() + " " + ch.getRole()); // role = riddare, trollkarl, tjuv. Points är totalt värde av poäng.

@@ -103,8 +103,7 @@ public class Main {
 
         }
             
-        Character player = new Character();
-        
+        Character player = null;
         switch (characterMenuChoice) {  
             case 1:
                 System.out.println("Du har valt Riddaren!");

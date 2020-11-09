@@ -10,14 +10,14 @@ public class FileOption {
     String data;
     Scanner sc = new Scanner(System.in);
     Utility array = new Utility();
-    GameLoop start = new GameLoop();
+    // GameLoop start = new GameLoop();
     Main ret = new Main();
-    Highscore hs = new Highscore();
-    Character ch = new Character();
+    // Highscore hs = new Highscore();  // Avstängd tillsvidare FIX THIS
+    // Character ch = new Character(); // FIX THIS
     public void options(int choice){
         if (choice == 1){
             loadingSaveFile();
-            hs.highscoreList(data); // kanske inte är rätt.
+           // hs.highscoreList(data); // kanske inte är rätt.
         }else{
         while (noClue <= 0|| noClue > 3){
         System.out.println("Välj nedstående alternativ:\n"
@@ -31,7 +31,7 @@ public class FileOption {
         }
         if(noClue == 1){
             loadingSaveFile();
-            start.GameLoop();
+           // start.GameLoop();
         }else{
           DeleteCharacter();
         }
@@ -55,9 +55,9 @@ public class FileOption {
                 String one = inputValue[1];
                 String role = inputValue[2];
                 int points = Integer.parseInt(one);
-                ch.setName(name);
-                ch.setPoints(points);
-                ch.setRole(role);
+                // ch.setName(name);
+                // ch.setPoints(points);
+                // ch.setRole(role); // FIX THIS
             }
             myLoader.close();
         } catch (FileNotFoundException e) {

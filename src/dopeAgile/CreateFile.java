@@ -5,8 +5,13 @@ import java.io.IOException;
 
 
 public class CreateFile {
-Character ch = new Character();
-    public void creatAFile() {
+    static Character ch = new Wizard(); // FIX THIS - GET PLAYER CHAR
+
+    CreateFile() {
+        // TAKE PLAYER CHAR
+    }
+
+    public static void creatAFile() {
 
         try {
             File myFile = new File(ch.getName() +".txt");

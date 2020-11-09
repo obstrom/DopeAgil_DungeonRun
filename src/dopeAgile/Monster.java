@@ -1,8 +1,6 @@
 
-
 // Metod som tittar om monsret träffar vid attack (tar emot dpelarens attack värde int
 package dopeAgile;
-
 
 public abstract class Monster {
     
