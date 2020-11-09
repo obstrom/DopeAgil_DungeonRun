@@ -52,13 +52,13 @@ public class Room {
                 returnString = "Du kommer in i rum täckt utav blod och livlösa kroppar täckt utav larver. Du känner en rysning som om att alla livlösa kroppar skriker ut.";
                 break;
             case 4:
-                returnString = "Du kommer i mörkt rum fyllt med rutten mat och verktyg av olika slag, det ser övergivet ut.";
+                returnString = "Du kommer in mörkt rum fyllt med rutten mat och verktyg av olika slag, det ser övergivet ut.";
                 break;
             case 5:
-                returnString = "Du kommer i ett rum fyllt med lik av olika raser, det ser ut som det varit en strid alla lik beväpnade med svärd och spikklubbor.";
+                returnString = "Du kommer in ett rum fyllt med lik av olika raser, det ser ut som det varit en strid alla lik beväpnade med svärd och spikklubbor.";
                 break;
             case 6:
-                returnString = "Du kommer mörkt blött rum täckt utav mossa det droppar vatten från tacket.";
+                returnString = "Du kommer in i ett mörkt blött rum täckt utav mossa det droppar vatten från tacket.";
                 break;
             case 7:
                 returnString = "Du kommer in i ett rum fyllt av vapen av olika slag ser ut som någots slags vapenförråd, alla vapena ser förfallna ut.";
