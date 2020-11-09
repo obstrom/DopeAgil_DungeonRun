@@ -118,4 +118,12 @@ public class Room {
     public void clearTreasure() {
         roomTreasure.clearTreasureList();
     }
+
+    public String getRoomMessage() {
+        return roomMessage;
+    }
+
+    public boolean isSpawnRoom() {
+        return isSpawnRoom;
+    }
 }
