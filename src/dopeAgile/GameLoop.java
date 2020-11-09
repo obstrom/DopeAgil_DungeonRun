@@ -7,6 +7,8 @@ public class GameLoop {
     private final Map loadedMap;
     private Character loadedCharacter;
     private Room currentRoom;
+    private ArrayList<Monster> roomMonster;
+    private Treasure roomTreasure;
 
     GameLoop(Map loadedMap, Character loadedCharacter) {
         this.loadedMap = loadedMap;
@@ -20,8 +22,36 @@ public class GameLoop {
         while (keepGoing) {
 
             keepGoing = navigation();
+            if (keepGoing) {
+                displayRoom();
+            }
 
         }
+    }
+
+    public void displayRoom() {
+        // VISA MONSTER
+
+        System.out.println("Du söker igenom rummet...");
+        if (currentRoom.getRoomTreasure().getTreasureList() == null) {
+            System.out.println("... men inser att du varit här förut.");
+        } else if (currentRoom.getRoomTreasure().getTreasureList().isEmpty()) {
+            System.out.println("... men du hittar bara damm.");
+        } else {
+            System.out.print("... och hittar [\u001B[33m");
+            ArrayList<Treasure.treasureTypes> treasures = currentRoom.getRoomTreasure().getTreasureList();
+            for (int i = 0; i < treasures.size(); i++) {
+                if (i == 0) {
+                    System.out.print(treasures.get(i));
+                } else {
+                    System.out.print(" och " + treasures.get(i));
+                }
+            }
+            System.out.print("\u001B[0m] för ett värde av " + currentRoom.getRoomTreasure().getTreasureTotalValue() + " poäng.\n");
+            loadedCharacter.addPoints(currentRoom.getRoomTreasure().getTreasureTotalValue());
+        }
+        currentRoom.clearTreasure();
+
     }
 
     // General method for navigating the dungeon
@@ -30,8 +60,12 @@ public class GameLoop {
         // the first iteration it will get the spawn room
         currentRoom = loadedMap.getPlayerCurrentRoom();
 
+        System.out.println("\033[H\033[2J");
+        System.out.flush(); // Clear screen
+
         // Print map and headline
         System.out.println(loadedMap.toString(true));
+        System.out.println("\n\033[1mDina poäng är: \u001B[33m" + loadedCharacter.getPoints() + "\u001B[0m\033[0m");
         System.out.println("\n\033[1m-*-*-*-*-*-*-*-*-*-*-\033[0m");
         System.out.println("\033[1m -- Välj riktning -- \033[0m");
         System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-\033[0m");

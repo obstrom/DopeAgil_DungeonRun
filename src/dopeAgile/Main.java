@@ -8,7 +8,7 @@ public class Main {
         RIDDARE, TJUV, MAGIKER;
     }
 
-    public static void main(String[] args) { ///coment
+    public static void main(String[] args) {
 
         System.out.println("\n\033[1mVälkommen till Dungeon Run\033[0m");
 

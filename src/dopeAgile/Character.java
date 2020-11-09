@@ -91,6 +91,10 @@ public abstract class Character {
         this.points = points;
     }
 
+    public void addPoints(int points) {
+        this.points += points;
+    }
+
     abstract Role getRole();
 
     abstract void setRole(Role newRole);
