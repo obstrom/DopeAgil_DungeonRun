@@ -2,7 +2,7 @@
 package dopeAgile;
 
 public class Character {
-    
+
     int initiative;
     int endurance;
     int attack;
@@ -13,7 +13,7 @@ public class Character {
     int points;
     int playerId;
     int idGenerator;
- 
+
 public Character() {
     
    this.positionX = 0;
@@ -90,7 +90,5 @@ public Character() {
     public void specialAbility() {
         
     }
-
-
 
 }

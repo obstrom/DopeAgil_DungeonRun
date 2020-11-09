@@ -2,9 +2,9 @@ package dopeAgile;
 
 public class Map {
     private final mapSize currentMapSize;
-    private final Room[][] mapArray;
-    private int[] spawnPointXYCoordinates;
-    private Room spawnRoom;
+    private final Room[][] mapArray; // [y][x]
+    private int[] playerPositionXYCoordinates;
+    private Room playerCurrentRoom;
 
     public mapSize getCurrentMapSize() {
         return currentMapSize;
@@ -16,7 +16,7 @@ public class Map {
 
     Map (mapSize sizeEnum, cardinalDirection spawnCardinal) {
         this.currentMapSize = sizeEnum;
-        spawnPointXYCoordinates = calcSpawnPointCoordinates(spawnCardinal);
+        playerPositionXYCoordinates = calcSpawnPointCoordinates(spawnCardinal);
         mapArray = createMapArray(sizeEnum.getSize());
         calcAdjacentRooms();
     }
@@ -69,10 +69,10 @@ public class Map {
         for (int y = 0; y < mapArray.length; y++) {
             for (int x = 0; x < mapArray[y].length; x++) {
                 boolean isEdge = (y == 0 || x == 0 || y == (mapArray.length-1) || x == (mapArray.length-1));
-                if (y == spawnPointXYCoordinates[0] && x == spawnPointXYCoordinates[1]) {
+                if (y == playerPositionXYCoordinates[0] && x == playerPositionXYCoordinates[1]) {
                     Room newRoom = new Room(x, y, isEdge, true);
                     mapArray[y][x] = newRoom;
-                    this.spawnRoom = newRoom;
+                    this.playerCurrentRoom = newRoom;
                 } else {
                     mapArray[y][x] = new Room(x, y, isEdge, false);
                 }
@@ -126,7 +126,7 @@ public class Map {
 
     public Room getRoomFromArray(int x, int y) {
         try {
-            return mapArray[x][y];
+            return mapArray[y][x];
         } catch (ArrayIndexOutOfBoundsException e) {
             return null;
         }
@@ -136,7 +136,7 @@ public class Map {
         String result = "";
         for (Room[] roomRows : mapArray) {
             for (Room room : roomRows) {
-                if (room == getSpawnRoom()) {
+                if (playerCurrentRoom == room) {
                     result += "[*]";
                 } else if (room.getIsRoomExplored()) {
                     result += "[ ]";
@@ -148,20 +148,35 @@ public class Map {
         }
 
         if (showLegend) {
-            result += "\n[*] = Hjälte | [?] = Obesökt rum\n[ ] = Besökt rum | [^] = Rum med monster";
+            result += "\n[*] = Din position | [?] = Obesökt rum\n[ ] = Besökt rum | [X] = Rum med monster";
         }
 
         return result;
     }
 
-    public Room getSpawnRoom() {
-        if (this.spawnRoom == null) {
-            int x = spawnPointXYCoordinates[0];
-            int y = spawnPointXYCoordinates[1];
+    public Room getPlayerCurrentRoom() {
+        if (this.playerCurrentRoom == null) {
+            int x = playerPositionXYCoordinates[0];
+            int y = playerPositionXYCoordinates[1];
             return getRoomFromArray(x, y);
         } else {
-            return this.spawnRoom;
+            return this.playerCurrentRoom;
         }
+    }
+
+    public void setPlayerCurrentRoom(Room room) {
+        playerCurrentRoom = room;
+    }
+
+    public void setPlayerCurrentRoom() {
+        int x = playerPositionXYCoordinates[0];
+        int y = playerPositionXYCoordinates[1];
+        playerCurrentRoom = getRoomFromArray(y, x);
+    }
+
+    public void setPlayerPositionXYCoordinates(int x, int y) {
+        playerPositionXYCoordinates[0] = y;
+        playerPositionXYCoordinates[1] = x;
     }
 
 }

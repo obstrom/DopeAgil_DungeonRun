@@ -18,9 +18,6 @@ public class GameLoop {
     public void loop() {
         Boolean keepGoing = true;
         while (keepGoing) {
-            if (loopIteration == 0) {
-                currentRoom = loadedMap.getSpawnRoom();
-            }
 
             keepGoing = navigation();
 
@@ -38,6 +35,10 @@ public class GameLoop {
             System.out.println(entry.getKey() + ": (" + entry.getValue().getMapX() + ", " + entry.getValue().getMapY() + ")");
         }*/
 
+        // Get the current room of player, if this is
+        // the first iteration it will get the spawn room
+        currentRoom = loadedMap.getPlayerCurrentRoom();
+
         System.out.println(loadedMap.toString(true));
         System.out.println("\n\033[1m-*-*-*-*-*-*-*-*-*-*-\033[0m");
         System.out.println("\033[1m -- Välj riktning -- \033[0m");
@@ -49,8 +50,12 @@ public class GameLoop {
             return false;
         }
 
+        // Set current room as explored
         currentRoom.setIsRoomExplored(true);
+
+        // Move to target room and update values
         currentRoom = currentRoom.getSpecificAdjacentRoom(chosenDirection);
+        loadedMap.setPlayerCurrentRoom(currentRoom);
 
         return true;
     }
