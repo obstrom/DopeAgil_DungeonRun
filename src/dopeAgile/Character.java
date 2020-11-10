@@ -1,8 +1,8 @@
 
 package dopeAgile;
 
-public class Character {
-    
+public abstract class Character {
+
     int initiative;
     int endurance;
     int attack;
@@ -13,16 +13,19 @@ public class Character {
     int points;
     int playerId;
     int idGenerator;
- 
-public Character() {
-    
-   this.positionX = 0;
-   this.positionY = 0;
-   this.name = name;
-   this.points = 0;
-   this.playerId = idGenerator;
-    
-}    
+    Role role;
+
+    public Character() {
+       this.positionX = 0;
+       this.positionY = 0;
+       this.name = name;
+       this.points = 0;
+       this.playerId = idGenerator;
+    }
+
+    public enum Role {
+        WIZARD, ROUGE, KNIGHT;
+    }
 
     public int getInitiative() {
         return initiative;
@@ -79,9 +82,23 @@ public Character() {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
 
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public void addPoints(int points) {
+        this.points += points;
+    }
+
+    abstract Role getRole();
+
+    abstract void setRole(Role newRole);
+    
     @Override
     public String toString() {
         return "Character{" + " initiative : " + initiative + ", endurance : " + endurance + ", attack : " + attack + ", agility : " + agility + '}';
@@ -90,7 +107,5 @@ public Character() {
     public void specialAbility() {
         
     }
-
-
 
 }
