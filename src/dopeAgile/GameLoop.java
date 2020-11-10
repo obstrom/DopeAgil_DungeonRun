@@ -60,7 +60,6 @@ public class GameLoop {
             loadedCharacter.addPoints(currentRoom.getRoomTreasure().getTreasureTotalValue());
         }
         currentRoom.clearTreasure();
-
     }
 
     // General method for navigating the dungeon
@@ -72,7 +71,7 @@ public class GameLoop {
         // Print map and headline
         System.out.println("");
         System.out.println(loadedMap.toString(true));
-        System.out.println("\n\033[1mDina poäng är: \u001B[33m" + loadedCharacter.getPoints() + "\u001B[0m\033[0m");
+        System.out.println("\n\033[1mDina skatter är värda \u001B[33m" + loadedCharacter.getPoints() + "\u001B[0m poäng.\033[0m");
         System.out.println("\n\033[1m-*-*-*-*-*-*-*-*-*-*-\033[0m");
         System.out.println("\033[1m -- Välj riktning -- \033[0m");
         System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-\033[0m");
@@ -167,7 +166,7 @@ public class GameLoop {
 
     // Message for leaving the dungeon map
     private String leaveMapMessage() {
-        return "Hjälten " + loadedCharacter.getName() + " lämnar dungeon efter att ha samlat på sig skatter värda " + loadedCharacter.getPoints() + " poäng.";
+        return "Hjälten " + loadedCharacter.getName() + " lämnar dungeon efter att ha samlat på sig skatter värda \n\033[1m\u001B[33m" + loadedCharacter.getPoints() + " poäng.\u001B[0m\033[0m";
     }
 
 }
