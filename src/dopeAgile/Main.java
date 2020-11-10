@@ -124,8 +124,8 @@ public class Main {
         
         Utility u = new Utility();
         u.playerList.add(player);
- 
-             
+        CreateFile file = new CreateFile();
+        file.creatAFile();
         System.out.println("\nKaraktären heter " + name + " och är en " + characterChoice + "\n");
         mapMenu();
         
