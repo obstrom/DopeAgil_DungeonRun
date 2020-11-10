@@ -166,7 +166,7 @@ public class GameLoop {
 
     // Message for leaving the dungeon map
     private String leaveMapMessage() {
-        return "Hjälten " + loadedCharacter.getName() + " lämnar dungeon efter att ha samlat på sig skatter värda \n\033[1m\u001B[33m" + loadedCharacter.getPoints() + " poäng.\u001B[0m\033[0m";
+        return "Hjälten " + loadedCharacter.getName() + " lämnar dungeon efter att ha samlat på sig skatter värda \033[1m\u001B[33m" + loadedCharacter.getPoints() + " poäng.\u001B[0m\033[0m";
     }
 
 }
