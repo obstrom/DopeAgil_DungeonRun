@@ -10,6 +10,7 @@ public class Character {
     int positionX;
     int positionY;
     private String name;
+    String role;
     int points;
     int playerId;
     int idGenerator;
@@ -21,7 +22,7 @@ public Character() {
    this.name = name;
    this.points = 0;
    this.playerId = idGenerator;
-    
+   this.role = role;
 }    
 
     public int getInitiative() {
@@ -78,6 +79,22 @@ public Character() {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
     
     
