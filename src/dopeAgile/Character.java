@@ -129,4 +129,8 @@ public abstract class Character extends Creature {
    
     abstract void specialAbility();
 
+    abstract String getAttackMessage();
+    abstract String getAttackHitMessage();
+    abstract String getAttackMissMessage();
+
 }

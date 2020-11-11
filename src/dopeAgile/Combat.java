@@ -69,6 +69,7 @@ public class Combat {
                 } else {
                     // TODO: FLEE
                 }
+
             } else if (combatant instanceof Monster && !playerDead) {
 
                 // TODO: HANDLE MONSTER TURN
@@ -84,7 +85,7 @@ public class Combat {
         boolean returnBoolean = false;
 
         System.out.println("\nVÄLJ HANDLING:");
-        System.out.println("1. Attackera");
+        System.out.println("1. Attackera närmaste monster");
         System.out.println("2. Fly");
 
         for (int i = 0; i < 1; i++) {
@@ -110,8 +111,10 @@ public class Combat {
         for (Creature combatant: allCombatants) {
             if (combatant.getCombatEndurance() <= 0) {
                 if (combatant instanceof Character) {
-                    // TODO: Player died
+                    // Player died
                     playerDied = true;
+
+                    // TODO: Print better death text
                     System.out.println("Äventyraren dog!");
                     System.out.println("Död behöver hanteras!");
                 } else if (combatant instanceof Monster) {

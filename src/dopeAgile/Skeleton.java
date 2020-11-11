@@ -29,6 +29,22 @@ public class Skeleton extends Monster {
     }
 
     @Override
+    public String getAttackHitMessage() {
+        return "Hit";
+    }
+
+    @Override
+    public String getAttackMissMessage() {
+        return "Miss";
+    }
+
+    @Override
     public String getEntryMessage() { return "Ett skelett reser sig från marken!"; }
+
+    @Override
+    public String getKillMessage() { return ""; }
+
+    @Override
+    public String getDeathMessage() { return ""; }
     
 }

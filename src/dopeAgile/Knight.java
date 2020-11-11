@@ -24,6 +24,21 @@ public class Knight extends Character {
     }
 
     @Override
+    public String getAttackMessage() {
+        return "";
+    }
+
+    @Override
+    public String getAttackHitMessage() {
+        return "Hit";
+    }
+
+    @Override
+    public String getAttackMissMessage() {
+        return "Miss";
+    }
+
+    @Override
     public void setRole(Role newRole) {
         super.role = newRole;
     }

@@ -18,11 +18,32 @@ public class Troll extends Monster {
     }
 
     @Override
+    public String toString(boolean conjugate) {
+        return (conjugate) ? "Trollet" : "Troll";
+    }
+
+    @Override
     public String getAttackMessage() {
         return "";
     }
 
     @Override
+    public String getAttackHitMessage() {
+        return "Hit";
+    }
+
+    @Override
+    public String getAttackMissMessage() {
+        return "Miss";
+    }
+
+    @Override
     public String getEntryMessage() { return "Ett troll kommer in genom en av dörrarna!"; }
+
+    @Override
+    public String getKillMessage() { return ""; }
+
+    @Override
+    public String getDeathMessage() { return ""; }
     
 }

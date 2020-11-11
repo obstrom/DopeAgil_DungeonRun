@@ -8,5 +8,8 @@ public abstract class Creature { // this should implement Comparable
     abstract String toString(boolean conjugate);
     abstract void refreshCombatEndurance();
     abstract int getCombatEndurance();
+    abstract String getAttackMessage();
+    abstract String getAttackHitMessage();
+    abstract String getAttackMissMessage();
 
 }

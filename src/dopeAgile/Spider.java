@@ -29,6 +29,22 @@ public class Spider extends Monster {
     }
 
     @Override
+    public String getAttackHitMessage() {
+        return "Hit";
+    }
+
+    @Override
+    public String getAttackMissMessage() {
+        return "Miss";
+    }
+
+    @Override
     public String getEntryMessage() { return "En spindel faller ner från taket!"; }
+
+    @Override
+    public String getKillMessage() { return ""; }
+
+    @Override
+    public String getDeathMessage() { return ""; }
     
 }

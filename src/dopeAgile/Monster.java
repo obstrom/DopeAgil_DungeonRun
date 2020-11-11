@@ -47,7 +47,11 @@ public abstract class Monster extends Creature {
     }
 
     abstract String getAttackMessage();
+    abstract String getAttackHitMessage();
+    abstract String getAttackMissMessage();
     abstract String getEntryMessage();
+    abstract String getKillMessage();
+    abstract String getDeathMessage();
 
     // Returns the calculated attack score
     public int calcAttackScore() {
