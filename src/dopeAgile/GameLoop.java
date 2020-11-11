@@ -88,6 +88,11 @@ public class GameLoop {
             return false;
         }
 
+        // If room contains monsters
+        if (!currentRoom.getRoomMonsters().isEmpty()) {
+            Combat roomCombat = new Combat(loadedCharacter, currentRoom.getRoomMonsters());
+        }
+
         // Set current room as explored
         currentRoom.setIsRoomExplored(true);
 

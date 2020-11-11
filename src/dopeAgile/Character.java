@@ -95,6 +95,15 @@ public abstract class Character {
         this.points += points;
     }
 
+    // Returns the calculated attack score
+    public int calcAttackScore() {
+        int attackScore = 0;
+        for (int i = 0; i < attack; i++) {
+            attackScore += Utility.throwSixSidedDie();
+        }
+        return attackScore;
+    }
+
     abstract Role getRole();
 
     abstract void setRole(Role newRole);

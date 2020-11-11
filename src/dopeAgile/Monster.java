@@ -43,6 +43,15 @@ public abstract class Monster {
 
     abstract String getAttackMessage();
     abstract String getEntryMessage();
+
+    // Returns the calculated attack score
+    public int calcAttackScore() {
+        int attackScore = 0;
+        for (int i = 0; i < attack; i++) {
+            attackScore += Utility.throwSixSidedDie();
+        }
+        return attackScore;
+    }
     
     // Metod för att sänka monstrets endurance. Tar en int som sänker endurance
     public void lowerMonsterEndurance(){
