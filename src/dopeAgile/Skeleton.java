@@ -42,9 +42,15 @@ public class Skeleton extends Monster {
     public String getEntryMessage() { return "Ett skelett reser sig från marken!"; }
 
     @Override
-    public String getKillMessage() { return ""; }
+    public String getKilledByMessage() { return ""; }
 
     @Override
     public String getDeathMessage() { return ""; }
+
+    @Override
+    public String getPlayerHitMessage() { return ""; }
+
+    @Override
+    public String getPlayerCritMessage() { return ""; }
     
 }

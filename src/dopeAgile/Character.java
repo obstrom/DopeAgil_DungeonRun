@@ -116,6 +116,10 @@ public abstract class Character extends Creature {
         return combatEndurance;
     }
 
+    public void lowerCombatEndurance() {
+        --combatEndurance;
+    }
+
     abstract Role getRole();
 
     abstract void setRole(Role newRole);
@@ -132,5 +136,18 @@ public abstract class Character extends Creature {
     abstract String getAttackMessage();
     abstract String getAttackHitMessage();
     abstract String getAttackMissMessage();
+
+    public boolean checkIfCritical() {
+        boolean isCrit = false;
+
+        if (this instanceof Rogue) {
+            double rand = Math.random(); // 0.0 <-> 1.0
+            if (rand <= 0.25) {
+                isCrit = true;
+            }
+        }
+
+        return isCrit;
+    }
 
 }

@@ -42,9 +42,15 @@ public class Spider extends Monster {
     public String getEntryMessage() { return "En spindel faller ner från taket!"; }
 
     @Override
-    public String getKillMessage() { return ""; }
+    public String getKilledByMessage() { return ""; }
 
     @Override
     public String getDeathMessage() { return ""; }
+
+    @Override
+    public String getPlayerHitMessage() { return ""; }
+
+    @Override
+    public String getPlayerCritMessage() { return ""; }
     
 }

@@ -46,12 +46,14 @@ public abstract class Monster extends Creature {
         return combatEndurance;
     }
 
-    abstract String getAttackMessage();
-    abstract String getAttackHitMessage();
-    abstract String getAttackMissMessage();
-    abstract String getEntryMessage();
-    abstract String getKillMessage();
-    abstract String getDeathMessage();
+    abstract String getAttackMessage(); // Monster attacks
+    abstract String getAttackHitMessage(); // Monster lands hit on player
+    abstract String getAttackMissMessage(); // Monster misses attack on player
+    abstract String getEntryMessage(); // Monster appears
+    abstract String getKilledByMessage(); // Monster kills player
+    abstract String getDeathMessage(); // Monster dies by player
+    abstract String getPlayerHitMessage(); // Monster gets hit by player
+    abstract String getPlayerCritMessage(); // Monster gets critial hit by player
 
     // Returns the calculated attack score
     public int calcAttackScore() {
@@ -67,23 +69,10 @@ public abstract class Monster extends Creature {
         combatEndurance = endurance;
     }
     
-    // Metod för att sänka monstrets endurance. Tar en int som sänker endurance
-    public void lowerMonsterEndurance(){
-        this.endurance = this.endurance - 1;
+    // Method for lowering monsters combat endurance by one
+    // Takes a boolean for crit that lowers endurance by two instead
+    public void lowerCombatEndurance(boolean criticalHit) {
+        combatEndurance = (criticalHit) ? combatEndurance -2 : combatEndurance -1;
     }
-    // Metod som returnerar boolean som kollar om monsterets endurance är högre än 0
-    public boolean monsterEndurance(){
-        boolean monsterAlive;
-        
-        if (this.endurance < 0){
-            monsterAlive = false;
-        } else{
-            monsterAlive = true;
-        }
-        return monsterAlive;
-    }
-    
-    // Metod som tittar om monsret träffar vid attack (tar emot dpelarens attack värde int
-    
     
 }

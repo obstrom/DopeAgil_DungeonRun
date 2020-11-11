@@ -94,6 +94,7 @@ public class Combat {
 
             if (userInput.equals("1") || userInput.contains("attack")) {
                 returnBoolean = true;
+
             } else if (userInput.equals("2") || userInput.contains("fly")) {
                 returnBoolean = false;
             } else {
@@ -141,10 +142,41 @@ public class Combat {
     private void combatantAttacks(Creature combatant) {
         if (combatant instanceof Character) {
             Character combatantPlayer = (Character) combatant;
-            Boolean attackSuccess = playerAttackSuccess(allMonsters.get(0)); // ALWAYS TAKES FIRST MONSTER
+            Monster targetMonster = allMonsters.get(0); // ALWAYS ATTACK FIRST MONSTER
+
+            combatantPlayer.getAttackMessage();
+            boolean attackSuccess = playerAttackSuccess(targetMonster);
+
+            if (attackSuccess) {
+
+                combatantPlayer.getAttackHitMessage();
+                boolean isCrit = combatantPlayer.checkIfCritical();
+                if (isCrit) {
+                    System.out.println("\033[1m\u001B[33m" + combatantPlayer.getName() + " landar en kritisk träff!\u001B[0m\033[0m");
+                    targetMonster.getPlayerCritMessage();
+                } else {
+                    targetMonster.getPlayerHitMessage();
+                }
+
+                targetMonster.lowerCombatEndurance(isCrit);
+
+            } else {
+                combatantPlayer.getAttackMissMessage();
+            }
+
         } else if (combatant instanceof Monster) {
             Monster combatantMonster = (Monster) combatant;
-            Boolean attackSuccess = monsterAttackSuccess(combatantMonster);
+
+            combatantMonster.getAttackMessage();
+            boolean attackSuccess = monsterAttackSuccess(combatantMonster);
+
+            if (attackSuccess) {
+                combatantMonster.getAttackHitMessage();
+                playerCharacter.lowerCombatEndurance();
+            } else {
+                combatantMonster.getAttackMissMessage();
+            }
+
         }
     }
 

@@ -42,10 +42,16 @@ public class Orc extends Monster {
     public String getEntryMessage() { return "En orc kommer ut ur skuggan!"; }
 
     @Override
-    public String getKillMessage() { return ""; }
+    public String getKilledByMessage() { return ""; }
 
     @Override
     public String getDeathMessage() { return ""; }
+
+    @Override
+    public String getPlayerHitMessage() { return ""; }
+
+    @Override
+    public String getPlayerCritMessage() { return ""; }
 
 }
 

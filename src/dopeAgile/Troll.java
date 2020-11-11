@@ -41,9 +41,15 @@ public class Troll extends Monster {
     public String getEntryMessage() { return "Ett troll kommer in genom en av dörrarna!"; }
 
     @Override
-    public String getKillMessage() { return ""; }
+    public String getKilledByMessage() { return ""; }
 
     @Override
     public String getDeathMessage() { return ""; }
+
+    @Override
+    public String getPlayerHitMessage() { return ""; }
+
+    @Override
+    public String getPlayerCritMessage() { return ""; }
     
 }
