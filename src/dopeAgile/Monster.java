@@ -1,13 +1,13 @@
 
-// Metod som tittar om monsret träffar vid attack (tar emot dpelarens attack värde int
 package dopeAgile;
 
-public abstract class Monster {
+public abstract class Monster extends Creature {
     
     int initiative;
     int endurance;
     int attack;
     int agility;
+    int combatEndurance;
 
     public int getInitiative() {
         return initiative;
@@ -41,6 +41,11 @@ public abstract class Monster {
         this.agility = agility;
     }
 
+    @Override
+    public int getCombatEndurance() {
+        return combatEndurance;
+    }
+
     abstract String getAttackMessage();
     abstract String getEntryMessage();
 
@@ -51,6 +56,11 @@ public abstract class Monster {
             attackScore += Utility.throwSixSidedDie();
         }
         return attackScore;
+    }
+
+    // Restores "health" to full. Should be called after successful flee attempt
+    public void refreshCombatEndurance() {
+        combatEndurance = endurance;
     }
     
     // Metod för att sänka monstrets endurance. Tar en int som sänker endurance

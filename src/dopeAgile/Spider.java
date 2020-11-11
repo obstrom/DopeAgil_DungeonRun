@@ -11,10 +11,16 @@ public class Spider extends Monster {
         this.endurance = 1;
         this.attack = 2;
         this.agility = 3;
+        super.refreshCombatEndurance();
     }
 
     public static double getCommon() {
         return COMMON;
+    }
+
+    @Override
+    public String toString(boolean conjugate) {
+        return (conjugate) ? "Spindeln" : "Spindel";
     }
 
     @Override

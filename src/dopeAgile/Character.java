@@ -1,7 +1,7 @@
 
 package dopeAgile;
 
-public abstract class Character {
+public abstract class Character extends Creature {
 
     int initiative;
     int endurance;
@@ -13,6 +13,7 @@ public abstract class Character {
     int points;
     int playerId;
     int idGenerator;
+    int combatEndurance;
     Role role;
 
     public Character() {
@@ -104,6 +105,17 @@ public abstract class Character {
         return attackScore;
     }
 
+    // Restores "health" to full. Should be called after
+    // each successful combat and successful flee attempt
+    public void refreshCombatEndurance() {
+        combatEndurance = endurance;
+    }
+
+    @Override
+    public int getCombatEndurance() {
+        return combatEndurance;
+    }
+
     abstract Role getRole();
 
     abstract void setRole(Role newRole);
@@ -112,9 +124,9 @@ public abstract class Character {
     public String toString() {
         return "Character{" + " initiative : " + initiative + ", endurance : " + endurance + ", attack : " + attack + ", agility : " + agility + '}';
     }
+
+    abstract String toString(boolean conjugate);
    
-    public void specialAbility() {
-        
-    }
+    abstract void specialAbility();
 
 }

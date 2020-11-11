@@ -11,10 +11,16 @@ public class Skeleton extends Monster {
         this.endurance = 2;
         this.attack = 2;
         this.agility = 3;
+        super.refreshCombatEndurance();
     }
 
     public static double getCommon() {
         return COMMON;
+    }
+
+    @Override
+    public String toString(boolean conjugate) {
+        return (conjugate) ? "Skelettet" : "Skelett";
     }
 
     @Override

@@ -11,10 +11,16 @@ public class Orc extends Monster {
         this.endurance = 3;
         this.attack = 4;
         this.agility = 4;
+        super.refreshCombatEndurance();
     }
 
     public static double getCommon() {
         return COMMON;
+    }
+
+    @Override
+    public String toString(boolean conjugate) {
+        return (conjugate) ? "Orcen" : "Orc";
     }
 
     @Override

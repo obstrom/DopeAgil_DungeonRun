@@ -10,10 +10,16 @@ public class Rouge extends Character {
         this.attack = 5;
         this.agility = 7;
         setRole(Role.ROUGE);
+        super.refreshCombatEndurance();
     }
 
     public void specialAbility() {
 
+    }
+
+    @Override
+    public String toString(boolean conjugate) {
+        return (conjugate) ? "Tjuven" : "Tjuv";
     }
 
     @Override
