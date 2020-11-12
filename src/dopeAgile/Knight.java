@@ -30,7 +30,7 @@ public class Knight extends Character {
 
     @Override
     public String getAttackHitMessage() {
-        return "Hit";
+        return "Träff!";
     }
 
     @Override

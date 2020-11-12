@@ -20,7 +20,7 @@ public class Spider extends Monster {
 
     @Override
     public String toString(boolean conjugate) {
-        return (conjugate) ? "Spindeln" : "Spindel";
+        return (conjugate) ? "Jättespindeln" : "Jättespindel";
     }
 
     @Override
@@ -39,7 +39,7 @@ public class Spider extends Monster {
     }
 
     @Override
-    public String getEntryMessage() { return "En spindel faller ner från taket!"; }
+    public String getEntryMessage() { return "En jättespindel faller ner från taket!"; }
 
     @Override
     public String getKilledByMessage() { return ""; }

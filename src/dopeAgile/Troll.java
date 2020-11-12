@@ -11,6 +11,7 @@ public class Troll extends Monster {
         this.endurance = 4;
         this.attack = 7;
         this.agility = 2;
+        super.refreshCombatEndurance();
     }
 
     public static double getCommon() {

@@ -29,7 +29,7 @@ public class Rogue extends Character {
 
     @Override
     public String getAttackHitMessage() {
-        return "Hit";
+        return "Träff!";
     }
 
     @Override

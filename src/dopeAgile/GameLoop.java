@@ -19,11 +19,16 @@ public class GameLoop {
     // Game logic loop
     public void loop() {
         Boolean keepGoing = true;
-        while (keepGoing) {
+        while (keepGoing && loadedCharacter.isAlive()) {
 
             keepGoing = navigation();
             if (keepGoing) {
                 displayRoom();
+
+                System.out.print(ConsoleColors.NEWLINE + "<Tryck ENTER för att fortsätta vidare>");
+                Scanner sc = new Scanner(System.in);
+                String userInput = sc.nextLine();
+
             }
 
         }
@@ -31,35 +36,44 @@ public class GameLoop {
 
     public void displayRoom() {
 
-        System.out.println("\n\033[1mHändelser:\033[0m");
+        System.out.println(ConsoleColors.NEWLINE + ConsoleColors.BOLD + "Händelser:" + ConsoleColors.RESET);
         if (!currentRoom.isSpawnRoom()) {
-            System.out.println("\u001B[3m" + currentRoom.getRoomMessage() + "\033[0m");
+            System.out.println(ConsoleColors.NEWLINE + ConsoleColors.ITALIC + currentRoom.getRoomMessage() + ConsoleColors.RESET);
             for (Monster monster: currentRoom.getRoomMonsters()) {
-                System.out.println("\u001B[31m" + monster.getEntryMessage() + "\033[0m");
+                System.out.println(ConsoleColors.CYAN + monster.getEntryMessage() + ConsoleColors.RESET);
             }
-            if (currentRoom.getRoomMonsters().size() > 0) {
-                System.out.println("Du besegrar alla monster.");
+
+            // If room contains monsters
+            if (!currentRoom.getRoomMonsters().isEmpty()) {
+                Combat roomCombat = new Combat(loadedCharacter, currentRoom.getRoomMonsters(), currentRoom);
+            } else {
+                System.out.println(ConsoleColors.ITALIC + "Det är tyst och stilla i rummet..." + ConsoleColors.RESET);
             }
+
         }
 
-        if (currentRoom.getRoomTreasure().getTreasureList() == null) {
-            System.out.println("Du söker igenom rummet, och inser att du varit här förut.");
-        } else if (currentRoom.getRoomTreasure().getTreasureList().isEmpty()) {
-            System.out.println("Du söker igenom rummet, men du hittar bara damm.");
-        } else {
-            System.out.print("Du söker igenom rummet, och hittar [\u001B[33m");
-            ArrayList<Treasure.treasureTypes> treasures = currentRoom.getRoomTreasure().getTreasureList();
-            for (int i = 0; i < treasures.size(); i++) {
-                if (i == 0) {
-                    System.out.print(treasures.get(i));
-                } else {
-                    System.out.print(" och " + treasures.get(i));
+        if (loadedCharacter.isAlive()) {
+            if (currentRoom.getRoomTreasure().getTreasureList() == null) {
+                System.out.println(ConsoleColors.NEWLINE + "Du söker igenom rummet, och inser att du varit här förut.");
+            } else if (currentRoom.getRoomTreasure().getTreasureList().isEmpty()) {
+                System.out.println(ConsoleColors.NEWLINE + "Du söker igenom rummet, men du hittar bara damm.");
+            } else {
+                System.out.print(ConsoleColors.NEWLINE + "Du söker igenom rummet, och hittar [" + ConsoleColors.YELLOW_BOLD);
+                ArrayList<Treasure.treasureTypes> treasures = currentRoom.getRoomTreasure().getTreasureList();
+                for (int i = 0; i < treasures.size(); i++) {
+                    if (i == 0) {
+                        System.out.print(treasures.get(i));
+                    } else {
+                        System.out.print(" och " + treasures.get(i));
+                    }
                 }
+                System.out.print(ConsoleColors.RESET + "] för ett värde av "
+                        + ConsoleColors.YELLOW_BOLD + currentRoom.getRoomTreasure().getTreasureTotalValue()
+                        + ConsoleColors.RESET + " poäng." + ConsoleColors.NEWLINE );
+                loadedCharacter.addPoints(currentRoom.getRoomTreasure().getTreasureTotalValue());
             }
-            System.out.print("\u001B[0m] för ett värde av \u001B[33m" + currentRoom.getRoomTreasure().getTreasureTotalValue() + "\u001B[0m poäng.\n");
-            loadedCharacter.addPoints(currentRoom.getRoomTreasure().getTreasureTotalValue());
+            currentRoom.clearTreasure();
         }
-        currentRoom.clearTreasure();
     }
 
     // General method for navigating the dungeon
@@ -71,10 +85,10 @@ public class GameLoop {
         // Print map and headline
         System.out.println("");
         System.out.println(loadedMap.toString(true));
-        System.out.println("\n\033[1mDina skatter är värda \u001B[33m" + loadedCharacter.getPoints() + "\u001B[0m poäng.\033[0m");
-        System.out.println("\n\033[1m-*-*-*-*-*-*-*-*-*-*-\033[0m");
-        System.out.println("\033[1m -- Välj riktning -- \033[0m");
-        System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-\033[0m");
+        System.out.println(ConsoleColors.NEWLINE + ConsoleColors.BOLD + "Dina skatter är värda " + ConsoleColors.YELLOW_BOLD + loadedCharacter.getPoints() + ConsoleColors.WHITE_BOLD + " poäng.");
+        System.out.println(ConsoleColors.NEWLINE + ConsoleColors.BOLD + "-*-*-*-*-*-*-*-*-*-*-");
+        System.out.println(ConsoleColors.BOLD + " -- Välj riktning -- ");
+        System.out.println(ConsoleColors.BOLD +"-*-*-*-*-*-*-*-*-*-*-" + ConsoleColors.RESET);
 
         // Get direction choice from user
         Map.cardinalDirection chosenDirection = getDirectionFromUser();
@@ -86,11 +100,6 @@ public class GameLoop {
             System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
             System.out.println(leaveMapMessage());
             return false;
-        }
-
-        // If room contains monsters
-        if (!currentRoom.getRoomMonsters().isEmpty()) {
-            Combat roomCombat = new Combat(loadedCharacter, currentRoom.getRoomMonsters(), currentRoom);
         }
 
         // Set current room as explored

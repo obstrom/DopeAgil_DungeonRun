@@ -1,5 +1,6 @@
 package dopeAgile;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,7 +9,7 @@ public class Combat {
     Character playerCharacter;
     Room currentRoom;
     ArrayList<Monster> allMonsters;
-    ArrayList<Creature> allCombatants; // sorted by Initiative
+    ArrayList<Creature> allCombatants = new ArrayList<Creature>(); // sorted by Initiative
 
     Combat(Character playerCharacter, ArrayList<Monster> allMonsters, Room currentRoom) {
         this.playerCharacter = playerCharacter;
@@ -21,7 +22,8 @@ public class Combat {
 
         // TODO: "allCombatants" needs to be sorted on initiative
 
-        while (!allMonsters.isEmpty()) {
+        boolean playerDead = false;
+        while (!allMonsters.isEmpty() && playerCharacter.isAlive()) {
             combatLoop();
         }
     }
@@ -49,34 +51,74 @@ public class Combat {
         //     - SUCCESS -> Player takes 1 dmg (unless ability) -> Check if player dies (GAME OVER)
         //     - FAIL -> Print miss message
         //     - Monster turn over
+        //
+        // TODO:
+        //  - ISSUES - Crash efter att ett monster dör vid multi monster encounter
 
         Boolean playerDead = false;
+        ArrayList<Monster> killedMonstersDuringRound = new ArrayList<Monster>();
 
         // Run through all combatants once in initiative order
         for (Creature combatant: allCombatants) {
 
-            if (combatant instanceof Character) {
-                System.out.println("\nMONSTER:");
-                for (Monster monster: allMonsters) {
-                    System.out.println("> " + monster.toString(false) + " - HP[" + monster.getCombatEndurance() + "/" + monster.getEndurance() + "] | ATK[" + monster.getAttack() + "]");
-                }
+            if (combatant.isAlive()) {
+                // If combatant is the player
+                if (combatant instanceof Character) {
 
-                boolean fightFleeOption = getInputOptionFight();
-                if (fightFleeOption) {
-                    // TODO: ASK FOR TARGET?
+                    // Print all monsters in the room
+                    System.out.println(ConsoleColors.NEWLINE + "MONSTER:");
+                    for (Monster monster: allMonsters) {
+                        System.out.println("> " + monster.toString(false) + " - Hälsa " + displayColoredHealth(monster.getCombatEndurance(), monster.getEndurance()) + " | Attackstyrka [" + monster.getAttack() + "]");
+                    }
+
+                    // Get user action and check whether it is to attack or flee
+                    boolean fightFleeOption = getInputOptionFight();
+                    if (fightFleeOption) {
+
+                        // Attack the target
+                        combatantAttacks(combatant);
+
+                    } else {
+
+                        // Attempt to flee the room
+                        // TODO: IMPLEMENT FLEE SYSTEM
+                        System.out.println("[Platshållare] - Fly system saknas. Du misslyckas automatiskt, och står över din tur.");
+
+                    }
+
+                // Else if the combatant is a monster
+                } else if (combatant instanceof Monster && !playerDead) {
+                    // Monster always attacks the player
                     combatantAttacks(combatant);
-                    playerDead = checkAllCombatantsStatus();
-                } else {
-                    // TODO: FLEE
                 }
 
-            } else if (combatant instanceof Monster && !playerDead) {
+                // Check if the combatant died
+                Creature deadCreature = checkAllCombatantsStatus();
+                if (deadCreature instanceof Character) {
+                    playerDead = true;
+                } else if (deadCreature instanceof Monster) {
+                    Monster deadMonster = (Monster) deadCreature;
+                    killedMonstersDuringRound.add(deadMonster);
+                }
 
-                // TODO: HANDLE MONSTER TURN
+                // Stop for loop if player died
+                if (playerDead) {
+                    playerCharacter.setIsAlive(false);
+                    break;
+                }
 
             }
 
         }
+
+        // If there are killedMonster remove them from lists
+        if (!killedMonstersDuringRound.isEmpty()) {
+            for (Monster monster: killedMonstersDuringRound) {
+                deallocMonster(monster);
+            }
+            killedMonstersDuringRound.clear();
+        }
+
     }
 
     // Gets input from player whether to fight or flee
@@ -84,8 +126,8 @@ public class Combat {
     private boolean getInputOptionFight() {
         boolean returnBoolean = false;
 
-        System.out.println("\nVÄLJ HANDLING:");
-        System.out.println("1. Attackera närmaste monster");
+        System.out.println(ConsoleColors.NEWLINE + "VÄLJ HANDLING:");
+        System.out.println("1. Attackera " + allMonsters.get(0).toString(true));
         System.out.println("2. Fly");
 
         for (int i = 0; i < 1; i++) {
@@ -107,27 +149,30 @@ public class Combat {
         return returnBoolean;
     }
 
-    private boolean checkAllCombatantsStatus() {
-        boolean playerDied = false;
+    private Creature checkAllCombatantsStatus() {
+        Creature deadCreature = null;
         for (Creature combatant: allCombatants) {
             if (combatant.getCombatEndurance() <= 0) {
                 if (combatant instanceof Character) {
                     // Player died
-                    playerDied = true;
+                    deadCreature = combatant;
 
                     // TODO: Print better death text
-                    System.out.println("Äventyraren dog!");
-                    System.out.println("Död behöver hanteras!");
+                    System.out.println(ConsoleColors.RED_BOLD + "Äventyraren dog!" + ConsoleColors.RESET);
                 } else if (combatant instanceof Monster) {
                     // Monster died
                     // TODO: Print better monster death text?
                     Monster monsterCombatant = (Monster) combatant;
-                    System.out.println(monsterCombatant.toString(true) + " faller död ner mot marken.");
-                    deallocMonster(monsterCombatant);
+                    System.out.println(ConsoleColors.ITALIC + ConsoleColors.YELLOW + monsterCombatant.toString(true) + " faller död mot marken." + ConsoleColors.RESET);
+
+                    // Mark monster as dead
+                    monsterCombatant.setIsAlive(false);
+                    deadCreature = combatant;
                 }
             }
         }
-        return playerDied;
+
+        return deadCreature;
     }
 
     // Removes a monster from all lists it occur in
@@ -145,55 +190,90 @@ public class Combat {
             Monster targetMonster = allMonsters.get(0); // ALWAYS ATTACK FIRST MONSTER
 
             combatantPlayer.getAttackMessage();
-            boolean attackSuccess = playerAttackSuccess(targetMonster);
+            Attack playerAttack = new Attack(combatantPlayer, targetMonster);
 
-            if (attackSuccess) {
+            System.out.println(ConsoleColors.NEWLINE + combatantPlayer.getName() + " gör sig redo för attack!");
+
+            if (playerAttack.isSuccess()) {
 
                 combatantPlayer.getAttackHitMessage();
                 boolean isCrit = combatantPlayer.checkIfCritical();
                 if (isCrit) {
-                    System.out.println("\033[1m\u001B[33m" + combatantPlayer.getName() + " landar en kritisk träff!\u001B[0m\033[0m");
-                    targetMonster.getPlayerCritMessage();
+                    System.out.println(ConsoleColors.YELLOW_BOLD + combatantPlayer.getName() + " landar en kritisk träff!" + ConsoleColors.RESET);
+                    System.out.println(targetMonster.getPlayerCritMessage());
                 } else {
-                    targetMonster.getPlayerHitMessage();
+                    System.out.print(ConsoleColors.PURPLE_BOLD + "Träff!" + ConsoleColors.RESET);
                 }
 
                 targetMonster.lowerCombatEndurance(isCrit);
 
             } else {
-                combatantPlayer.getAttackMissMessage();
+                System.out.print(ConsoleColors.RED_BOLD + "Miss" + ConsoleColors.RESET);
             }
+
+            System.out.println(" - " + playerCharacter.getName() + " attackerar för " + ConsoleColors.RED_BOLD + playerAttack.getAttackScore() + ConsoleColors.RESET + " och " + targetMonster.toString(true) + " försvarar sig för " + ConsoleColors.BLUE_BOLD + playerAttack.getDefenseScore() + ConsoleColors.RESET + ".");
 
         } else if (combatant instanceof Monster) {
             Monster combatantMonster = (Monster) combatant;
 
-            combatantMonster.getAttackMessage();
-            boolean attackSuccess = monsterAttackSuccess(combatantMonster);
+            //System.out.println(combatantMonster.getAttackMessage()); // TODO: LÄGG TILL MONSTER ATTACK
+            Attack monsterAttack = new Attack(combatantMonster, playerCharacter);
 
-            if (attackSuccess) {
-                combatantMonster.getAttackHitMessage();
+            System.out.println(ConsoleColors.NEWLINE + combatantMonster.toString(true) + " gör sig redo för attack!");
+
+            if (monsterAttack.isSuccess()) {
+                System.out.print(ConsoleColors.RED_BOLD + "Träff!" + ConsoleColors.RESET);
                 playerCharacter.lowerCombatEndurance();
             } else {
-                combatantMonster.getAttackMissMessage();
+                System.out.print(ConsoleColors.CYAN_BOLD + "Miss" + ConsoleColors.RESET);
+            }
+
+            System.out.println(" - Den attackerar för " + ConsoleColors.RED_BOLD + monsterAttack.getAttackScore() + ConsoleColors.RESET + " och du försvarar dig för " + ConsoleColors.BLUE_BOLD + monsterAttack.getDefenseScore() + ConsoleColors.RESET + ".");
+
+            if (monsterAttack.isSuccess() || allCombatants.indexOf(combatant) == allCombatants.size()-1 ) {
+                System.out.println(ConsoleColors.NEWLINE + playerCharacter.toString(true) + " " + playerCharacter.getName() + " - Hälsa " + displayColoredHealth(playerCharacter.getCombatEndurance(), playerCharacter.getEndurance()));
             }
 
         }
     }
 
-    // Method for player to attack given monster
-    // Returns boolean. True = monster takes 1 dmg, False = attack misses
-    private boolean playerAttackSuccess(Monster targetMonster) {
-        int playerAttackScore = playerCharacter.calcAttackScore();
-        int monsterEndurance = targetMonster.getEndurance();
-        return playerAttackScore > monsterEndurance;
+    private class Attack {
+
+        private final int attackScore;
+        private final int defenseScore;
+        private final boolean success;
+
+        Attack(Creature attacker, Creature defender) {
+            attackScore = attacker.calcAttackScore();
+            defenseScore = defender.calcDefenseScore();
+            success = attackScore > defenseScore;
+        }
+
+        public int getAttackScore() {
+            return attackScore;
+        }
+
+        public int getDefenseScore() {
+            return defenseScore;
+        }
+
+        public boolean isSuccess() {
+            return success;
+        }
     }
 
-    // Method for monster to attack player
-    // Returns boolean. True = monster takes 1 dmg, False = attack misses
-    private boolean monsterAttackSuccess(Monster attackingMonster) {
-        int monsterAttackScore = attackingMonster.calcAttackScore();
-        int playerAgility = playerCharacter.getAgility();
-        return monsterAttackScore > playerAgility;
+    private String displayColoredHealth(int currentHealth, int maxHealth) {
+        String outputString = "(";
+        double healthPercentage = ((double) currentHealth) / ((double) maxHealth);
+        if (healthPercentage < 0.34) {
+            outputString += ConsoleColors.RED_BOLD;
+        } else if (healthPercentage < 0.67) {
+            outputString += ConsoleColors.YELLOW;
+        } else {
+            outputString += ConsoleColors.GREEN;
+        }
+        outputString += currentHealth + "/" + maxHealth + ConsoleColors.RESET + ")";
+        return outputString;
     }
 
 }

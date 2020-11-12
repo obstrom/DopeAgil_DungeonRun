@@ -30,7 +30,7 @@ public class Orc extends Monster {
 
     @Override
     public String getAttackHitMessage() {
-        return "Hit";
+        return "Träff!";
     }
 
     @Override

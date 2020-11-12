@@ -14,6 +14,7 @@ public abstract class Character extends Creature {
     int playerId;
     int idGenerator;
     int combatEndurance;
+    boolean isAlive = true;
     Role role;
 
     public Character() {
@@ -60,6 +61,14 @@ public abstract class Character extends Creature {
         this.agility = agility;
     }
 
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void setIsAlive(boolean alive) {
+        isAlive = alive;
+    }
+
     public int getPositionX() {
         return positionX;
     }
@@ -103,6 +112,15 @@ public abstract class Character extends Creature {
             attackScore += Utility.throwSixSidedDie();
         }
         return attackScore;
+    }
+
+    // Returns the calculated defense score
+    public int calcDefenseScore() {
+        int defenseScore = 0;
+        for (int i = 0; i < agility; i++) {
+            defenseScore += Utility.throwSixSidedDie();
+        }
+        return defenseScore;
     }
 
     // Restores "health" to full. Should be called after

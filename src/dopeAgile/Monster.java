@@ -8,6 +8,7 @@ public abstract class Monster extends Creature {
     int attack;
     int agility;
     int combatEndurance;
+    boolean isAlive = true;
 
     public int getInitiative() {
         return initiative;
@@ -41,6 +42,14 @@ public abstract class Monster extends Creature {
         this.agility = agility;
     }
 
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void setIsAlive(boolean alive) {
+        isAlive = alive;
+    }
+
     @Override
     public int getCombatEndurance() {
         return combatEndurance;
@@ -62,6 +71,15 @@ public abstract class Monster extends Creature {
             attackScore += Utility.throwSixSidedDie();
         }
         return attackScore;
+    }
+
+    // Returns the calculated defense score
+    public int calcDefenseScore() {
+        int defenseScore = 0;
+        for (int i = 0; i < agility; i++) {
+            defenseScore += Utility.throwSixSidedDie();
+        }
+        return defenseScore;
     }
 
     // Restores "health" to full. Should be called after successful flee attempt
