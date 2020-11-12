@@ -2,8 +2,8 @@ package dopeAgile;
 
 import java.util.Scanner;
 
-public class Main {
-
+public class Main{
+    
     enum CharacterType {
         RIDDARE, TJUV, MAGIKER;
     }
@@ -24,7 +24,6 @@ public class Main {
 
     public static void mainMenu() {
         FileOption op = new FileOption();
-        String Adventure;
         int input = -1;
         int inputA = -1;
         while (input < 0) {
@@ -70,7 +69,7 @@ public class Main {
 //    }
 
     public static CharacterType characterChoice() {
-
+        CreateFile cf = new CreateFile();
         int characterMenuChoice = 0;
         String name = " ";
         CharacterType characterChoice = null;
@@ -127,7 +126,7 @@ public class Main {
         
         name = characterName();
         player.setName(name);
-        
+        cf.creatAFile(name);
         Utility.addPlayer(player);
 
         System.out.println("\nKaraktären heter " + name + " och är en " + characterChoice + "\n");

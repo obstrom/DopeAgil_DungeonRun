@@ -5,16 +5,11 @@ import java.io.IOException;
 
 
 public class CreateFile {
-    static Character ch = new Wizard(); // FIX THIS - GET PLAYER CHAR
 
-    CreateFile() {
-        // TAKE PLAYER CHAR
-    }
-
-    public static void creatAFile() {
+    public void creatAFile(String name) {
 
         try {
-            File myFile = new File(ch.getName() +".txt");
+            File myFile = new File(name +".txt");
             if (myFile.createNewFile()) {
                 System.out.println(myFile.getName() + " skapad");
             } else {

@@ -18,10 +18,11 @@ public abstract class Character {
     public Character() {
        this.positionX = 0;
        this.positionY = 0;
-       this.name = name;
+       this.name = " ";
        this.points = 0;
        this.playerId = idGenerator;
     }
+    
 
     public enum Role {
         WIZARD, ROUGE, KNIGHT;
