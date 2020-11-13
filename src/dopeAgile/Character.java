@@ -14,6 +14,7 @@ public abstract class Character extends Creature {
     int playerId;
     int idGenerator;
     int combatEndurance;
+    int combatRoundInitiativeScore;
     boolean isAlive = true;
     Role role;
 
@@ -106,24 +107,6 @@ public abstract class Character extends Creature {
         this.points += points;
     }
 
-    // Returns the calculated attack score
-    public int calcAttackScore() {
-        int attackScore = 0;
-        for (int i = 0; i < attack; i++) {
-            attackScore += Utility.throwSixSidedDie();
-        }
-        return attackScore;
-    }
-
-    // Returns the calculated defense score
-    public int calcDefenseScore() {
-        int defenseScore = 0;
-        for (int i = 0; i < agility; i++) {
-            defenseScore += Utility.throwSixSidedDie();
-        }
-        return defenseScore;
-    }
-
     // Restores "health" to full. Should be called after
     // each successful combat and successful flee attempt
     public void refreshCombatEndurance() {
@@ -167,6 +150,18 @@ public abstract class Character extends Creature {
         }
 
         return isCrit;
+    }
+
+    public int getCombatRoundInitiativeScore() {
+        return combatRoundInitiativeScore;
+    }
+
+    public void setCombatRoundInitiativeScore(int combatRoundInitiativeScore) {
+        this.combatRoundInitiativeScore = combatRoundInitiativeScore;
+    }
+
+    public void resetCombatRoundInitiativeScore() {
+        combatRoundInitiativeScore = 0;
     }
 
 }

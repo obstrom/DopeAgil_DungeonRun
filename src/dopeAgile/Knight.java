@@ -3,6 +3,8 @@ package dopeAgile;
 
 public class Knight extends Character {
 
+    private static boolean shieldBlockUsed = false;
+
     public Knight() {
         super();
         initiative = 5;
@@ -45,6 +47,18 @@ public class Knight extends Character {
     @Override
     public Role getRole() {
         return super.role;
+    }
+
+    public static boolean isShieldBlockUsed() {
+        return shieldBlockUsed;
+    }
+
+    public static void setShieldBlockUsed(boolean shieldBlockUsed) {
+        Knight.shieldBlockUsed = shieldBlockUsed;
+    }
+
+    public static void resetShieldBlock() {
+        shieldBlockUsed = false;
     }
 
 }

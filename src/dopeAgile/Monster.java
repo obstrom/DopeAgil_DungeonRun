@@ -8,6 +8,7 @@ public abstract class Monster extends Creature {
     int attack;
     int agility;
     int combatEndurance;
+    int combatRoundInitiativeScore;
     boolean isAlive = true;
 
     public int getInitiative() {
@@ -64,24 +65,6 @@ public abstract class Monster extends Creature {
     abstract String getPlayerHitMessage(); // Monster gets hit by player
     abstract String getPlayerCritMessage(); // Monster gets critial hit by player
 
-    // Returns the calculated attack score
-    public int calcAttackScore() {
-        int attackScore = 0;
-        for (int i = 0; i < attack; i++) {
-            attackScore += Utility.throwSixSidedDie();
-        }
-        return attackScore;
-    }
-
-    // Returns the calculated defense score
-    public int calcDefenseScore() {
-        int defenseScore = 0;
-        for (int i = 0; i < agility; i++) {
-            defenseScore += Utility.throwSixSidedDie();
-        }
-        return defenseScore;
-    }
-
     // Restores "health" to full. Should be called after successful flee attempt
     public void refreshCombatEndurance() {
         combatEndurance = endurance;
@@ -91,6 +74,18 @@ public abstract class Monster extends Creature {
     // Takes a boolean for crit that lowers endurance by two instead
     public void lowerCombatEndurance(boolean criticalHit) {
         combatEndurance = (criticalHit) ? combatEndurance -2 : combatEndurance -1;
+    }
+
+    public int getCombatRoundInitiativeScore() {
+        return combatRoundInitiativeScore;
+    }
+
+    public void setCombatRoundInitiativeScore(int combatRoundInitiativeScore) {
+        this.combatRoundInitiativeScore = combatRoundInitiativeScore;
+    }
+
+    public void resetCombatRoundInitiativeScore() {
+        combatRoundInitiativeScore = 0;
     }
     
 }

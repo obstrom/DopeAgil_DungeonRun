@@ -21,7 +21,9 @@ public class Combat {
         allCombatants.add(playerCharacter);
         allCombatants.addAll(allMonsters);
 
-        // TODO: "allCombatants" needs to be sorted on initiative
+        if (playerCharacter instanceof Knight) {
+            Knight.resetShieldBlock();
+        }
 
         boolean playerDead = false;
         while (!allMonsters.isEmpty() && playerCharacter.isAlive() && !playerIsFleeing) {
@@ -35,30 +37,17 @@ public class Combat {
 
     private void combatLoop() {
         // TODO:
-        //  1. Check initiatives
-        //  2. Highest initiative gets an action
-        //   2.1. initiative taker is player
-        //    2.1.A Player gets option to ATTACK or FLEE
-        //    2.1.B Player picks ATTACK
-        //     - Player gets to pick target?
-        //     - Target is attacked, check if hit is scored
-        //     - SUCCESS -> Target takes 1 dmg -> Check if monster dies
-        //     - FAIL -> Print miss message
-        //     - Player turn over
-        //    2.1.C Player picks FEELING
-        //     - Check if fleeing succeeds
-        //     - SUCCESS -> Move player back and restore monster health
-        //     - FAIL -> Player turn ends and monster turn begins
-        //   2.2. initiative taker is monster
-        //    2.2.A Monster attacks player
-        //     - Monster always targets player
-        //     - Target is attacked, check if hit is scored
-        //     - SUCCESS -> Player takes 1 dmg (unless ability) -> Check if player dies (GAME OVER)
-        //     - FAIL -> Print miss message
-        //     - Monster turn over
+        //  Bugs to fix
+        //  * När du är klar i ett rum så visar den händelsen igen
+        //  * Få in att du tar 1 skada när monstret träffar
+        //  * Få in att monstret tar 1 (eller 2) skada när du träffar
 
         boolean playerDead = false;
         ArrayList<Monster> killedMonstersDuringRound = new ArrayList<Monster>();
+
+        for (Creature combatant : allCombatants) {
+            combatant.calcNewCombatInitiative();
+        }
 
         Collections.sort(allCombatants);
 
@@ -70,15 +59,25 @@ public class Combat {
                 if (combatant instanceof Character) {
 
                     // Print all monsters in the room
-                    System.out.println(ConsoleColors.NEWLINE + "STRID:");
+                    System.out.println(ConsoleColors.NEWLINE + "STRIDSORDNING:");
                     for (int i = 0; i < allCombatants.size(); i++) {
                         Creature thisCombatant = allCombatants.get(i);
                         if (thisCombatant instanceof Character) {
                             Character player = (Character) thisCombatant;
-                            System.out.println("> " + (i+1) + ". " + player.toString(true) + " " + player.getName() + " - Hälsa " + displayColoredHealth(player.getCombatEndurance(), player.getEndurance()) + " | Attackstyrka [" + player.getAttack() + "]");
+                            System.out.println("> " + (i+1) + "."
+                                            + " Initiativpoäng " + ConsoleColors.BLUE + String.format("%02d", player.getCombatRoundInitiativeScore()) + ConsoleColors.RESET
+                                            //+ " | Attackstyrka " + player.getAttack()
+                                            + " | Hälsa " + displayColoredHealth(player.getCombatEndurance(), player.getEndurance())
+                                            + " - " + ConsoleColors.GREEN + player.toString(true) + " " + player.getName() + ConsoleColors.RESET
+                            );
                         } else {
                             Monster monster = (Monster) thisCombatant;
-                            System.out.println("> " + (i+1) + ". " + monster.toString(false) + " - Hälsa " + displayColoredHealth(monster.getCombatEndurance(), monster.getEndurance()) + " | Attackstyrka [" + monster.getAttack() + "]");
+                            System.out.println("> " + (i+1) + "."
+                                    + " Initiativpoäng " + ConsoleColors.BLUE + String.format("%02d", monster.getCombatRoundInitiativeScore()) + ConsoleColors.RESET
+                                    //+ " | Attackstyrka " + monster.getAttack()
+                                    + " | Hälsa " + displayColoredHealth(monster.getCombatEndurance(), monster.getEndurance())
+                                    + " - " + ConsoleColors.YELLOW + monster.toString(true) + ConsoleColors.RESET
+                            );
                         }
                     }
 
@@ -141,8 +140,15 @@ public class Combat {
     private boolean getInputOptionFight() {
         boolean returnBoolean = false;
 
+        Monster nextMonster = null;
+        if (allCombatants.get(0) instanceof Monster) {
+            nextMonster = (Monster) allCombatants.get(0);
+        } else {
+            nextMonster = (Monster) allCombatants.get(1);
+        }
+
         System.out.println(ConsoleColors.NEWLINE + "VÄLJ HANDLING:");
-        System.out.println("1. Attackera " + allMonsters.get(0).toString(true));
+        System.out.println("1. Attackera " + nextMonster.toString(true));
         System.out.println("2. Fly");
 
         for (int i = 0; i < 1; i++) {
@@ -214,8 +220,8 @@ public class Combat {
                 combatantPlayer.getAttackHitMessage();
                 boolean isCrit = combatantPlayer.checkIfCritical();
                 if (isCrit) {
-                    System.out.println(ConsoleColors.YELLOW_BOLD + combatantPlayer.getName() + " landar en kritisk träff!" + ConsoleColors.RESET);
                     System.out.println(targetMonster.getPlayerCritMessage());
+                    System.out.print(ConsoleColors.YELLOW_BOLD + "Kritiskträff!" + ConsoleColors.RESET);
                 } else {
                     System.out.print(ConsoleColors.GREEN_BOLD + "Träff!" + ConsoleColors.RESET);
                 }
@@ -235,14 +241,31 @@ public class Combat {
 
             System.out.println(ConsoleColors.NEWLINE + combatantMonster.toString(true) + " gör sig redo för attack!");
 
+            boolean shieldBlockUsed = false;
+
             if (monsterAttack.isSuccess()) {
-                System.out.print(ConsoleColors.RED_BOLD + "Träff!" + ConsoleColors.RESET);
-                playerCharacter.lowerCombatEndurance();
+
+                if (playerCharacter instanceof Knight && !Knight.isShieldBlockUsed()) {
+                    System.out.print(ConsoleColors.BLUE_BOLD + "Sköldblock! " + ConsoleColors.RESET);
+                    shieldBlockUsed = true;
+                    Knight.setShieldBlockUsed(true);
+                } else {
+                    System.out.print(ConsoleColors.RED_BOLD + "Träff!" + ConsoleColors.RESET);
+                    playerCharacter.lowerCombatEndurance();
+                }
+
             } else {
                 System.out.print(ConsoleColors.CYAN_BOLD + "Miss" + ConsoleColors.RESET);
             }
 
-            System.out.println(" - Den attackerar för " + ConsoleColors.RED_BOLD + monsterAttack.getAttackScore() + ConsoleColors.RESET + " och du försvarar dig för " + ConsoleColors.BLUE_BOLD + monsterAttack.getDefenseScore() + ConsoleColors.RESET + ".");
+            if (shieldBlockUsed) {
+                System.out.println(playerCharacter.getName() + " blockerar inkommande attack med sin sköld.");
+            } else {
+                System.out.println(" - " + combatantMonster.toString(true)
+                        + " attackerar för " + ConsoleColors.RED_BOLD + monsterAttack.getAttackScore() + ConsoleColors.RESET
+                        + " och du försvarar dig för " + ConsoleColors.BLUE_BOLD + monsterAttack.getDefenseScore() + ConsoleColors.RESET + "."
+                );
+            }
 
             if (monsterAttack.isSuccess() || allCombatants.indexOf(combatant) == allCombatants.size()-1 ) {
                 System.out.println(ConsoleColors.NEWLINE + playerCharacter.toString(true) + " " + playerCharacter.getName() + " - Hälsa " + displayColoredHealth(playerCharacter.getCombatEndurance(), playerCharacter.getEndurance()));
