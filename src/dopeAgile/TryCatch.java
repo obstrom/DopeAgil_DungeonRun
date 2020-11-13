@@ -22,6 +22,7 @@ public class TryCatch {
                 
         }catch(Exception e){
                 System.out.println("Du har angivit namnet som: ` Tomt `, det fungerar tyvärr inte.");
+                loop = false;
                 }
         }while(loop == false);
         return input;
