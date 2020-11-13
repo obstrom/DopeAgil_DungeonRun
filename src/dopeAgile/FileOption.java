@@ -71,7 +71,7 @@ public class FileOption extends Utility{
         }
         loadPlayer.setName(name);
         loadPlayer.setPoints(points);
-       Utility.addPlayer(loadPlayer);
+        Utility.addPlayer(loadPlayer);
     }
         public void DeleteCharacter() {
         System.out.println("tabort karaktären: ");
