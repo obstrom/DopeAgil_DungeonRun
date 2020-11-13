@@ -1,6 +1,5 @@
 package dopeAgile;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,6 +9,7 @@ public class Combat {
     Room currentRoom;
     ArrayList<Monster> allMonsters;
     ArrayList<Creature> allCombatants = new ArrayList<Creature>(); // sorted by Initiative
+    boolean playerIsFleeing = false;
 
     Combat(Character playerCharacter, ArrayList<Monster> allMonsters, Room currentRoom) {
         this.playerCharacter = playerCharacter;
@@ -23,9 +23,13 @@ public class Combat {
         // TODO: "allCombatants" needs to be sorted on initiative
 
         boolean playerDead = false;
-        while (!allMonsters.isEmpty() && playerCharacter.isAlive()) {
+        while (!allMonsters.isEmpty() && playerCharacter.isAlive() && !playerIsFleeing) {
             combatLoop();
         }
+    }
+
+    public boolean isPlayerIsFleeing() {
+        return playerIsFleeing;
     }
 
     private void combatLoop() {
@@ -78,8 +82,7 @@ public class Combat {
                     } else {
 
                         // Attempt to flee the room
-                        // TODO: IMPLEMENT FLEE SYSTEM
-                        System.out.println("[Platshållare] - Fly system saknas. Du misslyckas automatiskt, och står över din tur.");
+                        playerIsFleeing = attemptToFlee();
 
                     }
 
@@ -98,8 +101,8 @@ public class Combat {
                     killedMonstersDuringRound.add(deadMonster);
                 }
 
-                // Stop for loop if player died
-                if (playerDead) {
+                // Stop for loop if player died or has fled
+                if (playerDead || playerIsFleeing) {
                     playerCharacter.setIsAlive(false);
                     break;
                 }
@@ -271,6 +274,25 @@ public class Combat {
         }
         outputString += currentHealth + "/" + maxHealth + ConsoleColors.RESET + ")";
         return outputString;
+    }
+
+    private boolean attemptToFlee() {
+        boolean fleeSuccess = false;
+        double chanceToFleePercentage = playerCharacter.getAgility() * 0.1;
+
+        if (playerCharacter instanceof Wizard) {
+            chanceToFleePercentage = 0.8;
+            System.out.println(ConsoleColors.PURPLE_BOLD + "Ljussken: " + playerCharacter.getName() + " bländar fienden med ett starkt magiskt ljus!" + ConsoleColors.RESET);
+        }
+
+        if (chanceToFleePercentage > Math.random()) {
+            fleeSuccess = true;
+            System.out.println(ConsoleColors.GREEN + playerCharacter.getName() + " lyckas fly oskadd från striden.");
+        } else {
+            System.out.println(ConsoleColors.RED + playerCharacter.getName() + " misslyckades med att fly! Striden fortsätter.");
+        }
+
+        return fleeSuccess;
     }
 
 }

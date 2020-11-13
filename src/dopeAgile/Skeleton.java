@@ -9,7 +9,7 @@ public class Skeleton extends Monster {
         super();
         this.initiative = 4;
         this.endurance = 2;
-        this.attack = 2;
+        this.attack = 3;
         this.agility = 3;
         super.refreshCombatEndurance();
     }

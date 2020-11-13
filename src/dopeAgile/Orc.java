@@ -54,4 +54,3 @@ public class Orc extends Monster {
     public String getPlayerCritMessage() { return ""; }
 
 }
-
