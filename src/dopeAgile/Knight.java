@@ -1,25 +1,45 @@
+
 package dopeAgile;
 
 public class Knight extends Character {
 
     public Knight() {
         super();
-        this.initiative = 5;
-        this.endurance = 9;
-        this.attack = 6;
-        this.agility = 4;
+        initiative = 5;
+        endurance = 9;
+        attack = 6;
+        agility = 4;
         setRole(Role.KNIGHT);
-
+        super.refreshCombatEndurance();
+    }
+    
+    public void specialAbility() {
+        
     }
 
-    public void specialAbility() {
+    @Override
+    public String toString(boolean conjugate) {
+        return (conjugate) ? "Riddaren" : "Riddare";
+    }
 
+    @Override
+    public String getAttackMessage() {
+        return "";
+    }
+
+    @Override
+    public String getAttackHitMessage() {
+        return "Träff!";
+    }
+
+    @Override
+    public String getAttackMissMessage() {
+        return "Miss";
     }
 
     @Override
     public void setRole(Role newRole) {
         super.role = newRole;
-
     }
 
     @Override

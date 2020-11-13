@@ -9,10 +9,31 @@ public class Wizard extends Character {
         this.attack = 9;
         this.agility = 5;
         setRole(Role.WIZARD);
+        super.refreshCombatEndurance();
     }
 
     public void specialAbility() {
 
+    }
+
+    @Override
+    public String toString(boolean conjugate) {
+        return (conjugate) ? "Trollkarlen" : "Trollkarl";
+    }
+
+    @Override
+    public String getAttackMessage() {
+        return "";
+    }
+
+    @Override
+    public String getAttackHitMessage() {
+        return "Hit";
+    }
+
+    @Override
+    public String getAttackMissMessage() {
+        return "Miss";
     }
 
     @Override

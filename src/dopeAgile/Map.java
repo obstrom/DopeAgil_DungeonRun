@@ -72,6 +72,7 @@ public class Map {
                 boolean isEdge = (y == 0 || x == 0 || y == (mapArray.length - 1) || x == (mapArray.length - 1));
                 if (y == playerPositionXYCoordinates[0] && x == playerPositionXYCoordinates[1]) {
                     Room newRoom = new Room(x, y, isEdge, true);
+                    newRoom.setIsRoomExplored(true);
                     mapArray[y][x] = newRoom;
                     this.playerCurrentRoom = newRoom;
                 } else {
@@ -138,11 +139,13 @@ public class Map {
         for (Room[] roomRows : mapArray) {
             for (Room room : roomRows) {
                 if (playerCurrentRoom == room) {
-                    result += "[\u001B[32m*\u001B[0m]";
+                    result += "["+ConsoleColors.GREEN+"*"+ConsoleColors.WHITE+"]";
+                } else if (room.getIsRoomExplored() && room.getRoomMonsters().size() > 0 && !room.isSpawnRoom()) {
+                    result += "["+ConsoleColors.RED+"!"+ConsoleColors.WHITE+"]";
                 } else if (room.getIsRoomExplored()) {
                     result += "[ ]";
                 } else {
-                    result += "[\u001B[34m?\u001B[0m]";
+                    result += "["+ConsoleColors.BLUE+"?"+ConsoleColors.WHITE+"]";
                 }
             }
             result += "\n";
