@@ -101,9 +101,14 @@ public class Combat {
                     killedMonstersDuringRound.add(deadMonster);
                 }
 
-                // Stop for loop if player died or has fled
-                if (playerDead || playerIsFleeing) {
+                // Stop for loop if player died
+                if (playerDead) {
                     playerCharacter.setIsAlive(false);
+                    break;
+                }
+
+                // Stop for loop if player is fleeing
+                if (playerIsFleeing) {
                     break;
                 }
 
@@ -288,6 +293,9 @@ public class Combat {
         if (chanceToFleePercentage > Math.random()) {
             fleeSuccess = true;
             System.out.println(ConsoleColors.GREEN + playerCharacter.getName() + " lyckas fly oskadd från striden.");
+            for (Monster monster: allMonsters) {
+                monster.refreshCombatEndurance();
+            }
         } else {
             System.out.println(ConsoleColors.RED + playerCharacter.getName() + " misslyckades med att fly! Striden fortsätter.");
         }

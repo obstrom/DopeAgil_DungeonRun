@@ -39,9 +39,6 @@ public class GameLoop {
             }
 
         }
-        System.out.println(keepGoing);
-        boolean alive = loadedCharacter.isAlive();
-        System.out.println("Loop ended");
     }
 
     // General method for navigating the dungeon
@@ -70,13 +67,11 @@ public class GameLoop {
             return false;
         }
 
-        // Set current room as explored
-        currentRoom.setIsRoomExplored(true);
-
         // Move to target room and update values
         previousRoom = currentRoom;
         currentRoom = currentRoom.getSpecificAdjacentRoom(chosenDirection);
         loadedMap.setPlayerCurrentRoom(currentRoom);
+        currentRoom.setIsRoomExplored(true);
 
         return true;
     }
