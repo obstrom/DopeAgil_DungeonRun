@@ -1,6 +1,7 @@
 package dopeAgile;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Combat {
@@ -59,6 +60,8 @@ public class Combat {
         boolean playerDead = false;
         ArrayList<Monster> killedMonstersDuringRound = new ArrayList<Monster>();
 
+        Collections.sort(allCombatants);
+
         // Run through all combatants once in initiative order
         for (Creature combatant: allCombatants) {
 
@@ -67,9 +70,16 @@ public class Combat {
                 if (combatant instanceof Character) {
 
                     // Print all monsters in the room
-                    System.out.println(ConsoleColors.NEWLINE + "MONSTER:");
-                    for (Monster monster: allMonsters) {
-                        System.out.println("> " + monster.toString(false) + " - Hälsa " + displayColoredHealth(monster.getCombatEndurance(), monster.getEndurance()) + " | Attackstyrka [" + monster.getAttack() + "]");
+                    System.out.println(ConsoleColors.NEWLINE + "STRID:");
+                    for (int i = 0; i < allCombatants.size(); i++) {
+                        Creature thisCombatant = allCombatants.get(i);
+                        if (thisCombatant instanceof Character) {
+                            Character player = (Character) thisCombatant;
+                            System.out.println("> " + (i+1) + ". " + player.toString(true) + " " + player.getName() + " - Hälsa " + displayColoredHealth(player.getCombatEndurance(), player.getEndurance()) + " | Attackstyrka [" + player.getAttack() + "]");
+                        } else {
+                            Monster monster = (Monster) thisCombatant;
+                            System.out.println("> " + (i+1) + ". " + monster.toString(false) + " - Hälsa " + displayColoredHealth(monster.getCombatEndurance(), monster.getEndurance()) + " | Attackstyrka [" + monster.getAttack() + "]");
+                        }
                     }
 
                     // Get user action and check whether it is to attack or flee
@@ -221,7 +231,6 @@ public class Combat {
         } else if (combatant instanceof Monster) {
             Monster combatantMonster = (Monster) combatant;
 
-            //System.out.println(combatantMonster.getAttackMessage()); // TODO: LÄGG TILL MONSTER ATTACK
             Attack monsterAttack = new Attack(combatantMonster, playerCharacter);
 
             System.out.println(ConsoleColors.NEWLINE + combatantMonster.toString(true) + " gör sig redo för attack!");

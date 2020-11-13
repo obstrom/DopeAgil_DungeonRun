@@ -1,6 +1,6 @@
 package dopeAgile;
 
-public abstract class Creature { // this should implement Comparable
+public abstract class Creature implements Comparable<Creature> {
 
     abstract int calcAttackScore();
     abstract int calcDefenseScore();
@@ -13,5 +13,10 @@ public abstract class Creature { // this should implement Comparable
     abstract String getAttackMessage();
     abstract String getAttackHitMessage();
     abstract String getAttackMissMessage();
+
+    @Override
+    public int compareTo(Creature creature) {
+        return this.getInitiative();
+    }
 
 }
