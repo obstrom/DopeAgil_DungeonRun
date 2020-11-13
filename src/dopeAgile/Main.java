@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    static TryCatch tryinput = null;
+    static TryCatch tryinput = new TryCatch();
 
     enum CharacterType {
         RIDDARE, TJUV, MAGIKER;
