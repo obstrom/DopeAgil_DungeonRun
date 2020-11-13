@@ -25,12 +25,32 @@ public class Spider extends Monster {
 
     @Override
     public String getAttackMessage() {
-        return "";
+
+        int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
+
+        if (rand < 3) {
+            return "Här är attack 1";
+        } else if (rand < 5) {
+            return "Här är attack 2";
+        } else {
+            return "Här är attack 3";
+        }
+
     }
 
     @Override
     public String getAttackHitMessage() {
-        return "Hit";
+
+        int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
+
+        if (rand < 3) {
+            return "Här är miss 1";
+        } else if (rand < 5) {
+            return "Här är miss 2";
+        } else {
+            return "Här är miss 3";
+        }
+
     }
 
     @Override

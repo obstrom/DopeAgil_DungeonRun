@@ -26,6 +26,37 @@ public class Wizard extends Character {
         return "";
     }
 
+    /*
+    @Override
+    public String getAttackMessage(Monster monster) {
+
+        if (monster instanceof Orc) {
+
+            // Kod Orc
+            int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
+
+            if (rand < 4) {
+                return "Här är Orc attack 1";
+            } else {
+                return "Här är Orc attack 2";
+            }
+
+        } else if (monster instanceof Spider) {
+
+
+        } else if (monster instanceof Skeleton) {
+
+
+        } else if (monster instanceof Troll ) {
+
+
+        } else {
+            return "";
+        }
+
+    }
+    */
+
     @Override
     public String getAttackHitMessage() {
         return "Hit";
