@@ -29,11 +29,11 @@ public class Spider extends Monster {
         int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
         if (rand < 3) {
-            return "Här är attack 1";
+            return "Spindeln hugger Hjälten med sitt ben och träffar hjältens arm.";
         } else if (rand < 5) {
-            return "Här är attack 2";
+            return "Spindeln skjuter en spindelnäts boll mot hjälten, den träffar.";
         } else {
-            return "Här är attack 3";
+            return "spindel biter hjälten i armen.";
         }
 
     }
