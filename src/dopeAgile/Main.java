@@ -9,6 +9,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        Startpage.Startpage();
 
         System.out.println("\n\033[1mVälkommen till Dungeon Run\033[0m");
 
