@@ -25,12 +25,20 @@ public class Orc extends Monster {
 
     @Override
     public String getAttackMessage() {
-        return "Orc";
+        return "";
     }
 
     @Override
     public String getAttackHitMessage() {
-        return "Träff!";
+        int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
+
+        if (rand < 3) {
+            return "Orcen tar sats, hoppar på dig och biter dig med sina huggtänder.";
+        } else if (rand < 5) {
+            return "Orcen tar upp sin yxa, kastar den mot dig och träffar dig i låret.";
+        } else {
+            return "Orcen tar upp en öltunna, lyfter den över sitt huvud och kastar den på dig.";
+        }
     }
 
     @Override
@@ -42,10 +50,10 @@ public class Orc extends Monster {
     public String getEntryMessage() { return "En orc kommer ut ur skuggan!"; }
 
     @Override
-    public String getKilledByMessage() { return ""; }
+    public String getKilledByMessage() { return "Orcen tar strypgrepp på dig, biter av halspulsådern och du förblöder till döds."; }
 
     @Override
-    public String getDeathMessage() { return ""; }
+    public String getDeathMessage() { return "Orcen ryter och faller livlöst till marken."; }
 
     @Override
     public String getPlayerHitMessage() { return ""; }

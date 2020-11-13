@@ -11,7 +11,7 @@ public abstract class Creature { // this should implement Comparable
     abstract void refreshCombatEndurance();
     abstract int getCombatEndurance();
     abstract String getAttackMessage();
-    abstract String getAttackHitMessage();
-    abstract String getAttackMissMessage();
+    abstract String getAttackHitMessage(Creature creature);
+    abstract String getAttackMissMessage(Creature creature);
 
 }
