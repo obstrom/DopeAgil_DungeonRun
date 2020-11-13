@@ -11,10 +11,31 @@ public class Knight extends Character {
         attack = 6;
         agility = 4;
         setRole(Role.KNIGHT);
+        super.refreshCombatEndurance();
     }
     
     public void specialAbility() {
         
+    }
+
+    @Override
+    public String toString(boolean conjugate) {
+        return (conjugate) ? "Riddaren" : "Riddare";
+    }
+
+    @Override
+    public String getAttackMessage() {
+        return "";
+    }
+
+    @Override
+    public String getAttackHitMessage() {
+        return "Träff!";
+    }
+
+    @Override
+    public String getAttackMissMessage() {
+        return "Miss";
     }
 
     @Override

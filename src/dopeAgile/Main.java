@@ -123,7 +123,7 @@ public class Main {
             case 3:
                 System.out.println("Du har valt Tjuven!");
                 characterChoice = CharacterType.TJUV;
-                player = new Rouge();
+                player = new Rogue();
                 break;
             default:
                 System.out.println("test");
