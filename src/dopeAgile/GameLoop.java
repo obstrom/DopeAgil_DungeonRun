@@ -9,6 +9,8 @@ public class GameLoop {
     private Room currentRoom;
     private ArrayList<Monster> roomMonster;
     private Treasure roomTreasure;
+    
+    MusicPlayer music = new MusicPlayer();
 
     GameLoop(Map loadedMap, Character loadedCharacter) {
         this.loadedMap = loadedMap;
@@ -36,6 +38,7 @@ public class GameLoop {
             System.out.println("\u001B[3m" + currentRoom.getRoomMessage() + "\033[0m");
             for (Monster monster: currentRoom.getRoomMonsters()) {
                 System.out.println("\u001B[31m" + monster.getEntryMessage() + "\033[0m");
+                music.monsterSound();
             }
             if (currentRoom.getRoomMonsters().size() > 0) {
                 System.out.println("Du besegrar alla monster.");
@@ -48,6 +51,7 @@ public class GameLoop {
             System.out.println("Du söker igenom rummet, men du hittar bara damm.");
         } else {
             System.out.print("Du söker igenom rummet, och hittar [\u001B[33m");
+            music.treasureSound();
             ArrayList<Treasure.treasureTypes> treasures = currentRoom.getRoomTreasure().getTreasureList();
             for (int i = 0; i < treasures.size(); i++) {
                 if (i == 0) {
