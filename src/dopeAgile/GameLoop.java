@@ -10,7 +10,8 @@ public class GameLoop {
     private Room previousRoom;
     private ArrayList<Monster> roomMonster;
     private Treasure roomTreasure;
-    private boolean playerIsFleeing;
+    private boolean playerIsFleeing;    
+    MusicPlayer music = new MusicPlayer();
 
     GameLoop(Map loadedMap, Character loadedCharacter) {
         this.loadedMap = loadedMap;
@@ -36,8 +37,31 @@ public class GameLoop {
                 System.out.print(ConsoleColors.NEWLINE + "<Tryck ENTER för att fortsätta vidare>");
                 Scanner sc = new Scanner(System.in);
                 String userInput = sc.nextLine();
+        System.out.println("\n\033[1mHändelser:\033[0m");
+        if (!currentRoom.isSpawnRoom()) {
+            System.out.println("\u001B[3m" + currentRoom.getRoomMessage() + "\033[0m");
+            for (Monster monster: currentRoom.getRoomMonsters()) {
+                System.out.println("\u001B[31m" + monster.getEntryMessage() + "\033[0m");
+                music.monsterSound();
             }
 
+        if (currentRoom.getRoomTreasure().getTreasureList() == null) {
+            System.out.println("Du söker igenom rummet, och inser att du varit här förut.");
+        } else if (currentRoom.getRoomTreasure().getTreasureList().isEmpty()) {
+            System.out.println("Du söker igenom rummet, men du hittar bara damm.");
+        } else {
+            System.out.print("Du söker igenom rummet, och hittar [\u001B[33m");
+            music.treasureSound();
+            ArrayList<Treasure.treasureTypes> treasures = currentRoom.getRoomTreasure().getTreasureList();
+            for (int i = 0; i < treasures.size(); i++) {
+                if (i == 0) {
+                    System.out.print(treasures.get(i));
+                } else {
+                    System.out.print(" och " + treasures.get(i));
+                }
+            }
+            System.out.print("\u001B[0m] för ett värde av \u001B[33m" + currentRoom.getRoomTreasure().getTreasureTotalValue() + "\u001B[0m poäng.\n");
+            loadedCharacter.addPoints(currentRoom.getRoomTreasure().getTreasureTotalValue());
         }
         System.out.println(keepGoing);
         boolean alive = loadedCharacter.isAlive();
