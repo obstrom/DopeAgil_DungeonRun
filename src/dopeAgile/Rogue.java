@@ -28,8 +28,40 @@ public class Rogue extends Character {
     }
 
     @Override
-    public String getAttackHitMessage() {
-        return "Träff!";
+    public String getAttackHitMessage(Creature creature) {
+        
+        Monster monster = (Monster) creature;
+        if (monster instanceof Orc) {
+
+            // Kod Orc
+            int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
+
+            if (rand < 4) {
+                return "Tjuven hugger orcen i bröstet och orcen ryter i smärta.";
+            } else {
+                return "Tjuven springer fram och lyckas skära orcen på baksidan av låret så att den faller till marken.";
+            }
+
+        } else if (monster instanceof Spider) {
+            int rand = Utility.throwSixSidedDie();
+            
+            if (rand < 4) {
+                return "Tjuven kastar en kniv mot spindeln, den träffar och spindeln skriker i smärta.";
+            } else {
+                return "Tjuven kastar en kniv mot spindeln, spindeln hinner hoppa åt sidan och kniven missar.";
+            }
+
+
+        } else if (monster instanceof Skeleton) {
+
+
+        } else if (monster instanceof Troll ) {
+
+
+        } else {
+            return "";
+        }
+        return"";
     }
 
     @Override
