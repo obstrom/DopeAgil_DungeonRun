@@ -51,11 +51,8 @@ public class Combat {
         //     - SUCCESS -> Player takes 1 dmg (unless ability) -> Check if player dies (GAME OVER)
         //     - FAIL -> Print miss message
         //     - Monster turn over
-        //
-        // TODO:
-        //  - ISSUES - Crash efter att ett monster dör vid multi monster encounter
 
-        Boolean playerDead = false;
+        boolean playerDead = false;
         ArrayList<Monster> killedMonstersDuringRound = new ArrayList<Monster>();
 
         // Run through all combatants once in initiative order
@@ -202,7 +199,7 @@ public class Combat {
                     System.out.println(ConsoleColors.YELLOW_BOLD + combatantPlayer.getName() + " landar en kritisk träff!" + ConsoleColors.RESET);
                     System.out.println(targetMonster.getPlayerCritMessage());
                 } else {
-                    System.out.print(ConsoleColors.PURPLE_BOLD + "Träff!" + ConsoleColors.RESET);
+                    System.out.print(ConsoleColors.GREEN_BOLD + "Träff!" + ConsoleColors.RESET);
                 }
 
                 targetMonster.lowerCombatEndurance(isCrit);
