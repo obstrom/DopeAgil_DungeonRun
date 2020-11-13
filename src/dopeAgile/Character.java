@@ -27,7 +27,7 @@ public abstract class Character extends Creature {
     }
 
     public enum Role {
-        WIZARD, ROUGE, KNIGHT;
+        WIZARD, ROGUE, KNIGHT;
     }
 
     public int getInitiative() {

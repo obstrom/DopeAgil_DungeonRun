@@ -9,7 +9,7 @@ public class Rogue extends Character {
         this.endurance = 5;
         this.attack = 5;
         this.agility = 7;
-        setRole(Role.ROUGE);
+        setRole(Role.ROGUE);
         super.refreshCombatEndurance();
     }
 

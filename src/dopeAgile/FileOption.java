@@ -59,8 +59,8 @@ public class FileOption extends Utility {
                         loadPlayer.setRole(Role.WIZARD);
                         break;
                     case 7:
-                        loadPlayer = new Rouge();
-                        loadPlayer.setRole(Role.ROUGE);
+                        loadPlayer = new Rogue();
+                        loadPlayer.setRole(Role.ROGUE);
                         break;
 
                 }

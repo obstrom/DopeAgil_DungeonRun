@@ -43,9 +43,6 @@ public class GameLoop {
                 Scanner sc = new Scanner(System.in);
                 String userInput = sc.nextLine();
 
-                System.out.print(ConsoleColors.NEWLINE + "<Tryck ENTER för att fortsätta vidare>");
-                Scanner sc = new Scanner(System.in);
-                String userInput = sc.nextLine();
                 System.out.println("\n\033[1mHändelser:\033[0m");
                 if (!currentRoom.isSpawnRoom()) {
                     System.out.println("\u001B[3m" + currentRoom.getRoomMessage() + "\033[0m");
@@ -72,6 +69,10 @@ public class GameLoop {
                         System.out.print("\u001B[0m] för ett värde av \u001B[33m" + currentRoom.getRoomTreasure().getTreasureTotalValue() + "\u001B[0m poäng.\n");
                         loadedCharacter.addPoints(currentRoom.getRoomTreasure().getTreasureTotalValue());
                     }
+                }
+            }
+        }
+    }
 
     public void displayRoom() {
 
