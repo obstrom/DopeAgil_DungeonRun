@@ -1,10 +1,9 @@
-
 package dopeAgile;
 
 public class Spider extends Monster {
 
     private static final double COMMON = 0.2;
-    
+
     public Spider() {
         super();
         this.initiative = 7;
@@ -23,6 +22,8 @@ public class Spider extends Monster {
     }
 
     @Override
-    public String getEntryMessage() { return "En spindel faller ner från taket!"; }
-    
+    public String getEntryMessage() {
+        return "En spindel faller ner från taket!";
+    }
+
 }
