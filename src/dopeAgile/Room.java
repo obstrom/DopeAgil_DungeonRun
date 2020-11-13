@@ -15,7 +15,7 @@ public class Room {
     private int mapX;
     private int mapY;
 
-    Room (int mapX, int mapY, boolean isEdgeRoom, boolean isSpawnRoom) {
+    Room(int mapX, int mapY, boolean isEdgeRoom, boolean isSpawnRoom) {
         this.mapX = mapX;
         this.mapY = mapY;
         this.isEdgeRoom = isEdgeRoom;
@@ -54,7 +54,7 @@ public class Room {
     }
 
     private String generateRoomMessage() {
-        int rand = (int) (Math.random()*10);
+        int rand = (int) (Math.random() * 10);
         String returnString;
 
         switch (rand) {

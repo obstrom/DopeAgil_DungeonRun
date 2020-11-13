@@ -1,4 +1,3 @@
-
 package dopeAgile;
 
 public abstract class Character {
@@ -16,11 +15,11 @@ public abstract class Character {
     Role role;
 
     public Character() {
-       this.positionX = 0;
-       this.positionY = 0;
-       this.name = name;
-       this.points = 0;
-       this.playerId = idGenerator;
+        this.positionX = 0;
+        this.positionY = 0;
+        this.name = " ";
+        this.points = 0;
+        this.playerId = idGenerator;
     }
 
     public enum Role {
@@ -98,14 +97,14 @@ public abstract class Character {
     abstract Role getRole();
 
     abstract void setRole(Role newRole);
-    
+
     @Override
     public String toString() {
         return "Character{" + " initiative : " + initiative + ", endurance : " + endurance + ", attack : " + attack + ", agility : " + agility + '}';
     }
-   
+
     public void specialAbility() {
-        
+
     }
 
 }

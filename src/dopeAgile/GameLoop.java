@@ -4,17 +4,21 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GameLoop {
+
     private final Map loadedMap;
     private Character loadedCharacter;
     private Room currentRoom;
     private ArrayList<Monster> roomMonster;
     private Treasure roomTreasure;
     private Score scores = new Score();
+    SaveFile save = new SaveFile();
+
 
     GameLoop(Map loadedMap, Character loadedCharacter) {
         this.loadedMap = loadedMap;
         this.loadedCharacter = loadedCharacter;
         loop();
+        save.savingToFile(loadedCharacter.getName(), loadedCharacter.getPoints(), loadedCharacter.getAgility());
     }
 
     // Game logic loop
@@ -25,9 +29,10 @@ public class GameLoop {
             keepGoing = navigation();
             if (keepGoing) {
                 displayRoom();
-            }
 
+            }
         }
+
     }
 
     public void displayRoom() {
@@ -35,7 +40,7 @@ public class GameLoop {
         System.out.println("\n\033[1mHändelser:\033[0m");
         if (!currentRoom.isSpawnRoom()) {
             System.out.println("\u001B[3m" + currentRoom.getRoomMessage() + "\033[0m");
-            for (Monster monster: currentRoom.getRoomMonsters()) {
+            for (Monster monster : currentRoom.getRoomMonsters()) {
                 System.out.println("\u001B[31m" + monster.getEntryMessage() + "\033[0m");
             }
             if (currentRoom.getRoomMonsters().size() > 0) {
@@ -91,6 +96,7 @@ public class GameLoop {
             //Will output the name of game player and total points for the game.
             scores.addScore(loadedCharacter.getName(), loadedCharacter.getPoints());
             return false;
+
         }
 
         // Set current room as explored
@@ -125,11 +131,11 @@ public class GameLoop {
             if (menuOptions.get(i) == Map.cardinalDirection.LEAVE) {
                 System.out.println("5. Lämna dungeon och avsluta äventyret (SPARA).");
             } else {
-                if(currentRoom.getSpecificAdjacentRoom(menuOptions.get(i)) == null) {
-                    System.out.println("\u001B[31m" + (i+1) + ". - \033[0m");
+                if (currentRoom.getSpecificAdjacentRoom(menuOptions.get(i)) == null) {
+                    System.out.println("\u001B[31m" + (i + 1) + ". - \033[0m");
                     menuOptions.set(i, null);
                 } else {
-                    System.out.println(i+1 + ". Gå mot " + menuOptions.get(i).toString().toLowerCase() + ".");
+                    System.out.println(i + 1 + ". Gå mot " + menuOptions.get(i).toString().toLowerCase() + ".");
                 }
             }
         }
@@ -142,14 +148,14 @@ public class GameLoop {
 
             try {
                 int userInputInt = Integer.parseInt(userInput);
-                returnDirection = menuOptions.get(userInputInt-1);
+                returnDirection = menuOptions.get(userInputInt - 1);
                 if (returnDirection == null) {
                     System.out.println("Ogiltigt kommando! Försök igen.");
                     --i;
                 }
             } catch (NumberFormatException e) {
                 if (menuOptions.toString().toLowerCase().contains(userInput)) {
-                    for (Map.cardinalDirection direction: menuOptions) {
+                    for (Map.cardinalDirection direction : menuOptions) {
                         if (direction.toString().toLowerCase().contains(userInput)) {
                             returnDirection = direction;
                         }
@@ -171,6 +177,7 @@ public class GameLoop {
 
     // Message for leaving the dungeon map
     private String leaveMapMessage() {
+
         return "Hjälten " + loadedCharacter.getName() + " lämnar dungeon efter att ha samlat på sig skatter värda \033[1m\u001B[33m" + loadedCharacter.getPoints() + " poäng.\u001B[0m\033[0m";
     }
 

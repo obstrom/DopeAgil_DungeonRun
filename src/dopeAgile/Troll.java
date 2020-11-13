@@ -1,10 +1,9 @@
-
 package dopeAgile;
 
 public class Troll extends Monster {
 
     public static final double COMMON = 0.05;
-    
+
     public Troll() {
         super();
         this.initiative = 2;
@@ -23,6 +22,8 @@ public class Troll extends Monster {
     }
 
     @Override
-    public String getEntryMessage() { return "Ett troll kommer in genom en av dörrarna!"; }
-    
+    public String getEntryMessage() {
+        return "Ett troll kommer in genom en av dörrarna!";
+    }
+
 }
