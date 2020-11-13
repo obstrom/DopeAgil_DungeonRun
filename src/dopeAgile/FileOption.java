@@ -13,7 +13,7 @@ public class FileOption extends Utility{
     private String name;
     private String one;
     private Character loadPlayer = null;
-    static Scanner sc = new Scanner(System.in);
+    private TryCatch tryinput = null;
 
 
     public void options(int choice){
@@ -24,27 +24,20 @@ public class FileOption extends Utility{
         System.out.println("Välj nedstående alternativ:\n"
         +"1: ladda en karaktär\n"
         +"2: tabort en karaktär");
-        input = sc.nextLine();
-        try{
-             noClue = Integer.parseInt(input);
-        }catch(Exception e){
-            System.out.println("Ett Fel Uppstog");
-        }
+        noClue = tryinput.TryIntInput();
         if(noClue == 1){
            loadingSaveFile();
         }else{
           DeleteCharacter();
         }
-        
         }
         }
     }
 
-    
     public void loadingSaveFile() {
         
         System.out.println("Loadfile name: ");
-        input = sc.nextLine();
+        input = tryinput.TryStringInput();
         try {
             File myFile = new File( input +".txt");
             Scanner myLoader = new Scanner(myFile);
@@ -56,8 +49,6 @@ public class FileOption extends Utility{
                 input = inputValue[2];
                 points = Integer.parseInt(one);
                 int role = Integer.parseInt(input);
-                
-                
                 switch (role){
                     case 4:
                         loadPlayer = new Knight();
@@ -73,14 +64,10 @@ public class FileOption extends Utility{
                         break;
                         
                 }
-               
-               
             } 
             myLoader.close();
         } catch (FileNotFoundException e) {
-            System.out.println("En error har hänt, " + e);
-            
-            
+            System.out.println("kunde inte hitta din fil, prova ett annat namn." + e);   
         }
         loadPlayer.setName(name);
         loadPlayer.setPoints(points);
@@ -88,7 +75,7 @@ public class FileOption extends Utility{
     }
         public void DeleteCharacter() {
         System.out.println("tabort karaktären: ");
-        input = sc.nextLine();
+        input = tryinput.TryStringInput();
         File myFile = new File(input + ".txt");
         if (myFile.delete()) {
             System.out.println("DELETED HAHAHAHAHAHAHAHA");
