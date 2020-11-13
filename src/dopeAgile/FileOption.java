@@ -14,7 +14,7 @@ public class FileOption extends Utility {
     private String name;
     private String one;
     private Character loadPlayer = null;
-    private TryCatch tryinput = null;
+    private TryCatch tryinput = new TryCatch();
 
     public void options(int choice) {
         if (choice == 1) {
