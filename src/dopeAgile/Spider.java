@@ -25,8 +25,12 @@ public class Spider extends Monster {
 
     @Override
     public String getAttackMessage() {
+        return "";
+    }
 
-        int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
+    @Override
+    public String getAttackHitMessage() {
+       int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
         if (rand < 3) {
             return "Spindeln hugger Hjälten med sitt ben och träffar hjältens arm.";
@@ -39,33 +43,28 @@ public class Spider extends Monster {
     }
 
     @Override
-    public String getAttackHitMessage() {
-
-        int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
+    public String getAttackMissMessage() {
+                
+            int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
         if (rand < 3) {
-            return "Här är miss 1";
+            return "Spindeln sveper över med sitt ben men missar hjälten.";
         } else if (rand < 5) {
-            return "Här är miss 2";
+            return "Spindeln skjuter en spindelnäts boll mot hjälten, den missar.";
         } else {
-            return "Här är miss 3";
+            return "spindeln försöker bita dig men du lyckas hoppa undan.";
         }
-
-    }
-
-    @Override
-    public String getAttackMissMessage() {
-        return "Miss";
     }
 
     @Override
     public String getEntryMessage() { return "En jättespindel faller ner från taket!"; }
 
     @Override
-    public String getKilledByMessage() { return ""; }
+    public String getKilledByMessage() { 
+        return "Spindeln springer fram och biter av ditt ansikte."; }
 
     @Override
-    public String getDeathMessage() { return ""; }
+    public String getDeathMessage() { return "Spindeln gör ett sista ljud innan den dör: SCHREEEEE….."; }
 
     @Override
     public String getPlayerHitMessage() { return ""; }
