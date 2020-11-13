@@ -4,11 +4,11 @@ public class FleeingMonster {
 
     int flee;
     int type;
-   
+    private Character kar =null;
 
     public void Fleeing() {
         
-        Character kar = new Character();
+        
         type = kar.getAgility();
         
 
