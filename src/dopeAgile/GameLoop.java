@@ -9,11 +9,12 @@ public class GameLoop {
     private Room currentRoom;
     private ArrayList<Monster> roomMonster;
     private Treasure roomTreasure;
-
+    SaveFile save = new SaveFile();
     GameLoop(Map loadedMap, Character loadedCharacter) {
         this.loadedMap = loadedMap;
         this.loadedCharacter = loadedCharacter;
         loop();
+        save.savingToFile(loadedCharacter.getName(),loadedCharacter.getPoints(),loadedCharacter.getAgility());
     }
 
     // Game logic loop
@@ -24,9 +25,10 @@ public class GameLoop {
             keepGoing = navigation();
             if (keepGoing) {
                 displayRoom();
+               
             }
-
         }
+        
     }
 
     public void displayRoom() {
@@ -86,6 +88,7 @@ public class GameLoop {
             System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
             System.out.println(leaveMapMessage());
             return false;
+            
         }
 
         // Set current room as explored
@@ -166,6 +169,7 @@ public class GameLoop {
 
     // Message for leaving the dungeon map
     private String leaveMapMessage() {
+        
         return "Hjälten " + loadedCharacter.getName() + " lämnar dungeon efter att ha samlat på sig skatter värda \033[1m\u001B[33m" + loadedCharacter.getPoints() + " poäng.\u001B[0m\033[0m";
     }
 

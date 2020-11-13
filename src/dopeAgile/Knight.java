@@ -6,20 +6,22 @@ public class Knight extends Character {
 
     public Knight(){
         super();
-        initiative = 5;
-        endurance = 9;
-        attack = 6;
-        agility = 4;
+        this.initiative = 5;
+        this.endurance = 9;
+        this.attack = 6;
+        this.agility = 4;
         setRole(Role.KNIGHT);
+        
     }
     
     public void specialAbility() {
-        
+       
     }
 
     @Override
     public void setRole(Role newRole) {
         super.role = newRole;
+        
     }
 
     @Override
