@@ -1,4 +1,4 @@
-//funkar det?
+
 package dopeAgile;
 
 public class Character {
