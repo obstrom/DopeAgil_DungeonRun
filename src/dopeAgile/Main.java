@@ -4,17 +4,22 @@ import java.util.Scanner;
 
 public class Main {
 
-    static TryCatch tryinput = null;
+    static TryCatch tryinput = new TryCatch();
 
     enum CharacterType {
         RIDDARE, TJUV, MAGIKER;
     }
-
+    
+    
     public static void main(String[] args) {
 
         System.out.println("\n\033[1mVälkommen till Dungeon Run\033[0m");
-
+        
+        MusicPlayer audios = new MusicPlayer();
+        audios.DungeonMusic();
+        
         mainMenu();
+      
         Map loadedMap = mapMenu();
 
         System.out.println("\n\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
@@ -108,7 +113,7 @@ public class Main {
             case 3:
                 System.out.println("Du har valt Tjuven!");
                 characterChoice = CharacterType.TJUV;
-                player = new Rouge();
+                player = new Rogue();
                 break;
             default:
                 System.out.println("test");
