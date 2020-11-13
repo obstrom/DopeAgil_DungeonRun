@@ -10,7 +10,9 @@ public class GameLoop {
     private Room currentRoom;
     private ArrayList<Monster> roomMonster;
     private Treasure roomTreasure;
+    private Score scores = new Score();
     SaveFile save = new SaveFile();
+
 
     GameLoop(Map loadedMap, Character loadedCharacter) {
         this.loadedMap = loadedMap;
@@ -62,6 +64,7 @@ public class GameLoop {
             }
             System.out.print("\u001B[0m] för ett värde av \u001B[33m" + currentRoom.getRoomTreasure().getTreasureTotalValue() + "\u001B[0m poäng.\n");
             loadedCharacter.addPoints(currentRoom.getRoomTreasure().getTreasureTotalValue());
+            
         }
         currentRoom.clearTreasure();
     }
@@ -89,6 +92,9 @@ public class GameLoop {
             System.out.println("\033[1m -- Äventyret slutar -- \033[0m");
             System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
             System.out.println(leaveMapMessage());
+            
+            //Will output the name of game player and total points for the game.
+            scores.addScore(loadedCharacter.getName(), loadedCharacter.getPoints());
             return false;
 
         }
