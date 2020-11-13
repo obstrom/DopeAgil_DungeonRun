@@ -79,12 +79,37 @@ public class Main {
         System.out.println("\033[1m --- Välj en hjälte! --- \033[0m");
         System.out.println("1. Riddaren");
         System.out.println(" Iniativ: 5, Tålighet: 9, Attack: 6, Smidighet: 4 \n");
+        System.out.println("    .-.");
+        System.out.println("  __|=|__");
+        System.out.println(" (_/`-`\\_)");
+        System.out.println(" //\\___/\\\\");
+        System.out.println(" <>/   \\<>");
+        System.out.println("  \\|_._|/");
+        System.out.println("   <_I_>");
+        System.out.println("    |||");
+        System.out.println("   /_|_\\ ");
 
         System.out.println("2. Magiker");
         System.out.println(" Iniativ: 6, Tålighet: 4, Attack: 9, Smidighet: 5 \n");
+        System.out.println("     __/\\__");
+        System.out.println(". _  \\\\''//");
+        System.out.println("-( )-/_||_\\");
+        System.out.println(" .'. \\_()_/");
+        System.out.println("  |   | . \\");
+        System.out.println("  |   | .  \\");
+        System.out.println("  |   | .   \\");
+        System.out.println(" .'. ,\\_____'. ");
 
         System.out.println("3. Tjuv");
         System.out.println(" Iniativ: 7, Tålighet: 5, Attack: 5, Smidighet: 7 \n");
+        System.out.println("   / \\     ");
+        System.out.println("  _|\"|_   /");
+        System.out.println("0/ \\ /   /");
+        System.out.println("\\/\\ ^ /`0");
+        System.out.println("  /_^_\\");
+        System.out.println("  // \\\\");
+        System.out.println("  \\\\ //");
+        System.out.println(" _d|_|b_ ");
  
         while (run) {
 
