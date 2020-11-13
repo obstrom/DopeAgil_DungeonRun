@@ -1,8 +1,7 @@
-F
 package dopeAgile;
 
 public class Rouge extends Character {
-       
+
     public Rouge() {
         super();
         this.initiative = 7;
