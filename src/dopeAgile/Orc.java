@@ -1,11 +1,10 @@
-
 package dopeAgile;
 
 public class Orc extends Monster {
 
     public static final double COMMON = 0.1;
-    
-    public Orc(){
+
+    public Orc() {
         super();
         this.initiative = 6;
         this.endurance = 3;
@@ -23,6 +22,7 @@ public class Orc extends Monster {
     }
 
     @Override
-    public String getEntryMessage() { return "En orc kommer ut ur skuggan!"; }
+    public String getEntryMessage() {
+        return "En orc kommer ut ur skuggan!";
+    }
 }
-

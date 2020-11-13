@@ -1,11 +1,10 @@
-
 package dopeAgile;
 
 public class Skeleton extends Monster {
 
     public static final double COMMON = 0.15;
-    
-    public Skeleton(){
+
+    public Skeleton() {
         super();
         this.initiative = 4;
         this.endurance = 2;
@@ -23,6 +22,8 @@ public class Skeleton extends Monster {
     }
 
     @Override
-    public String getEntryMessage() { return "Ett skelett reser sig från marken!"; }
-    
+    public String getEntryMessage() {
+        return "Ett skelett reser sig från marken!";
+    }
+
 }

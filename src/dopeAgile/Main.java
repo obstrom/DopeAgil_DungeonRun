@@ -2,8 +2,10 @@ package dopeAgile;
 
 import java.util.Scanner;
 
-public class Main{
-    
+public class Main {
+
+    static TryCatch tryinput = null;
+
     enum CharacterType {
         RIDDARE, TJUV, MAGIKER;
     }
@@ -28,19 +30,10 @@ public class Main{
         int inputA = -1;
         while (input < 0) {
 
-            Scanner sc = new Scanner(System.in);
-
             System.out.println("1: Highscore\n" + "2: Skapa Karaktär\n" + "3: Ladda Karaktär\n" + "0: Avsluta");
-
-            try {
-                input = Integer.parseInt(sc.nextLine());
-            } catch (Exception e) {
-                System.out.println("Fel input");
-            }
+            input = tryinput.TryIntInput();
 
         }
-
-        Scanner sc = new Scanner(System.in);
 
         switch (input) {
             case 1:
@@ -67,7 +60,6 @@ public class Main{
 //        System.out.println("\nKaraktären heter " + name + " och är en " + character + "\n");
 //        mapMenu();
 //    }
-
     public static CharacterType characterChoice() {
         CreateFile cf = new CreateFile();
         int characterMenuChoice = 0;
@@ -84,12 +76,11 @@ public class Main{
 
         System.out.println("3. Tjuv");
         System.out.println(" Iniativ: 7, Tålighet: 5, Attack: 5, Smidighet: 7 \n");
- 
+
         while (run) {
 
             try {
-                Scanner sc = new Scanner(System.in);
-                characterMenuChoice = Integer.parseInt(sc.nextLine());
+                characterMenuChoice = tryinput.TryIntInput();
 
                 if (characterMenuChoice > 0 && characterMenuChoice < 4) {
                     run = false;
@@ -101,9 +92,9 @@ public class Main{
             }
 
         }
-            
+
         Character player = null;
-        switch (characterMenuChoice) {  
+        switch (characterMenuChoice) {
             case 1:
                 System.out.println("Du har valt Riddaren!");
                 characterChoice = CharacterType.RIDDARE;
@@ -123,7 +114,7 @@ public class Main{
                 System.out.println("test");
                 break;
         }
-        
+
         name = characterName();
         player.setName(name);
         cf.creatAFile(name);
@@ -138,8 +129,7 @@ public class Main{
     public static String characterName() {
         String characterName;
         System.out.println("\nVälj ett namn för din hjälte");
-        Scanner sc = new Scanner(System.in);
-        characterName = sc.nextLine();
+        characterName = tryinput.TryStringInput();
 
         return characterName;
     }

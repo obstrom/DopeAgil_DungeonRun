@@ -1,9 +1,8 @@
-
 package dopeAgile;
 
 public class Wizard extends Character {
 
-    public Wizard(){
+    public Wizard() {
         super();
         this.initiative = 6;
         this.endurance = 4;
@@ -11,9 +10,9 @@ public class Wizard extends Character {
         this.agility = 5;
         setRole(Role.WIZARD);
     }
-    
+
     public void specialAbility() {
-        
+
     }
 
     @Override

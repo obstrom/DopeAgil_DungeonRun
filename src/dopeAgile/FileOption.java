@@ -5,48 +5,41 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class FileOption extends Utility{
-    private  int noClue;
-    private  int points;
+public class FileOption extends Utility {
+
+    private int noClue;
+    private int points;
     private String input;
     private String data;
     private String name;
     private String one;
     private Character loadPlayer = null;
-    static Scanner sc = new Scanner(System.in);
+    private TryCatch tryinput = null;
 
-
-    public void options(int choice){
-        if (choice == 1){
+    public void options(int choice) {
+        if (choice == 1) {
             loadingSaveFile();
-        }else{
-        while (noClue <= 0|| noClue > 3){
-        System.out.println("Välj nedstående alternativ:\n"
-        +"1: ladda en karaktär\n"
-        +"2: tabort en karaktär");
-        input = sc.nextLine();
-        try{
-             noClue = Integer.parseInt(input);
-        }catch(Exception e){
-            System.out.println("Ett Fel Uppstog");
-        }
-        if(noClue == 1){
-           loadingSaveFile();
-        }else{
-          DeleteCharacter();
-        }
-        
-        }
+        } else {
+            while (noClue <= 0 || noClue > 3) {
+                System.out.println("Välj nedstående alternativ:\n"
+                        + "1: ladda en karaktär\n"
+                        + "2: tabort en karaktär");
+                noClue = tryinput.TryIntInput();
+                if (noClue == 1) {
+                    loadingSaveFile();
+                } else {
+                    DeleteCharacter();
+                }
+            }
         }
     }
 
-    
     public void loadingSaveFile() {
-        
+
         System.out.println("Loadfile name: ");
-        input = sc.nextLine();
+        input = tryinput.TryStringInput();
         try {
-            File myFile = new File( input +".txt");
+            File myFile = new File(input + ".txt");
             Scanner myLoader = new Scanner(myFile);
             while (myLoader.hasNextLine()) {
                 data = myLoader.nextLine();
@@ -56,9 +49,7 @@ public class FileOption extends Utility{
                 input = inputValue[2];
                 points = Integer.parseInt(one);
                 int role = Integer.parseInt(input);
-                
-                
-                switch (role){
+                switch (role) {
                     case 4:
                         loadPlayer = new Knight();
                         loadPlayer.setRole(Role.KNIGHT);
@@ -71,24 +62,21 @@ public class FileOption extends Utility{
                         loadPlayer = new Rouge();
                         loadPlayer.setRole(Role.ROUGE);
                         break;
-                        
+
                 }
-               
-               
-            } 
+            }
             myLoader.close();
         } catch (FileNotFoundException e) {
-            System.out.println("En error har hänt, " + e);
-            
-            
+            System.out.println("kunde inte hitta din fil, prova ett annat namn." + e);
         }
         loadPlayer.setName(name);
         loadPlayer.setPoints(points);
-       Utility.addPlayer(loadPlayer);
+        Utility.addPlayer(loadPlayer);
     }
-        public void DeleteCharacter() {
+
+    public void DeleteCharacter() {
         System.out.println("tabort karaktären: ");
-        input = sc.nextLine();
+        input = tryinput.TryStringInput();
         File myFile = new File(input + ".txt");
         if (myFile.delete()) {
             System.out.println("DELETED HAHAHAHAHAHAHAHA");
@@ -97,11 +85,7 @@ public class FileOption extends Utility{
             System.out.println("Misslyckades att tarbort " + myFile.getName());
             Main.mainMenu();
         }
-        
-    } 
 
-
-
+    }
 
 }
-

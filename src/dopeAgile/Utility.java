@@ -1,10 +1,9 @@
-
 package dopeAgile;
 
 import java.util.ArrayList;
 
 public class Utility {
-    
+
     private static final ArrayList<Character> playerList = new ArrayList<Character>();
 
     public static void addPlayer(Character player) {
@@ -18,5 +17,5 @@ public class Utility {
     public static ArrayList<Character> getPlayerList() {
         return playerList;
     }
-    
+
 }

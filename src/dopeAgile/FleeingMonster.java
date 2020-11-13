@@ -4,13 +4,11 @@ public class FleeingMonster {
 
     int flee;
     int type;
-    private Character kar =null;
+    private Character kar = null;
 
     public void Fleeing() {
-        
-        
+
         type = kar.getAgility();
-        
 
         switch (type) {
             case 4:
@@ -18,9 +16,7 @@ public class FleeingMonster {
                 if (flee <= 40) {
                     System.out.println("Du lyckade göra en taktisk reträtt");
                     // skappa ett nytt tomt rum? eller gå tillbacka?
-                    
-                    
-                    
+
                 } else {
                     System.out.println("Du misslyckades");
                     // Striden fortsätter men monstert börjar.
