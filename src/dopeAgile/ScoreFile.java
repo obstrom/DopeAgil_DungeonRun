@@ -12,7 +12,7 @@ public class ScoreFile {
     private String data;
     private String[] input;
 
-    public void CreateFileInput() { // implumented
+    public void CreateFileInput() {
 
         try {
             File myFile = new File("Input.txt");
@@ -26,21 +26,7 @@ public class ScoreFile {
         }
     }
 
-    public void CreateFileScore() { // implumented
-        try {
-            File myFile = new File("Score.txt");
-            if (myFile.createNewFile()) {
-                System.out.println(myFile.getName() + " finns nu");
-            } else {
-                System.out.println(myFile.getName() + " finns");
-            }
-        } catch (IOException e) {
-            System.out.println("En error har hänt, " + e);
-        }
-
-    }
-
-    public void writeToInputFile(String name, int points) { // implumented
+    public void writeToInputFile(String name, int points) {
         try {
             File myFile = new File("Input.txt");
             Scanner myLoader = new Scanner(myFile);
@@ -102,7 +88,7 @@ public class ScoreFile {
             } else if (inputValue.length <= 6) {
 
                 try {
-                    FileWriter myFile = new FileWriter("Score.txt");
+                    FileWriter myFile = new FileWriter("Input.txt");
                     myFile.write(inputValue[0] + " " + inputValue[1] + " "
                             + inputValue[2] + " " + inputValue[3] + " " + inputValue[4] + " " + inputValue[5]);
                     myFile.close();
@@ -113,17 +99,5 @@ public class ScoreFile {
             }
         }
 
-        try {
-            File myFile = new File("Input.txt");
-            Scanner myLoader = new Scanner(myFile);
-            while (myLoader.hasNextLine()) {
-                data = myLoader.nextLine();
-                System.out.println(data);
-            }
-            myLoader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-
-        }
     }
 }

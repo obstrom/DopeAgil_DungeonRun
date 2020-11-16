@@ -70,7 +70,7 @@ public class Main {
         while (input < 0) {
 
             Thread.sleep(Utility.SLEEPTIME);
-            System.out.println("1: Highscore\n" + "2: Skapa Karaktär\n" + "3: Ladda Karaktär\n" + "0: Avsluta");
+            System.out.println("1: Highscore\n" + "2: Skapa Karaktär\n" + "3: Ladda Karaktär\n" + "0: Avsluta\n");
             input = tryinput.TryIntInput();
 //            MusicPlayer sound = new MusicPlayer();
 //            sound.confirmSound();
@@ -82,6 +82,7 @@ public class Main {
                 Thread.sleep(Utility.SLEEPTIME);
                 System.out.println("Highscore");
                 Score.displayHighScore();
+                mainMenu();
                 break;
             case 2:
                 characterChoice();
