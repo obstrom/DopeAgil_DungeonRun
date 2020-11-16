@@ -3,8 +3,9 @@ package dopeAgile;
 
 public class Skeleton extends Monster {
 
-    public static final double COMMON = 0.15;
-    
+    //public static final double COMMON = 0.15;
+    public static final double COMMON = 0.4; // HARD MODE
+
     public Skeleton(){
         super();
         this.initiative = 4;
