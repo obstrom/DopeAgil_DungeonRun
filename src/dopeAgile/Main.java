@@ -5,18 +5,20 @@ import java.util.Scanner;
 public class Main {
 
     static TryCatch tryinput = new TryCatch();
-
+    static ScoreFile sf = new ScoreFile();
+    
     enum CharacterType {
         RIDDARE, TJUV, MAGIKER;
     }
     
     
     public static void main(String[] args) {
-
+        sf.CreateFileInput();
+        sf.CreateFileScore();
         System.out.println("\n\033[1mVälkommen till Dungeon Run\033[0m");
         
-        MusicPlayer audios = new MusicPlayer();
-        audios.DungeonMusic();
+        //MusicPlayer audios = new MusicPlayer();
+        //audios.DungeonMusic();
         
         mainMenu();
       
@@ -43,7 +45,7 @@ public class Main {
         switch (input) {
             case 1:
                 System.out.println("Highscore");
-                op.options(1);
+                mainMenu();
                 break;
             case 2:
                 characterChoice();
