@@ -71,68 +71,102 @@ public class MusicPlayer {
     
     public void IntroMusic(int soundCount) {
         
-    String fileName = "Intro.wav";
-    MusicPlayer sound = new MusicPlayer(fileName);
-    sound.play();
-    
-    if (soundCount == 1) {
-        sound.stop();
-    }
-        
-        
+        try {
+            String fileName = "Intro.wav";
+            MusicPlayer sound = new MusicPlayer(fileName);
+            sound.play();
+
+            if (soundCount == 1) {
+                sound.stop();
+            }
+        } catch (Exception e) {
+            System.out.println(ConsoleColors.BOLD + "Error: Music file \"Intro.wav\" could not be found." + ConsoleColors.RESET);
+        }
+
     }
     
     public void DungeonMusic() {
-        
-    String fileName = "Scary.wav";
-    MusicPlayer sound = new MusicPlayer(fileName);
-    sound.loop();
-        
-        
+
+        try {
+            String fileName = "Scary.wav";
+            MusicPlayer sound = new MusicPlayer(fileName);
+            sound.loop();
+        } catch (Exception e) {
+            System.out.println(ConsoleColors.BOLD + "Error: Music file \"Scary.wav\" could not be found." + ConsoleColors.RESET);
+        }
+
     }
     
     public void treasureSound() {
-    String fileName = "treasure.wav";
-    MusicPlayer sound = new MusicPlayer(fileName);
-    sound.play();
-        
-        
+
+        try {
+            String fileName = "treasure.wav";
+            MusicPlayer sound = new MusicPlayer(fileName);
+            sound.play();
+        } catch (Exception e) {
+            System.out.println(ConsoleColors.BOLD + "Error: Music file \"treasure.wav\" could not be found." + ConsoleColors.RESET);
+        }
+
     }
     
     public void monsterSound() {
-    
-    String fileName = "Zombie.wav";
-    MusicPlayer sound = new MusicPlayer(fileName);
-    sound.play();
+
+        try {
+            String fileName = "Zombie.wav";
+            MusicPlayer sound = new MusicPlayer(fileName);
+            sound.play();
+        } catch (Exception e) {
+            System.out.println(ConsoleColors.BOLD + "Error: Music file \"Zombie.wav\" could not be found." + ConsoleColors.RESET);
+        }
+
     }
     
     public void gameOverSound() {
-        
-    String fileName = "gameOver.wav";
-    MusicPlayer sound = new MusicPlayer(fileName);
-    sound.play();
+
+        try {
+            String fileName = "gameOver.wav";
+            MusicPlayer sound = new MusicPlayer(fileName);
+            sound.play();
+        } catch (Exception e) {
+            System.out.println(ConsoleColors.BOLD + "Error: Music file \"gameOver.wav\" could not be found." + ConsoleColors.RESET);
+        }
         
     }
     
-      public void choiceSound() {
-    
-    String fileName = "dun.wav";
-    MusicPlayer sound = new MusicPlayer(fileName);
-    sound.play();
-        
-        
+    public void choiceSound() {
+
+        try {
+            String fileName = "dun.wav";
+            MusicPlayer sound = new MusicPlayer(fileName);
+            sound.play();
+        } catch (Exception e) {
+            System.out.println(ConsoleColors.BOLD + "Error: Music file \"dun.wav\" could not be found." + ConsoleColors.RESET);
+        }
+
     }
     
     public void confirmSound() {
-    String fileName = "confirm.wav";
-    MusicPlayer sound = new MusicPlayer(fileName);
-    sound.play();
+
+        try {
+            String fileName = "confirm.wav";
+            MusicPlayer sound = new MusicPlayer(fileName);
+            sound.play();
+        } catch (Exception e) {
+            System.out.println(ConsoleColors.BOLD + "Error: Music file \"confirm.wav\" could not be found." + ConsoleColors.RESET);
+        }
+
     }
     
     public void swordSound() {
-    String fileName = "Sword.wav";
-    MusicPlayer sound = new MusicPlayer(fileName);
-    sound.play();
+
+        try {
+            String fileName = "Sword.wav";
+            MusicPlayer sound = new MusicPlayer(fileName);
+            sound.play();
+        } catch (Exception e) {
+            System.out.println(ConsoleColors.BOLD + "Error: Music file \"Sword.wav\" could not be found." + ConsoleColors.RESET);
+        }
+
     }
    
 }
