@@ -43,6 +43,31 @@ public class GameLoop {
                 Scanner sc = new Scanner(System.in);
                 String userInput = sc.nextLine();
 
+                System.out.println("\n\033[1mHändelser:\033[0m");
+                if (!currentRoom.isSpawnRoom()) {
+                    System.out.println("\u001B[3m" + currentRoom.getRoomMessage() + "\033[0m");
+                    for (Monster monster: currentRoom.getRoomMonsters()) {
+                        System.out.println("\u001B[31m" + monster.getEntryMessage() + "\033[0m");
+                    }
+
+                    if (currentRoom.getRoomTreasure().getTreasureList() == null) {
+                        System.out.println("Du söker igenom rummet, och inser att du varit här förut.");
+                    } else if (currentRoom.getRoomTreasure().getTreasureList().isEmpty()) {
+                        System.out.println("Du söker igenom rummet, men du hittar bara damm.");
+                    } else {
+                        System.out.print("Du söker igenom rummet, och hittar [\u001B[33m");
+                        ArrayList<Treasure.treasureTypes> treasures = currentRoom.getRoomTreasure().getTreasureList();
+                        for (int i = 0; i < treasures.size(); i++) {
+                            if (i == 0) {
+                                System.out.print(treasures.get(i));
+                            } else {
+                                System.out.print(" och " + treasures.get(i));
+                            }
+                        }
+                        System.out.print("\u001B[0m] för ett värde av \u001B[33m" + currentRoom.getRoomTreasure().getTreasureTotalValue() + "\u001B[0m poäng.\n");
+                        loadedCharacter.addPoints(currentRoom.getRoomTreasure().getTreasureTotalValue());
+                    }
+                }
             }
         }
     }
@@ -83,6 +108,8 @@ public class GameLoop {
                 System.out.print(ConsoleColors.NEWLINE + "Du söker igenom rummet, och hittar [" + ConsoleColors.YELLOW_BOLD);
                 music.treasureSound();
                 ArrayList<Treasure.treasureTypes> treasures = currentRoom.getRoomTreasure().getTreasureList();
+                //TODO lägg treasure sound här
+                music.treasureSound();
                 for (int i = 0; i < treasures.size(); i++) {
                     if (i == 0) {
                         System.out.print(treasures.get(i));
@@ -194,7 +221,7 @@ public class GameLoop {
         for (int i = 0; i < 1; i++) {
             Scanner sc = new Scanner(System.in);
             String userInput = sc.nextLine().toLowerCase();
-
+            
             try {
                 int userInputInt = Integer.parseInt(userInput);
                 returnDirection = menuOptions.get(userInputInt - 1);

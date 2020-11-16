@@ -42,6 +42,8 @@ public class Main {
             Thread.sleep(Utility.SLEEPTIME);
             System.out.println("1: Highscore\n" + "2: Skapa Karaktär\n" + "3: Ladda Karaktär\n" + "0: Avsluta");
             input = tryinput.TryIntInput();
+            MusicPlayer sound = new MusicPlayer();
+            sound.confirmSound();
 
         }
 
@@ -95,6 +97,8 @@ public class Main {
 
             try {
                 characterMenuChoice = tryinput.TryIntInput();
+                MusicPlayer sound = new MusicPlayer();
+                sound.confirmSound();
 
                 if (characterMenuChoice > 0 && characterMenuChoice < 4) {
                     run = false;
@@ -151,6 +155,8 @@ public class Main {
         Thread.sleep(Utility.SLEEPTIME);
         System.out.println("\nVälj ett namn för din hjälte");
         characterName = tryinput.TryStringInput();
+        MusicPlayer sound = new MusicPlayer();
+        sound.confirmSound();
 
         return characterName;
     }
@@ -179,6 +185,8 @@ public class Main {
             for (int i = 0; i < 1; i++) {
                 Scanner sc = new Scanner(System.in);
                 String userInput = sc.nextLine().toLowerCase();
+                MusicPlayer sound = new MusicPlayer();
+                sound.confirmSound();
 
                 if (userInput.equals("1") || userInput.contains("liten")) {
                     mapChoice = 1;
@@ -212,6 +220,8 @@ public class Main {
             for (int i = 0; i < 1; i++) {
                 Scanner sc = new Scanner(System.in);
                 String userInput = sc.nextLine().toLowerCase();
+                MusicPlayer sound = new MusicPlayer();
+                sound.confirmSound();
 
                 if (userInput.equals("1") || userInput.contains("nordväst") || userInput.contains("nw")) {
                     cardinal = Map.cardinalDirection.NW;
@@ -263,6 +273,8 @@ public class Main {
                 System.out.print("\nAnvänd denna karta? (Y/N) ");
                 Scanner sc = new Scanner(System.in);
                 String userInput = sc.nextLine().toLowerCase();
+                MusicPlayer sound = new MusicPlayer();
+                sound.choiceSound();
 
                 if (userInput.equals("y") || userInput.contains("yes") || userInput.contains("ja")) {
                     break mapMenuLoop;

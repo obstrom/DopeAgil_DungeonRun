@@ -14,7 +14,7 @@ public class FileOption extends Utility {
     private String name;
     private String one;
     private Character loadPlayer = null;
-    private TryCatch tryinput = null;
+    private TryCatch tryinput = new TryCatch();
 
     public void options(int choice) throws InterruptedException {
         if (choice == 1) {

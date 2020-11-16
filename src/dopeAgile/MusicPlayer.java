@@ -113,5 +113,26 @@ public class MusicPlayer {
     sound.play();
         
     }
-
+    
+      public void choiceSound() {
+    
+    String fileName = "dun.wav";
+    MusicPlayer sound = new MusicPlayer(fileName);
+    sound.play();
+        
+        
+    }
+    
+    public void confirmSound() {
+    String fileName = "confirm.wav";
+    MusicPlayer sound = new MusicPlayer(fileName);
+    sound.play();
+    }
+    
+    public void swordSound() {
+    String fileName = "Sword.wav";
+    MusicPlayer sound = new MusicPlayer(fileName);
+    sound.play();
+    }
+   
 }
