@@ -2,21 +2,45 @@ package dopeAgile;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class ScoreRank {
 
     private String data;
     private String[] inputValue;
-    private String heroA;
-    private String intergerA;
-    private int pA;
-    private String heroB;
-    private String intergerB;
-    private int pB;
-    private String heroC;
-    private String intergerC;
-    private int pC;
+    private ArrayList<compareCharacter> heroes = new ArrayList<>();
+
+    class compareCharacter implements Comparable<compareCharacter> {
+
+        private int points;
+        private final String name;
+
+        compareCharacter(String name, String points) {
+           this.name = name;
+           try {
+               this.points = Integer.parseInt(points);
+           } catch (Exception e) {
+                // Do nothing
+           }
+        }
+
+        public int getPoints() {
+            return points;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public int compareTo(compareCharacter hero) {
+            return this.getPoints() - hero.getPoints();
+        }
+
+    }
 
     public void scoreList() {
         try {
@@ -25,34 +49,28 @@ public class ScoreRank {
             while (myLoader.hasNextLine()) {
                 data = myLoader.nextLine();
                 inputValue = data.split("\\s+");
-                heroA = inputValue[0];
-                intergerA = inputValue[1];
-                heroB = inputValue[2];
-                intergerB = inputValue[3];
-                heroC = inputValue[4];
-                intergerC = inputValue[5];
-                pA = Integer.parseInt(intergerA);
-                pB = Integer.parseInt(intergerB);
-                pC = Integer.parseInt(intergerC);
+
+                compareCharacter heroA = new compareCharacter(inputValue[0], inputValue[1]);
+                compareCharacter heroB = new compareCharacter(inputValue[2], inputValue[3]);
+                compareCharacter heroC = new compareCharacter(inputValue[4], inputValue[5]);
+
+                heroes.add(heroA);
+                heroes.add(heroB);
+                heroes.add(heroC);
 
             }
             myLoader.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
+        }
 
-        }
-        if (pA > pB && pA > pC) {
-            // om A är störst
-            
-            System.out.println(heroA+ " " + pA);
-        }else if (pB > pA && pB > pC){
-            // om B är störst
-            System.out.println(heroB + " " + pB);
-        }else{
-            // C är störst
-            System.out.println(heroC + " " + pC);
-        }
-        
+        Collections.sort(heroes);
         
     }
+
+    public ArrayList<compareCharacter> getSortedHeroes() {
+        scoreList();
+        return heroes;
+    }
+
 }
