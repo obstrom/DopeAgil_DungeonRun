@@ -1,6 +1,7 @@
 package dopeAgile;
 
 public class Map {
+
     private final mapSize currentMapSize;
     private final Room[][] mapArray; // [y][x]
     private int[] playerPositionXYCoordinates;
@@ -14,7 +15,7 @@ public class Map {
         return mapArray;
     }
 
-    Map (mapSize sizeEnum, cardinalDirection spawnCardinal) {
+    Map(mapSize sizeEnum, cardinalDirection spawnCardinal) {
         this.currentMapSize = sizeEnum;
         playerPositionXYCoordinates = calcSpawnPointCoordinates(spawnCardinal);
         mapArray = createMapArray(sizeEnum.getSize());
@@ -68,9 +69,10 @@ public class Map {
         Room[][] mapArray = new Room[size][size];
         for (int y = 0; y < mapArray.length; y++) {
             for (int x = 0; x < mapArray[y].length; x++) {
-                boolean isEdge = (y == 0 || x == 0 || y == (mapArray.length-1) || x == (mapArray.length-1));
+                boolean isEdge = (y == 0 || x == 0 || y == (mapArray.length - 1) || x == (mapArray.length - 1));
                 if (y == playerPositionXYCoordinates[0] && x == playerPositionXYCoordinates[1]) {
                     Room newRoom = new Room(x, y, isEdge, true);
+                    newRoom.setIsRoomExplored(true);
                     mapArray[y][x] = newRoom;
                     this.playerCurrentRoom = newRoom;
                 } else {
@@ -82,33 +84,33 @@ public class Map {
     }
 
     private void calcAdjacentRooms() {
-        for (Room[] mapRowArray: mapArray) {
-            for (Room thisRoom: mapRowArray) {
+        for (Room[] mapRowArray : mapArray) {
+            for (Room thisRoom : mapRowArray) {
                 int xPos = thisRoom.getMapX();
                 int yPos = thisRoom.getMapY();
 
                 // Try to add north room
-                if (getRoomFromArray(xPos, yPos-1) != null) {
-                    thisRoom.addAdjacentRoom(cardinalDirection.N, getRoomFromArray(xPos, yPos-1));
+                if (getRoomFromArray(xPos, yPos - 1) != null) {
+                    thisRoom.addAdjacentRoom(cardinalDirection.N, getRoomFromArray(xPos, yPos - 1));
                 }
                 // Try to add east room
-                if (getRoomFromArray(xPos+1, yPos) != null) {
-                    thisRoom.addAdjacentRoom(cardinalDirection.E, getRoomFromArray(xPos+1, yPos));
+                if (getRoomFromArray(xPos + 1, yPos) != null) {
+                    thisRoom.addAdjacentRoom(cardinalDirection.E, getRoomFromArray(xPos + 1, yPos));
                 }
                 // Try to add south room
-                if (getRoomFromArray(xPos, yPos+1) != null) {
-                    thisRoom.addAdjacentRoom(cardinalDirection.S, getRoomFromArray(xPos, yPos+1));
+                if (getRoomFromArray(xPos, yPos + 1) != null) {
+                    thisRoom.addAdjacentRoom(cardinalDirection.S, getRoomFromArray(xPos, yPos + 1));
                 }
                 // Try to add west room
-                if (getRoomFromArray(xPos-1, yPos) != null) {
-                    thisRoom.addAdjacentRoom(cardinalDirection.W, getRoomFromArray(xPos-1, yPos));
+                if (getRoomFromArray(xPos - 1, yPos) != null) {
+                    thisRoom.addAdjacentRoom(cardinalDirection.W, getRoomFromArray(xPos - 1, yPos));
                 }
             }
         }
     }
 
     private int[] calcSpawnPointCoordinates(cardinalDirection spawnCardinal) {
-        int[] returnInt = new int[] {0, 0};
+        int[] returnInt = new int[]{0, 0};
         switch (spawnCardinal) {
             case NE:
                 returnInt[1] = currentMapSize.getSize() - 1;
@@ -131,20 +133,22 @@ public class Map {
             return null;
         }
     }
-    
+
     public String toString(boolean showLegend) {
         String result = "";
         for (Room[] roomRows : mapArray) {
             for (Room room : roomRows) {
                 if (playerCurrentRoom == room) {
-                    result += "[\u001B[32m*\u001B[0m]";
+                    result += "["+ConsoleColors.GREEN+"*"+ConsoleColors.WHITE+"]";
+                } else if (room.getIsRoomExplored() && room.getRoomMonsters().size() > 0 && !room.isSpawnRoom()) {
+                    result += "["+ConsoleColors.RED+"!"+ConsoleColors.WHITE+"]";
                 } else if (room.getIsRoomExplored()) {
                     result += "[ ]";
                 } else {
-                    result += "[\u001B[34m?\u001B[0m]";
+                    result += "["+ConsoleColors.BLUE+"?"+ConsoleColors.WHITE+"]";
                 }
             }
-          result += "\n";  
+            result += "\n";
         }
 
         if (showLegend) {
