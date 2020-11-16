@@ -48,7 +48,6 @@ public class GameLoop {
                     System.out.println("\u001B[3m" + currentRoom.getRoomMessage() + "\033[0m");
                     for (Monster monster: currentRoom.getRoomMonsters()) {
                         System.out.println("\u001B[31m" + monster.getEntryMessage() + "\033[0m");
-                        music.monsterSound();
                     }
 
                     if (currentRoom.getRoomTreasure().getTreasureList() == null) {
@@ -57,7 +56,6 @@ public class GameLoop {
                         System.out.println("Du söker igenom rummet, men du hittar bara damm.");
                     } else {
                         System.out.print("Du söker igenom rummet, och hittar [\u001B[33m");
-                        music.treasureSound();
                         ArrayList<Treasure.treasureTypes> treasures = currentRoom.getRoomTreasure().getTreasureList();
                         for (int i = 0; i < treasures.size(); i++) {
                             if (i == 0) {
@@ -81,6 +79,8 @@ public class GameLoop {
             System.out.println(ConsoleColors.NEWLINE + ConsoleColors.ITALIC + currentRoom.getRoomMessage() + ConsoleColors.RESET);
             for (Monster monster: currentRoom.getRoomMonsters()) {
                 System.out.println(ConsoleColors.CYAN + monster.getEntryMessage() + ConsoleColors.RESET);
+                //TODO lägg monsterljud här
+                music.monsterSound();
             }
 
             // If room contains monsters
@@ -101,6 +101,8 @@ public class GameLoop {
             } else {
                 System.out.print(ConsoleColors.NEWLINE + "Du söker igenom rummet, och hittar [" + ConsoleColors.YELLOW_BOLD);
                 ArrayList<Treasure.treasureTypes> treasures = currentRoom.getRoomTreasure().getTreasureList();
+                //TODO lägg treasure sound här
+                music.treasureSound();
                 for (int i = 0; i < treasures.size(); i++) {
                     if (i == 0) {
                         System.out.print(treasures.get(i));
@@ -195,7 +197,7 @@ public class GameLoop {
         for (int i = 0; i < 1; i++) {
             Scanner sc = new Scanner(System.in);
             String userInput = sc.nextLine().toLowerCase();
-
+            
             try {
                 int userInputInt = Integer.parseInt(userInput);
                 returnDirection = menuOptions.get(userInputInt - 1);

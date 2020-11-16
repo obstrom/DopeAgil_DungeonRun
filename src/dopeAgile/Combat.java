@@ -10,6 +10,7 @@ public class Combat {
     ArrayList<Monster> allMonsters;
     ArrayList<Creature> allCombatants = new ArrayList<Creature>(); // sorted by Initiative
     boolean playerIsFleeing = false;
+    MusicPlayer music = new MusicPlayer();
 
     Combat(Character playerCharacter, ArrayList<Monster> allMonsters, Room currentRoom) {
         this.playerCharacter = playerCharacter;
@@ -134,6 +135,7 @@ public class Combat {
         System.out.println(ConsoleColors.NEWLINE + "VÄLJ HANDLING:");
         System.out.println("1. Attackera " + allMonsters.get(0).toString(true));
         System.out.println("2. Fly");
+        music.swordSound();
 
         for (int i = 0; i < 1; i++) {
             Scanner sc = new Scanner(System.in);
@@ -164,6 +166,7 @@ public class Combat {
 
                     // TODO: Print better death text
                     System.out.println(ConsoleColors.RED_BOLD + "Äventyraren dog!" + ConsoleColors.RESET);
+                    music.gameOverSound();
                 } else if (combatant instanceof Monster) {
                     // Monster died
                     // TODO: Print better monster death text?
