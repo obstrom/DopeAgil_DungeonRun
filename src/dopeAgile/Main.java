@@ -13,6 +13,9 @@ public class Main {
     
     public static void main(String[] args) throws InterruptedException {
 
+    public static void main(String[] args) {
+        Startpage.Startpage();
+
         Thread.sleep(Utility.SLEEPTIME);
         System.out.println("\n\033[1mVälkommen till Dungeon Run\033[0m");
         
@@ -82,17 +85,42 @@ public class Main {
         System.out.println("1. Riddaren");
         Thread.sleep(Utility.SLEEPTIME);
         System.out.println(" Iniativ: 5, Tålighet: 9, Attack: 6, Smidighet: 4 \n");
+        System.out.println("    .-.");
+        System.out.println("  __|=|__");
+        System.out.println(" (_/`-`\\_)");
+        System.out.println(" //\\___/\\\\");
+        System.out.println(" <>/   \\<>");
+        System.out.println("  \\|_._|/");
+        System.out.println("   <_I_>");
+        System.out.println("    |||");
+        System.out.println("   /_|_\\ ");
 
         Thread.sleep(Utility.SLEEPTIME);
         System.out.println("2. Magiker");
         Thread.sleep(Utility.SLEEPTIME);
         System.out.println(" Iniativ: 6, Tålighet: 4, Attack: 9, Smidighet: 5 \n");
+        System.out.println("     __/\\__");
+        System.out.println(". _  \\\\''//");
+        System.out.println("-( )-/_||_\\");
+        System.out.println(" .'. \\_()_/");
+        System.out.println("  |   | . \\");
+        System.out.println("  |   | .  \\");
+        System.out.println("  |   | .   \\");
+        System.out.println(" .'. ,\\_____'. ");
 
         Thread.sleep(Utility.SLEEPTIME);
         System.out.println("3. Tjuv");
         Thread.sleep(Utility.SLEEPTIME);
         System.out.println(" Iniativ: 7, Tålighet: 5, Attack: 5, Smidighet: 7 \n");
-
+        System.out.println("   / \\     ");
+        System.out.println("  _|\"|_   /");
+        System.out.println("0/ \\ /   /");
+        System.out.println("\\/\\ ^ /`0");
+        System.out.println("  /_^_\\");
+        System.out.println("  // \\\\");
+        System.out.println("  \\\\ //");
+        System.out.println(" _d|_|b_ ");
+ 
         while (run) {
 
             try {
