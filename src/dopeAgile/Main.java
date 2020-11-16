@@ -9,11 +9,8 @@ public class Main {
     enum CharacterType {
         RIDDARE, TJUV, MAGIKER;
     }
-    
-    
-    public static void main(String[] args) throws InterruptedException {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Startpage.Startpage();
 
         Thread.sleep(Utility.SLEEPTIME);
