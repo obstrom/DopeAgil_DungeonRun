@@ -47,38 +47,38 @@ public class Combat {
 
         Collections.sort(allCombatants);
 
+        // Print all monsters in the room
+        Thread.sleep(Utility.SLEEPTIME);
+        System.out.println(ConsoleColors.NEWLINE + "STRIDSORDNING:");
+        for (int i = 0; i < allCombatants.size(); i++) {
+            Creature thisCombatant = allCombatants.get(i);
+            if (thisCombatant instanceof Character) {
+                Character player = (Character) thisCombatant;
+                Thread.sleep(Utility.SLEEPTIME);
+                System.out.println("> " + (i+1) + "."
+                        + " Initiativpoäng " + ConsoleColors.BLUE + String.format("%02d", player.getCombatRoundInitiativeScore()) + ConsoleColors.RESET
+                        //+ " | Attackstyrka " + player.getAttack()
+                        + " | Hälsa " + displayColoredHealth(player.getCombatEndurance(), player.getEndurance())
+                        + " - " + ConsoleColors.GREEN + player.toString(true) + " " + player.getName() + ConsoleColors.RESET
+                );
+            } else {
+                Monster monster = (Monster) thisCombatant;
+                Thread.sleep(Utility.SLEEPTIME);
+                System.out.println("> " + (i+1) + "."
+                        + " Initiativpoäng " + ConsoleColors.BLUE + String.format("%02d", monster.getCombatRoundInitiativeScore()) + ConsoleColors.RESET
+                        //+ " | Attackstyrka " + monster.getAttack()
+                        + " | Hälsa " + displayColoredHealth(monster.getCombatEndurance(), monster.getEndurance())
+                        + " - " + ConsoleColors.YELLOW + monster.toString(true) + ConsoleColors.RESET
+                );
+            }
+        }
+
         // Run through all combatants once in initiative order
         for (Creature combatant: allCombatants) {
 
             if (combatant.isAlive()) {
                 // If combatant is the player
                 if (combatant instanceof Character) {
-
-                    // Print all monsters in the room
-                    Thread.sleep(Utility.SLEEPTIME);
-                    System.out.println(ConsoleColors.NEWLINE + "STRIDSORDNING:");
-                    for (int i = 0; i < allCombatants.size(); i++) {
-                        Creature thisCombatant = allCombatants.get(i);
-                        if (thisCombatant instanceof Character) {
-                            Character player = (Character) thisCombatant;
-                            Thread.sleep(Utility.SLEEPTIME);
-                            System.out.println("> " + (i+1) + "."
-                                            + " Initiativpoäng " + ConsoleColors.BLUE + String.format("%02d", player.getCombatRoundInitiativeScore()) + ConsoleColors.RESET
-                                            //+ " | Attackstyrka " + player.getAttack()
-                                            + " | Hälsa " + displayColoredHealth(player.getCombatEndurance(), player.getEndurance())
-                                            + " - " + ConsoleColors.GREEN + player.toString(true) + " " + player.getName() + ConsoleColors.RESET
-                            );
-                        } else {
-                            Monster monster = (Monster) thisCombatant;
-                            Thread.sleep(Utility.SLEEPTIME);
-                            System.out.println("> " + (i+1) + "."
-                                    + " Initiativpoäng " + ConsoleColors.BLUE + String.format("%02d", monster.getCombatRoundInitiativeScore()) + ConsoleColors.RESET
-                                    //+ " | Attackstyrka " + monster.getAttack()
-                                    + " | Hälsa " + displayColoredHealth(monster.getCombatEndurance(), monster.getEndurance())
-                                    + " - " + ConsoleColors.YELLOW + monster.toString(true) + ConsoleColors.RESET
-                            );
-                        }
-                    }
 
                     // Get user action and check whether it is to attack or flee
                     boolean fightFleeOption = getInputOptionFight();
@@ -216,28 +216,21 @@ public class Combat {
             Character combatantPlayer = (Character) combatant;
             Monster targetMonster = allMonsters.get(0); // ALWAYS ATTACK FIRST MONSTER
 
-            combatantPlayer.getAttackMessage();
             Attack playerAttack = new Attack(combatantPlayer, targetMonster);
 
             Thread.sleep(Utility.SLEEPTIME);
             System.out.println(ConsoleColors.NEWLINE + combatantPlayer.getName() + " gör sig redo för attack!");
 
+            boolean isCrit = combatantPlayer.checkIfCritical();
+
             if (playerAttack.isSuccess()) {
 
-                combatantPlayer.getAttackHitMessage();
-                boolean isCrit = combatantPlayer.checkIfCritical();
                 if (isCrit) {
                     Thread.sleep(Utility.SLEEPTIME);
-                    System.out.println(targetMonster.getPlayerCritMessage());
-
-                    Thread.sleep(Utility.SLEEPTIME);
                     System.out.print(ConsoleColors.YELLOW_BOLD + "Kritiskträff! " + targetMonster.toString(true) + " tar 2 skada." + ConsoleColors.RESET);
-
                 } else {
-
                     Thread.sleep(Utility.SLEEPTIME);
                     System.out.print(ConsoleColors.GREEN_BOLD + "Träff! " + targetMonster.toString(true) + " tar 1 skada." + ConsoleColors.RESET);
-
                 }
 
                 targetMonster.lowerCombatEndurance(isCrit);
@@ -250,6 +243,16 @@ public class Combat {
             Thread.sleep(Utility.SLEEPTIME);
             System.out.println(" - " + playerCharacter.getName() + " attackerar för " + ConsoleColors.RED_BOLD + playerAttack.getAttackScore() + ConsoleColors.RESET + " och " + targetMonster.toString(true) + " försvarar sig för " + ConsoleColors.BLUE_BOLD + playerAttack.getDefenseScore() + ConsoleColors.RESET + ".");
 
+            if (isCrit) {
+                Thread.sleep(Utility.SLEEPTIME);
+                System.out.println(ConsoleColors.YELLOW + ConsoleColors.ITALIC + targetMonster.getPlayerCritMessage() + ConsoleColors.RESET);
+            } else if (playerAttack.isSuccess()) {
+                Thread.sleep(Utility.SLEEPTIME);
+                System.out.println(ConsoleColors.GREEN + ConsoleColors.ITALIC + combatantPlayer.getAttackHitMessage(targetMonster) + ConsoleColors.RESET);
+            } else {
+                Thread.sleep(Utility.SLEEPTIME);
+                System.out.println(ConsoleColors.RED + ConsoleColors.ITALIC + combatantPlayer.getAttackMissMessage(targetMonster) + ConsoleColors.RESET);
+            }
 
         } else if (combatant instanceof Monster) {
             Monster combatantMonster = (Monster) combatant;
@@ -281,13 +284,21 @@ public class Combat {
 
             if (shieldBlockUsed) {
                 Thread.sleep(Utility.SLEEPTIME);
-                System.out.println(playerCharacter.getName() + " blockerar inkommande attack med sin sköld.");
+                System.out.println(playerCharacter.getName() + " blockerar " + combatantMonster.toString(true) + "s attack med sin sköld.");
             } else {
                 Thread.sleep(Utility.SLEEPTIME);
                 System.out.println(" - " + combatantMonster.toString(true)
                         + " attackerar för " + ConsoleColors.RED_BOLD + monsterAttack.getAttackScore() + ConsoleColors.RESET
                         + " och du försvarar dig för " + ConsoleColors.BLUE_BOLD + monsterAttack.getDefenseScore() + ConsoleColors.RESET + "."
                 );
+            }
+
+            if (monsterAttack.isSuccess() && !shieldBlockUsed) {
+                Thread.sleep(Utility.SLEEPTIME);
+                System.out.println(ConsoleColors.RED + ConsoleColors.ITALIC + combatantMonster.getAttackHitMessage(null) + ConsoleColors.RESET);
+            } else if (!monsterAttack.isSuccess() && !shieldBlockUsed) {
+                Thread.sleep(Utility.SLEEPTIME);
+                System.out.println(ConsoleColors.CYAN + ConsoleColors.ITALIC + combatantMonster.getAttackMissMessage(null) + ConsoleColors.RESET);
             }
 
             if (monsterAttack.isSuccess() || allCombatants.indexOf(combatant) == allCombatants.size()-1 ) {

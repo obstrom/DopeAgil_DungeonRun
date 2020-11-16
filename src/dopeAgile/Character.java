@@ -135,9 +135,8 @@ public abstract class Character extends Creature {
 
     abstract void specialAbility();
 
-    abstract String getAttackMessage();
-    abstract String getAttackHitMessage();
-    abstract String getAttackMissMessage();
+    abstract String getAttackHitMessage(Creature creature);
+    abstract String getAttackMissMessage(Creature creature);
 
     public boolean checkIfCritical() {
         boolean isCrit = false;

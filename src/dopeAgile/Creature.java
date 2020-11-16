@@ -13,9 +13,8 @@ public abstract class Creature implements Comparable<Creature> {
     abstract void resetCombatRoundInitiativeScore();
     abstract void setCombatRoundInitiativeScore(int score);
     abstract int getCombatEndurance();
-    abstract String getAttackMessage();
-    abstract String getAttackHitMessage();
-    abstract String getAttackMissMessage();
+    abstract String getAttackHitMessage(Creature creature);
+    abstract String getAttackMissMessage(Creature creature);
 
     @Override
     public int compareTo(Creature compareCreature) {

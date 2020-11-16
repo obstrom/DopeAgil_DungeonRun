@@ -25,53 +25,49 @@ public class Spider extends Monster {
     }
 
     @Override
-    public String getAttackMessage() {
-
+    public String getAttackHitMessage(Creature creature) {
         int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
         if (rand < 3) {
-            return "Här är attack 1";
+            return "Spindeln hugger Hjälten med sitt ben och träffar hjältens arm.";
         } else if (rand < 5) {
-            return "Här är attack 2";
+            return "Spindeln skjuter en spindelnäts boll mot hjälten, den träffar.";
         } else {
-            return "Här är attack 3";
+            return "spindel biter hjälten i armen.";
         }
 
     }
 
     @Override
-    public String getAttackHitMessage() {
+    public String getAttackMissMessage(Creature creature) {
 
         int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
         if (rand < 3) {
-            return "Här är miss 1";
+            return "Spindeln sveper över med sitt ben men missar hjälten.";
         } else if (rand < 5) {
-            return "Här är miss 2";
+            return "Spindeln skjuter en spindelnäts boll mot hjälten, den missar.";
         } else {
-            return "Här är miss 3";
+            return "spindeln försöker bita dig men du lyckas hoppa undan.";
         }
-
-    }
-
-    @Override
-    public String getAttackMissMessage() {
-        return "Miss";
     }
 
     @Override
     public String getEntryMessage() { return "En jättespindel faller ner från taket!"; }
 
     @Override
-    public String getKilledByMessage() { return ""; }
+    public String getKilledByMessage() {
+        return "Spindeln springer fram och biter av ditt ansikte."; }
 
     @Override
-    public String getDeathMessage() { return ""; }
+    public String getDeathMessage() { return "Spindeln gör ett sista ljud innan den dör: SCHREEEEE….."; }
 
     @Override
     public String getPlayerHitMessage() { return ""; }
 
     @Override
-    public String getPlayerCritMessage() { return ""; }
+    public String getPlayerCritMessage() {
+        return "Tjuven springer mot spindeln och glider under och skär upp hela undersidan av spindeln, den ryter av smärta då dess tarmar flyger ut.";
+    }
     
 }

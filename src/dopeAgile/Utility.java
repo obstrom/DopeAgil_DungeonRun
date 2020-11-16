@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Utility {
 
-    public static final int SLEEPTIME = 100;
+    public static final int SLEEPTIME = 70;
     
     private static final ArrayList<Character> playerList = new ArrayList<Character>();
 
