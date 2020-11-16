@@ -29,7 +29,7 @@ public class Troll extends Monster {
     }
 
     @Override
-    public String getAttackHitMessage() {
+    public String getAttackHitMessage(Creature crature) {
         int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
         if (rand < 3) {
@@ -42,7 +42,7 @@ public class Troll extends Monster {
     }
 
     @Override
-    public String getAttackMissMessage() {
+    public String getAttackMissMessage(Creature crature) {
         return "Miss";
     }
 
@@ -59,6 +59,7 @@ public class Troll extends Monster {
     public String getPlayerHitMessage() { return ""; }
 
     @Override
-    public String getPlayerCritMessage() { return ""; }
+    public String getPlayerCritMessage() { 
+        return "Tjuven kastar en kniv den träffar höftkulan. Trollets ena ben verkar inte vara fungerande längre."; }
 
 }

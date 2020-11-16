@@ -22,14 +22,13 @@ public class Skeleton extends Monster {
     public String toString(boolean conjugate) {
         return (conjugate) ? "Skelettet" : "Skelett";
     }
-
-    @Override
-    public String getAttackMessage() {
-        return "Skelett";
+    public String getAttackMessage(){
+        return null;
     }
 
+
     @Override
-    public String getAttackHitMessage() {
+    public String getAttackHitMessage(Creature creature) {
         
         int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
@@ -43,7 +42,7 @@ public class Skeleton extends Monster {
     }
 
     @Override
-    public String getAttackMissMessage() {
+    public String getAttackMissMessage(Creature creature) {
     
         int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
@@ -70,6 +69,7 @@ public class Skeleton extends Monster {
     public String getPlayerHitMessage() { return ""; }
 
     @Override
-    public String getPlayerCritMessage() { return ""; }
+    public String getPlayerCritMessage() { 
+        return "Tjuven hugger skelettets huvud och det exploderar."; }
 
 }

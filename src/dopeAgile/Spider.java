@@ -27,9 +27,10 @@ public class Spider extends Monster {
     public String getAttackMessage() {
         return "";
     }
+    
 
     @Override
-    public String getAttackHitMessage() {
+    public String getAttackHitMessage(Creature creature) {
        int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
         if (rand < 3) {
@@ -43,7 +44,7 @@ public class Spider extends Monster {
     }
 
     @Override
-    public String getAttackMissMessage() {
+    public String getAttackMissMessage(Creature creature) {
                 
             int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
@@ -70,6 +71,7 @@ public class Spider extends Monster {
     public String getPlayerHitMessage() { return ""; }
 
     @Override
-    public String getPlayerCritMessage() { return ""; }
+    public String getPlayerCritMessage() { 
+        return "Tjuven springer mot spindeln och glider under och skär upp hela undersidan av spindeln, den ryter av smärta då dess tarmar flyger ut."; }
     
 }

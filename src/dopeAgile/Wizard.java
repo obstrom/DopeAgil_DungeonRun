@@ -35,7 +35,7 @@ public class Wizard extends Character {
         
         Monster monster = (Monster) creature;
         
-        if (Monster instanceof Orc) {
+        if (monster instanceof Orc) {
 
             // Kod Orc
             int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
@@ -79,8 +79,50 @@ public class Wizard extends Character {
     }
 
     @Override
-    public String getAttackMissMessage() {
-        return "Miss";
+    public String getAttackMissMessage(Creature creature) {
+        Monster monster = (Monster) creature;
+        
+        if (monster instanceof Orc) {
+
+            // Kod Orc
+            int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
+
+            if (rand < 4) {
+                return "Trollkarlen säger en besvärjelse och en magisk pil skapas och avfyras, den träffar marken framför och orcen skrattar åt dig.";
+            } else {
+                return "Trollkarlen tar sin stav med två händer och svingar underifrån. Slaget missar och träffar taket. ";
+            }
+
+        } else if (monster instanceof Spider) {
+            int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
+
+            if (rand < 4) {
+                return "Trollkarlen skapar ett eldklot och avfyrar det mot spindeln. Eldklotet missar och träffar väggen bakom. ";
+            } else {
+                return "Trollkarlen tar sin stav med två händer över huvudet och slår ner och siktar på mitten av spindelns kropp, men missar och träffar marken";
+            }
+
+        } else if (monster instanceof Skeleton) {
+            int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
+
+            if (rand < 4) {
+                return "Trollkarlen slår ner sin stav i marken och avfyrar en blixt från sin trollstav, den missar och träffar marken bredvid ";
+            } else {
+                return "Trollkarlen tar sin stav med två händer och siktar på huvudet av skelettet, men missar. ";
+            }
+
+        } else if (monster instanceof Troll ) {
+            int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
+
+            if (rand < 4) {
+                return "Trollkarlen säger en besvärjelse och en rot växer ut från marken som sedan försöker hugga trollet men missar. ";
+            } else {
+                return "Trollkarlen tar sin stav med två händer och använder sin stav som ett spjut och försöker skjuta änden av staven i trollet men missar  ";
+            }
+
+        } else {
+            return " ";
+        }
     }
 
     @Override

@@ -56,8 +56,8 @@ public abstract class Monster extends Creature {
     }
 
     abstract String getAttackMessage(); // Monster attacks
-    abstract String getAttackHitMessage(); // Monster lands hit on player
-    abstract String getAttackMissMessage(); // Monster misses attack on player
+    abstract String getAttackHitMessage(Creature creature); // Monster lands hit on player
+    abstract String getAttackMissMessage(Creature creature); // Monster misses attack on player
     abstract String getEntryMessage(); // Monster appears
     abstract String getKilledByMessage(); // Monster kills player
     abstract String getDeathMessage(); // Monster dies by player

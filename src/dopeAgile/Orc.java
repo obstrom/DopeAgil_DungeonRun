@@ -29,7 +29,7 @@ public class Orc extends Monster {
     }
 
     @Override
-    public String getAttackHitMessage() {
+    public String getAttackHitMessage(Creature creature) {
         int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
         if (rand < 3) {
@@ -42,7 +42,7 @@ public class Orc extends Monster {
     }
 
     @Override
-    public String getAttackMissMessage() {
+    public String getAttackMissMessage(Creature creature) {
         return "Miss";
     }
 
@@ -59,6 +59,7 @@ public class Orc extends Monster {
     public String getPlayerHitMessage() { return ""; }
 
     @Override
-    public String getPlayerCritMessage() { return ""; }
+    public String getPlayerCritMessage() {
+        return "Tjuven kastar en kniv och träffar ena ögat, orcen skriker i smärta."; }
 
 }
