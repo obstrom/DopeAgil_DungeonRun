@@ -81,7 +81,7 @@ public class GameLoop {
             System.out.println(ConsoleColors.NEWLINE + ConsoleColors.ITALIC + currentRoom.getRoomMessage() + ConsoleColors.RESET);
             for (Monster monster: currentRoom.getRoomMonsters()) {
                 Thread.sleep(Utility.SLEEPTIME);
-                System.out.println(ConsoleColors.CYAN + monster.getEntryMessage() + ConsoleColors.RESET);
+                System.out.println(ConsoleColors.RED + monster.getEntryMessage() + ConsoleColors.RESET);
                 music.monsterSound();
             }
 
