@@ -8,6 +8,7 @@ public abstract class Monster extends Creature {
     int attack;
     int agility;
     int combatEndurance;
+    int combatRoundInitiativeScore;
     boolean isAlive = true;
 
     public int getInitiative() {
@@ -55,32 +56,13 @@ public abstract class Monster extends Creature {
         return combatEndurance;
     }
 
-    abstract String getAttackMessage(); // Monster attacks
-    abstract String getAttackHitMessage(); // Monster lands hit on player
-    abstract String getAttackMissMessage(); // Monster misses attack on player
+    abstract String getAttackHitMessage(Creature creature); // Monster lands hit on player
+    abstract String getAttackMissMessage(Creature creature); // Monster misses attack on player
     abstract String getEntryMessage(); // Monster appears
     abstract String getKilledByMessage(); // Monster kills player
     abstract String getDeathMessage(); // Monster dies by player
     abstract String getPlayerHitMessage(); // Monster gets hit by player
     abstract String getPlayerCritMessage(); // Monster gets critial hit by player
-
-    // Returns the calculated attack score
-    public int calcAttackScore() {
-        int attackScore = 0;
-        for (int i = 0; i < attack; i++) {
-            attackScore += Utility.throwSixSidedDie();
-        }
-        return attackScore;
-    }
-
-    // Returns the calculated defense score
-    public int calcDefenseScore() {
-        int defenseScore = 0;
-        for (int i = 0; i < agility; i++) {
-            defenseScore += Utility.throwSixSidedDie();
-        }
-        return defenseScore;
-    }
 
     // Restores "health" to full. Should be called after successful flee attempt
     public void refreshCombatEndurance() {
@@ -91,6 +73,18 @@ public abstract class Monster extends Creature {
     // Takes a boolean for crit that lowers endurance by two instead
     public void lowerCombatEndurance(boolean criticalHit) {
         combatEndurance = (criticalHit) ? combatEndurance -2 : combatEndurance -1;
+    }
+
+    public int getCombatRoundInitiativeScore() {
+        return combatRoundInitiativeScore;
+    }
+
+    public void setCombatRoundInitiativeScore(int combatRoundInitiativeScore) {
+        this.combatRoundInitiativeScore = combatRoundInitiativeScore;
+    }
+
+    public void resetCombatRoundInitiativeScore() {
+        combatRoundInitiativeScore = 0;
     }
     
 }
