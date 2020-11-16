@@ -36,11 +36,6 @@ public class Combat {
     }
 
     private void combatLoop() {
-        // TODO:
-        //  Bugs to fix
-        //  * När du är klar i ett rum så visar den händelsen igen
-        //  * Få in att du tar 1 skada när monstret träffar
-        //  * Få in att monstret tar 1 (eller 2) skada när du träffar
 
         boolean playerDead = false;
         ArrayList<Monster> killedMonstersDuringRound = new ArrayList<Monster>();
@@ -221,9 +216,9 @@ public class Combat {
                 boolean isCrit = combatantPlayer.checkIfCritical();
                 if (isCrit) {
                     System.out.println(targetMonster.getPlayerCritMessage());
-                    System.out.print(ConsoleColors.YELLOW_BOLD + "Kritiskträff!" + ConsoleColors.RESET);
+                    System.out.print(ConsoleColors.YELLOW_BOLD + "Kritiskträff! " + targetMonster.toString(true) + " tar 2 skada." + ConsoleColors.RESET);
                 } else {
-                    System.out.print(ConsoleColors.GREEN_BOLD + "Träff!" + ConsoleColors.RESET);
+                    System.out.print(ConsoleColors.GREEN_BOLD + "Träff! " + targetMonster.toString(true) + " tar 1 skada." + ConsoleColors.RESET);
                 }
 
                 targetMonster.lowerCombatEndurance(isCrit);
@@ -250,7 +245,7 @@ public class Combat {
                     shieldBlockUsed = true;
                     Knight.setShieldBlockUsed(true);
                 } else {
-                    System.out.print(ConsoleColors.RED_BOLD + "Träff!" + ConsoleColors.RESET);
+                    System.out.print(ConsoleColors.RED_BOLD + "Träff! " + playerCharacter.toString(true) + " " + playerCharacter.getName() + " tar 1 skada." + ConsoleColors.RESET);
                     playerCharacter.lowerCombatEndurance();
                 }
 
