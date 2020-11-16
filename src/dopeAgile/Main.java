@@ -45,7 +45,7 @@ public class Main {
         switch (input) {
             case 1:
                 System.out.println("Highscore");
-                mainMenu();
+                Score.displayHighScore();
                 break;
             case 2:
                 characterChoice();

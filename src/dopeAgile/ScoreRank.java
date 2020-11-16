@@ -37,7 +37,7 @@ public class ScoreRank {
 
         @Override
         public int compareTo(compareCharacter hero) {
-            return this.getPoints() - hero.getPoints();
+            return hero.getPoints() - this.getPoints();
         }
 
     }
