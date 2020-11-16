@@ -13,7 +13,7 @@ public class GameLoop {
     private Score scores = new Score();
     SaveFile save = new SaveFile();
     private boolean playerIsFleeing;
-    MusicPlayer music = new MusicPlayer();
+//    MusicPlayer music = new MusicPlayer();
 
     GameLoop(Map loadedMap, Character loadedCharacter) throws InterruptedException {
         this.loadedMap = loadedMap;
@@ -57,7 +57,7 @@ public class GameLoop {
             for (Monster monster: currentRoom.getRoomMonsters()) {
                 Thread.sleep(Utility.SLEEPTIME);
                 System.out.println(ConsoleColors.RED + monster.getEntryMessage() + ConsoleColors.RESET);
-                music.monsterSound();
+//                music.monsterSound();
             }
 
             // If room contains monsters
@@ -81,10 +81,10 @@ public class GameLoop {
             } else {
                 Thread.sleep(Utility.SLEEPTIME);
                 System.out.print(ConsoleColors.NEWLINE + "Du söker igenom rummet, och hittar [" + ConsoleColors.YELLOW_BOLD);
-                music.treasureSound();
+//                music.treasureSound();
                 ArrayList<Treasure.treasureTypes> treasures = currentRoom.getRoomTreasure().getTreasureList();
                 //TODO lägg treasure sound här
-                music.treasureSound();
+//                music.treasureSound();
                 for (int i = 0; i < treasures.size(); i++) {
                     if (i == 0) {
                         System.out.print(treasures.get(i));
