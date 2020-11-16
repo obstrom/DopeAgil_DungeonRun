@@ -22,5 +22,13 @@ public class Score {
         mapScores.put(name,scoresBoard);
         System.out.println("END SCORES: " + mapScores);
     }
-   
+
+    public static void displayHighScore() {
+        ScoreRank rank = new ScoreRank();
+        ArrayList<ScoreRank.compareCharacter> heroes = rank.getSortedHeroes();
+        for (ScoreRank.compareCharacter hero: heroes) {
+            System.out.println("Namn: " + hero.getName() + ", Poäng: " + hero.getPoints());
+        }
+    }
+
 }

@@ -5,19 +5,21 @@ import java.util.Scanner;
 public class Main {
 
     static TryCatch tryinput = new TryCatch();
-
+    static ScoreFile sf = new ScoreFile();
+    
     enum CharacterType {
         RIDDARE, TJUV, MAGIKER;
     }
 
     public static void main(String[] args) throws InterruptedException {
+        sf.CreateFileInput();
         Startpage.Startpage();
-
         Thread.sleep(Utility.SLEEPTIME);
+        main
         System.out.println("\n\033[1mVälkommen till Dungeon Run\033[0m");
         
-        MusicPlayer audios = new MusicPlayer();
-        audios.DungeonMusic();
+        //MusicPlayer audios = new MusicPlayer();
+        //audios.DungeonMusic();
         
         mainMenu();
       
@@ -51,7 +53,7 @@ public class Main {
             case 1:
                 Thread.sleep(Utility.SLEEPTIME);
                 System.out.println("Highscore");
-                op.options(1);
+                Score.displayHighScore();
                 break;
             case 2:
                 characterChoice();
