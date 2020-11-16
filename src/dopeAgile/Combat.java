@@ -187,10 +187,9 @@ public class Combat {
                     music.gameOverSound();
                 } else if (combatant instanceof Monster) {
                     // Monster died
-                    // TODO: Print better monster death text?
                     Monster monsterCombatant = (Monster) combatant;
                     Thread.sleep(Utility.SLEEPTIME);
-                    System.out.println(ConsoleColors.ITALIC + ConsoleColors.YELLOW + monsterCombatant.toString(true) + " faller död mot marken." + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.ITALIC + ConsoleColors.YELLOW + monsterCombatant.getDeathMessage() + ConsoleColors.RESET);
 
                     // Mark monster as dead
                     monsterCombatant.setIsAlive(false);

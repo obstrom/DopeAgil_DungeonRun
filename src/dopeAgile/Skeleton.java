@@ -60,7 +60,7 @@ public class Skeleton extends Monster {
         return "Skelett dödar hjälte skelettet tar tag i din luftstrupe och drar ut den från din hals. du dör av syrebrist."; }
 
     @Override
-    public String getDeathMessage() { return "Alla benen faller livlöst till marken."; }
+    public String getDeathMessage() { return "Skellettet faller livlöst till marken i hög av ben."; }
 
     @Override
     public String getPlayerHitMessage() { return ""; }
