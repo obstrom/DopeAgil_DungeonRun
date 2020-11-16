@@ -37,8 +37,6 @@ public class GameLoop {
                     playerIsFleeing = false;
                 }
 
-                // TODO: FUNKAR DETTA??
-
                 System.out.print(ConsoleColors.NEWLINE + "<Tryck ENTER för att fortsätta vidare>");
                 Scanner sc = new Scanner(System.in);
                 String userInput = sc.nextLine();
@@ -79,7 +77,6 @@ public class GameLoop {
             System.out.println(ConsoleColors.NEWLINE + ConsoleColors.ITALIC + currentRoom.getRoomMessage() + ConsoleColors.RESET);
             for (Monster monster: currentRoom.getRoomMonsters()) {
                 System.out.println(ConsoleColors.CYAN + monster.getEntryMessage() + ConsoleColors.RESET);
-                //TODO lägg monsterljud här
                 music.monsterSound();
             }
 
@@ -100,6 +97,7 @@ public class GameLoop {
                 System.out.println(ConsoleColors.NEWLINE + "Du söker igenom rummet, men du hittar bara damm.");
             } else {
                 System.out.print(ConsoleColors.NEWLINE + "Du söker igenom rummet, och hittar [" + ConsoleColors.YELLOW_BOLD);
+                music.treasureSound();
                 ArrayList<Treasure.treasureTypes> treasures = currentRoom.getRoomTreasure().getTreasureList();
                 //TODO lägg treasure sound här
                 music.treasureSound();

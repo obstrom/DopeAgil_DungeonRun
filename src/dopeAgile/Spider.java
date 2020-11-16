@@ -3,8 +3,9 @@ package dopeAgile;
 
 public class Spider extends Monster {
 
-    private static final double COMMON = 0.2;
-    
+    //private static final double COMMON = 0.2;
+    private static final double COMMON = 0.5; // HARD MODE
+
     public Spider() {
         super();
         this.initiative = 7;

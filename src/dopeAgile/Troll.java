@@ -3,8 +3,9 @@ package dopeAgile;
 
 public class Troll extends Monster {
 
-    public static final double COMMON = 0.05;
-    
+    // public static final double COMMON = 0.05;
+    public static final double COMMON = 0.15; // HARD MODE
+
     public Troll() {
         super();
         this.initiative = 2;

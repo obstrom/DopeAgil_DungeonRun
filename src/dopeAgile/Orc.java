@@ -3,8 +3,9 @@ package dopeAgile;
 
 public class Orc extends Monster {
 
-    public static final double COMMON = 0.1;
-    
+    // public static final double COMMON = 0.1;
+    public static final double COMMON = 0.3; // HARD MODE
+
     public Orc(){
         super();
         this.initiative = 6;
