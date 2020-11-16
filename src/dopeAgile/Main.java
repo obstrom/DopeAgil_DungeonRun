@@ -48,22 +48,24 @@ public class Main {
 
         //MusicPlayer audios = new MusicPlayer();
         //audios.DungeonMusic();
-        
-        mainMenu();
-      
-        Map loadedMap = mapMenu();
 
-        Thread.sleep(Utility.SLEEPTIME);
-        System.out.println("\n\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
-        Thread.sleep(Utility.SLEEPTIME);
-        System.out.println("\033[1m -- Ett nytt äventyr börjar! -- \033[0m");
-        Thread.sleep(Utility.SLEEPTIME);
-        System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
-        GameLoop gameSession = new GameLoop(loadedMap, Utility.getSingleCharacter(0));
+        while(true) {
+            mainMenu();
+            Map loadedMap = mapMenu();
+
+            Thread.sleep(Utility.SLEEPTIME);
+            System.out.println("\n\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
+            Thread.sleep(Utility.SLEEPTIME);
+            System.out.println("\033[1m -- Ett nytt äventyr börjar! -- \033[0m");
+            Thread.sleep(Utility.SLEEPTIME);
+            System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
+            GameLoop gameSession = new GameLoop(loadedMap, Utility.getSingleCharacter(0));
+        }
 
     }
 
     public static void mainMenu() throws InterruptedException {
+        boolean keepGoing = true;
         FileOption op = new FileOption();
         int input = -1;
         int inputA = -1;
@@ -152,8 +154,8 @@ public class Main {
 
             try {
                 characterMenuChoice = tryinput.TryIntInput();
-                MusicPlayer sound = new MusicPlayer();
-                sound.confirmSound();
+                //MusicPlayer sound = new MusicPlayer();
+                //sound.confirmSound();
 
                 if (characterMenuChoice > 0 && characterMenuChoice < 4) {
                     run = false;

@@ -139,13 +139,13 @@ public class Map {
         for (Room[] roomRows : mapArray) {
             for (Room room : roomRows) {
                 if (playerCurrentRoom == room) {
-                    result += "["+ConsoleColors.GREEN+"*"+ConsoleColors.WHITE+"]";
+                    result += "["+ConsoleColors.GREEN+"*"+ConsoleColors.RESET+"]";
                 } else if (room.getIsRoomExplored() && room.getRoomMonsters().size() > 0 && !room.isSpawnRoom()) {
-                    result += "["+ConsoleColors.RED+"!"+ConsoleColors.WHITE+"]";
+                    result += "["+ConsoleColors.RED+"!"+ConsoleColors.RESET+"]";
                 } else if (room.getIsRoomExplored()) {
                     result += "[ ]";
                 } else {
-                    result += "["+ConsoleColors.BLUE+"?"+ConsoleColors.WHITE+"]";
+                    result += "["+ConsoleColors.BLUE+"?"+ConsoleColors.RESET+"]";
                 }
             }
             result += "\n";

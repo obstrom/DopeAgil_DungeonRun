@@ -56,7 +56,7 @@ public class Combat {
                 Character player = (Character) thisCombatant;
                 Thread.sleep(Utility.SLEEPTIME);
                 System.out.println("> " + (i+1) + "."
-                        + " Initiativpoäng " + ConsoleColors.BLUE + String.format("%02d", player.getCombatRoundInitiativeScore()) + ConsoleColors.RESET
+                        + " Initiativpoäng " + ConsoleColors.BLUE_BOLD + String.format("%02d", player.getCombatRoundInitiativeScore()) + ConsoleColors.RESET
                         //+ " | Attackstyrka " + player.getAttack()
                         + " | Hälsa " + displayColoredHealth(player.getCombatEndurance(), player.getEndurance())
                         + " - " + ConsoleColors.GREEN + player.toString(true) + " " + player.getName() + ConsoleColors.RESET
@@ -65,7 +65,7 @@ public class Combat {
                 Monster monster = (Monster) thisCombatant;
                 Thread.sleep(Utility.SLEEPTIME);
                 System.out.println("> " + (i+1) + "."
-                        + " Initiativpoäng " + ConsoleColors.BLUE + String.format("%02d", monster.getCombatRoundInitiativeScore()) + ConsoleColors.RESET
+                        + " Initiativpoäng " + ConsoleColors.BLUE_BOLD + String.format("%02d", monster.getCombatRoundInitiativeScore()) + ConsoleColors.RESET
                         //+ " | Attackstyrka " + monster.getAttack()
                         + " | Hälsa " + displayColoredHealth(monster.getCombatEndurance(), monster.getEndurance())
                         + " - " + ConsoleColors.YELLOW + monster.toString(true) + ConsoleColors.RESET
@@ -184,6 +184,15 @@ public class Combat {
                     // TODO: Print better death text
                     Thread.sleep(Utility.SLEEPTIME);
                     System.out.println(ConsoleColors.RED_BOLD + "Äventyraren dog!" + ConsoleColors.RESET);
+                    Thread.sleep(Utility.SLEEPTIME);
+                    System.out.println("  _______      ___      .___  ___.  _______      ______   ____    ____  _______ .______      ");
+                    System.out.println(" /  _____|    /   \\     |   \\/   | |   ____|    /  __  \\  \\   \\  /   / |   ____||   _  \\     ");
+                    System.out.println("|  |  __     /  ^  \\    |  \\  /  | |  |__      |  |  |  |  \\   \\/   /  |  |__   |  |_)  |    ");
+                    System.out.println("|  | |_ |   /  /_\\  \\   |  |\\/|  | |   __|     |  |  |  |   \\      /   |   __|  |      /     ");
+                    System.out.println("|  |__| |  /  _____  \\  |  |  |  | |  |____    |  `--'  |    \\    /    |  |____ |  |\\  \\----.");
+                    System.out.println(" \\______| /__/     \\__\\ |__|  |__| |_______|    \\______/      \\__/     |_______|| _| `._____|");
+                    System.out.println("");
+
 //                    music.gameOverSound();
                 } else if (combatant instanceof Monster) {
                     // Monster died
@@ -339,9 +348,9 @@ public class Combat {
         if (healthPercentage < 0.34) {
             outputString += ConsoleColors.RED_BOLD;
         } else if (healthPercentage < 0.67) {
-            outputString += ConsoleColors.YELLOW;
+            outputString += ConsoleColors.YELLOW_BOLD;
         } else {
-            outputString += ConsoleColors.GREEN;
+            outputString += ConsoleColors.GREEN_BOLD;
         }
         outputString += currentHealth + "/" + maxHealth + ConsoleColors.RESET + ")";
         return outputString;
