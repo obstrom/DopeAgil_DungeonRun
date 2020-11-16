@@ -1,5 +1,10 @@
 package dopeAgile;
 
+// imports to handle Windows 10 console ANSI colors
+import com.sun.jna.*;
+import com.sun.jna.platform.win32.WinDef.*;
+import com.sun.jna.platform.win32.WinNT.HANDLE;
+
 import java.util.Scanner;
 
 public class Main {
@@ -12,17 +17,37 @@ public class Main {
     }
 
     public static void main(String[] args) throws InterruptedException {
+
+        // Handle Win10 ANSI color
+        try {
+            if(System.getProperty("os.name").startsWith("Windows"))
+            {
+                // Set output mode to handle virtual terminal sequences
+                Function GetStdHandleFunc = Function.getFunction("kernel32", "GetStdHandle");
+                DWORD STD_OUTPUT_HANDLE = new DWORD(-11);
+                HANDLE hOut = (HANDLE)GetStdHandleFunc.invoke(HANDLE.class, new Object[]{STD_OUTPUT_HANDLE});
+
+                DWORDByReference p_dwMode = new DWORDByReference(new DWORD(0));
+                Function GetConsoleModeFunc = Function.getFunction("kernel32", "GetConsoleMode");
+                GetConsoleModeFunc.invoke(BOOL.class, new Object[]{hOut, p_dwMode});
+
+                int ENABLE_VIRTUAL_TERMINAL_PROCESSING = 4;
+                DWORD dwMode = p_dwMode.getValue();
+                dwMode.setValue(dwMode.intValue() | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
+                Function SetConsoleModeFunc = Function.getFunction("kernel32", "SetConsoleMode");
+                SetConsoleModeFunc.invoke(BOOL.class, new Object[]{hOut, dwMode});
+            }
+        } catch (Exception e) {
+            System.out.println("NOT WINDOWS 10");
+        }
+
         sf.CreateFileInput();
         Startpage.Startpage();
         Thread.sleep(Utility.SLEEPTIME);
- 
         System.out.println("\n\033[1mVälkommen till Dungeon Run\033[0m");
-        
-//        MusicPlayer audios = new MusicPlayer();
-//        audios.DungeonMusic();
+
         //MusicPlayer audios = new MusicPlayer();
         //audios.DungeonMusic();
-
         
         mainMenu();
       
