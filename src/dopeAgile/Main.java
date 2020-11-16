@@ -11,8 +11,9 @@ public class Main {
     }
     
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
+        Thread.sleep(Utility.SLEEPTIME);
         System.out.println("\n\033[1mVälkommen till Dungeon Run\033[0m");
         
         MusicPlayer audios = new MusicPlayer();
@@ -22,19 +23,23 @@ public class Main {
       
         Map loadedMap = mapMenu();
 
+        Thread.sleep(Utility.SLEEPTIME);
         System.out.println("\n\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
+        Thread.sleep(Utility.SLEEPTIME);
         System.out.println("\033[1m -- Ett nytt äventyr börjar! -- \033[0m");
+        Thread.sleep(Utility.SLEEPTIME);
         System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
         GameLoop gameSession = new GameLoop(loadedMap, Utility.getSingleCharacter(0));
 
     }
 
-    public static void mainMenu() {
+    public static void mainMenu() throws InterruptedException {
         FileOption op = new FileOption();
         int input = -1;
         int inputA = -1;
         while (input < 0) {
 
+            Thread.sleep(Utility.SLEEPTIME);
             System.out.println("1: Highscore\n" + "2: Skapa Karaktär\n" + "3: Ladda Karaktär\n" + "0: Avsluta");
             input = tryinput.TryIntInput();
             MusicPlayer sound = new MusicPlayer();
@@ -44,6 +49,7 @@ public class Main {
 
         switch (input) {
             case 1:
+                Thread.sleep(Utility.SLEEPTIME);
                 System.out.println("Highscore");
                 op.options(1);
                 break;
@@ -51,32 +57,40 @@ public class Main {
                 characterChoice();
                 break;
             case 3:
+                Thread.sleep(Utility.SLEEPTIME);
                 System.out.println("Välj Sparad Karaktär");
                 op.options(2);
                 break;
             default:
+                Thread.sleep(Utility.SLEEPTIME);
                 System.out.println("Avslutar Spelet");
                 System.exit(0);
         }
 
     }
 
-
-    public static CharacterType characterChoice() {
+    public static CharacterType characterChoice() throws InterruptedException {
         CreateFile cf = new CreateFile();
         int characterMenuChoice = 0;
         String name = " ";
         CharacterType characterChoice = null;
         boolean run = true;
 
+        Thread.sleep(Utility.SLEEPTIME);
         System.out.println("\033[1m --- Välj en hjälte! --- \033[0m");
+        Thread.sleep(Utility.SLEEPTIME);
         System.out.println("1. Riddaren");
+        Thread.sleep(Utility.SLEEPTIME);
         System.out.println(" Iniativ: 5, Tålighet: 9, Attack: 6, Smidighet: 4 \n");
 
+        Thread.sleep(Utility.SLEEPTIME);
         System.out.println("2. Magiker");
+        Thread.sleep(Utility.SLEEPTIME);
         System.out.println(" Iniativ: 6, Tålighet: 4, Attack: 9, Smidighet: 5 \n");
 
+        Thread.sleep(Utility.SLEEPTIME);
         System.out.println("3. Tjuv");
+        Thread.sleep(Utility.SLEEPTIME);
         System.out.println(" Iniativ: 7, Tålighet: 5, Attack: 5, Smidighet: 7 \n");
 
         while (run) {
@@ -89,9 +103,11 @@ public class Main {
                 if (characterMenuChoice > 0 && characterMenuChoice < 4) {
                     run = false;
                 } else {
+                    Thread.sleep(Utility.SLEEPTIME);
                     System.out.println("Ange ett tal mellan 1 och 3");
                 }
             } catch (NumberFormatException e) {
+                Thread.sleep(Utility.SLEEPTIME);
                 System.out.println("Ange endast siffror");
             }
 
@@ -100,16 +116,19 @@ public class Main {
         Character player = null;
         switch (characterMenuChoice) {
             case 1:
+                Thread.sleep(Utility.SLEEPTIME);
                 System.out.println("Du har valt Riddaren!");
                 characterChoice = CharacterType.RIDDARE;
                 player = new Knight();
                 break;
             case 2:
+                Thread.sleep(Utility.SLEEPTIME);
                 System.out.println("Du har valt Magikern!");
                 characterChoice = CharacterType.MAGIKER;
                 player = new Wizard();
                 break;
             case 3:
+                Thread.sleep(Utility.SLEEPTIME);
                 System.out.println("Du har valt Tjuven!");
                 characterChoice = CharacterType.TJUV;
                 player = new Rogue();
@@ -124,14 +143,16 @@ public class Main {
         cf.creatAFile(name);
         Utility.addPlayer(player);
 
+        Thread.sleep(Utility.SLEEPTIME);
         System.out.println("\nKaraktären heter " + name + " och är en " + characterChoice + "\n");
 
         return characterChoice;
 
     }
 
-    public static String characterName() {
+    public static String characterName() throws InterruptedException {
         String characterName;
+        Thread.sleep(Utility.SLEEPTIME);
         System.out.println("\nVälj ett namn för din hjälte");
         characterName = tryinput.TryStringInput();
         MusicPlayer sound = new MusicPlayer();
@@ -140,18 +161,24 @@ public class Main {
         return characterName;
     }
 
-    public static Map mapMenu() {
+    public static Map mapMenu() throws InterruptedException {
         Map generatedMap = null;
 
         mapMenuLoop:
         while (true) {
 
             // Choose map size
+            Thread.sleep(Utility.SLEEPTIME);
             System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
+            Thread.sleep(Utility.SLEEPTIME);
             System.out.println("\033[1m -- Välj storlek på kartan -- \033[0m");
+            Thread.sleep(Utility.SLEEPTIME);
             System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
+            Thread.sleep(Utility.SLEEPTIME);
             System.out.println("1. Liten karta (4x4)");
+            Thread.sleep(Utility.SLEEPTIME);
             System.out.println("2. Medium karta (5x5)");
+            Thread.sleep(Utility.SLEEPTIME);
             System.out.println("3. Stor karta (8x8)");
 
             int mapChoice = 0;
@@ -174,12 +201,19 @@ public class Main {
             }
 
             // Choose spawn point
+            Thread.sleep(Utility.SLEEPTIME);
             System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
+            Thread.sleep(Utility.SLEEPTIME);
             System.out.println("\033[1m -- Vart på kartan vill du börja -- \033[0m");
+            Thread.sleep(Utility.SLEEPTIME);
             System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
+            Thread.sleep(Utility.SLEEPTIME);
             System.out.println("1. Nordvästra hörnet");
+            Thread.sleep(Utility.SLEEPTIME);
             System.out.println("2. Nordöstra hörnet");
+            Thread.sleep(Utility.SLEEPTIME);
             System.out.println("3. Sydvästra hörnet");
+            Thread.sleep(Utility.SLEEPTIME);
             System.out.println("4. Sydöstra hörnet");
 
             Map.cardinalDirection cardinal = null;
@@ -198,6 +232,7 @@ public class Main {
                 } else if (userInput.equals("4") || userInput.contains("sydöst") || userInput.contains("se")) {
                     cardinal = Map.cardinalDirection.SE;
                 } else {
+                    Thread.sleep(Utility.SLEEPTIME);
                     System.out.println("Ogiltigt kommando! Försök igen.");
                     --i;
                 }
@@ -214,15 +249,27 @@ public class Main {
                     generatedMap = new Map(Map.mapSize.LARGE, cardinal);
                     break;
                 default:
+                    Thread.sleep(Utility.SLEEPTIME);
                     System.out.println("MapChoice switchcase error!");
             }
 
+            Thread.sleep(Utility.SLEEPTIME);
             System.out.println("\n\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
+            Thread.sleep(Utility.SLEEPTIME);
             System.out.println("\033[1m -- Förhandsgranska karta -- \033[0m");
+            Thread.sleep(Utility.SLEEPTIME);
             System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
-            System.out.println(generatedMap.toString(true));
+            Thread.sleep(Utility.SLEEPTIME);
+
+            // Print map one line at a time
+            String printMap[] = generatedMap.toString(true).split("\n");
+            for (String mapLine: printMap) {
+                Thread.sleep(Utility.SLEEPTIME);
+                System.out.println(mapLine);
+            }
 
             for (int i = 0; i < 1; i++) {
+                Thread.sleep(Utility.SLEEPTIME);
                 System.out.print("\nAnvänd denna karta? (Y/N) ");
                 Scanner sc = new Scanner(System.in);
                 String userInput = sc.nextLine().toLowerCase();
@@ -234,6 +281,7 @@ public class Main {
                 } else if (userInput.equals("n") || userInput.contains("no") || userInput.contains("nej")) {
                     break;
                 } else {
+                    Thread.sleep(Utility.SLEEPTIME);
                     System.out.println("Ogiltigt kommando! Försök igen.");
                     --i;
                 }

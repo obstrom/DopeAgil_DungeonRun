@@ -16,7 +16,7 @@ public class FileOption extends Utility {
     private Character loadPlayer = null;
     private TryCatch tryinput = new TryCatch();
 
-    public void options(int choice) {
+    public void options(int choice) throws InterruptedException {
         if (choice == 1) {
             loadingSaveFile();
         } else {
@@ -74,7 +74,7 @@ public class FileOption extends Utility {
         Utility.addPlayer(loadPlayer);
     }
 
-    public void DeleteCharacter() {
+    public void DeleteCharacter() throws InterruptedException {
         System.out.println("tabort karaktären: ");
         input = tryinput.TryStringInput();
         File myFile = new File(input + ".txt");
