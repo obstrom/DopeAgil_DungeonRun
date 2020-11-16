@@ -3,6 +3,7 @@ package dopeAgile;
 import dopeAgile.Character.Role;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class FileOption extends Utility {
@@ -23,13 +24,17 @@ public class FileOption extends Utility {
             while (noClue <= 0 || noClue > 3) {
                 System.out.println("Välj nedstående alternativ:\n"
                         + "1: ladda en karaktär\n"
-                        + "2: tabort en karaktär");
+                        + "2: tabort en karaktär\n"
+                        + "3: reset highscore\n");
                 noClue = tryinput.TryIntInput();
                 if (noClue == 1) {
                     loadingSaveFile();
-                } else {
+                } else if (noClue == 2) {
                     DeleteCharacter();
+                } else {
+                    clearHighScore();
                 }
+
             }
         }
     }
@@ -79,11 +84,36 @@ public class FileOption extends Utility {
         input = tryinput.TryStringInput();
         File myFile = new File(input + ".txt");
         if (myFile.delete()) {
-            System.out.println("DELETED HAHAHAHAHAHAHAHA");
+            System.out.println("DELETED: no return point...");
             Main.mainMenu();
         } else {
             System.out.println("Misslyckades att tarbort " + myFile.getName());
             Main.mainMenu();
+        }
+
+    }
+
+    public void clearHighScore() throws InterruptedException {
+        System.out.println("clearing catch-file");
+        input = tryinput.TryStringInput();
+        File myFile = new File("Input.txt");
+        if (myFile.delete()) {
+            System.out.println("DELETED: reCreating empty-file");
+            Main.mainMenu();
+        } else {
+            System.out.println("Misslyckades att tarbort " + myFile.getName());
+            Main.mainMenu();
+        }
+
+        try {
+            File myNewFile = new File("Input.txt");
+            if (myNewFile.createNewFile()) {
+                System.out.println(myNewFile.getName() + " finns nu");
+            } else {
+                System.out.println(myNewFile.getName() + " finns");
+            }
+        } catch (IOException e) {
+            System.out.println("En error har hänt, " + e);
         }
 
     }
