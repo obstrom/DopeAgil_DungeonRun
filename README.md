@@ -5,7 +5,7 @@ This repo contains our groups game implementation of the game design manual *Dun
 Dungeon Run is a singleplayer console and textbased adventure and RPG game in Swedish.
 The game is made using Java JDK 8.
 
-![](http://obstrom.com/github/dungeonrun/DungeonRun.gif)
+![](http://obstrom.com/github/dungeonrun/DungeonRun2.gif)
 
 ## Dependencies
 This project uses [Java Native Access](https://github.com/java-native-access/jna) to properly display ANSI color codes in Windows 10.
