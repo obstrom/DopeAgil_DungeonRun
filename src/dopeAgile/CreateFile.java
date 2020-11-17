@@ -10,12 +10,12 @@ public class CreateFile {
         try {
             File myFile = new File(name + ".txt");
             if (myFile.createNewFile()) {
-                System.out.println(myFile.getName() + " skapad");
+                System.out.println(myFile.getName() + " made");
             } else {
-                System.out.println(myFile.getName() + " hittad");
+                System.out.println(myFile.getName() + " found");
             }
         } catch (IOException e) {
-            System.out.println("En error har hänt, " + e);
+            System.out.println("ERROR: " + e);
         }
     }
 

@@ -49,25 +49,25 @@ public class Combat {
 
         // Print all monsters in the room
         Thread.sleep(Utility.SLEEPTIME);
-        System.out.println(ConsoleColors.NEWLINE + "STRIDSORDNING:");
+        System.out.println(ConsoleColors.NEWLINE + "Fight order:");
         for (int i = 0; i < allCombatants.size(); i++) {
             Creature thisCombatant = allCombatants.get(i);
             if (thisCombatant instanceof Character) {
                 Character player = (Character) thisCombatant;
                 Thread.sleep(Utility.SLEEPTIME);
                 System.out.println("> " + (i+1) + "."
-                        + " Initiativpoäng " + ConsoleColors.BLUE_BOLD + String.format("%02d", player.getCombatRoundInitiativeScore()) + ConsoleColors.RESET
+                        + " Initiativ points " + ConsoleColors.BLUE_BOLD + String.format("%02d", player.getCombatRoundInitiativeScore()) + ConsoleColors.RESET
                         //+ " | Attackstyrka " + player.getAttack()
-                        + " | Hälsa " + displayColoredHealth(player.getCombatEndurance(), player.getEndurance())
+                        + " | Health " + displayColoredHealth(player.getCombatEndurance(), player.getEndurance())
                         + " - " + ConsoleColors.GREEN + player.toString(true) + " " + player.getName() + ConsoleColors.RESET
                 );
             } else {
                 Monster monster = (Monster) thisCombatant;
                 Thread.sleep(Utility.SLEEPTIME);
                 System.out.println("> " + (i+1) + "."
-                        + " Initiativpoäng " + ConsoleColors.BLUE_BOLD + String.format("%02d", monster.getCombatRoundInitiativeScore()) + ConsoleColors.RESET
+                        + " Initiativ points " + ConsoleColors.BLUE_BOLD + String.format("%02d", monster.getCombatRoundInitiativeScore()) + ConsoleColors.RESET
                         //+ " | Attackstyrka " + monster.getAttack()
-                        + " | Hälsa " + displayColoredHealth(monster.getCombatEndurance(), monster.getEndurance())
+                        + " | Health " + displayColoredHealth(monster.getCombatEndurance(), monster.getEndurance())
                         + " - " + ConsoleColors.YELLOW + monster.toString(true) + ConsoleColors.RESET
                 );
             }
@@ -147,11 +147,11 @@ public class Combat {
         }
 
         Thread.sleep(Utility.SLEEPTIME);
-        System.out.println(ConsoleColors.NEWLINE + "VÄLJ HANDLING:");
+        System.out.println(ConsoleColors.NEWLINE + "Pick ACTION:");
         Thread.sleep(Utility.SLEEPTIME);
-        System.out.println("1. Attackera " + nextMonster.toString(true));
+        System.out.println("1. Attack " + nextMonster.toString(true));
         Thread.sleep(Utility.SLEEPTIME);
-        System.out.println("2. Fly");
+        System.out.println("2. flee");
 //        music.swordSound();
 
         for (int i = 0; i < 1; i++) {
@@ -161,10 +161,10 @@ public class Combat {
             if (userInput.equals("1") || userInput.contains("attack")) {
                 returnBoolean = true;
 
-            } else if (userInput.equals("2") || userInput.contains("fly")) {
+            } else if (userInput.equals("2") || userInput.contains("flee")) {
                 returnBoolean = false;
             } else {
-                System.out.println("Ogiltigt kommando! Försök igen.");
+                System.out.println("Try another command.");
                 --i;
             }
 
@@ -183,7 +183,7 @@ public class Combat {
 
                     // TODO: Print better death text
                     Thread.sleep(Utility.SLEEPTIME);
-                    System.out.println(ConsoleColors.RED_BOLD + "Äventyraren dog!" + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.RED_BOLD + "The Hero Died!" + ConsoleColors.RESET);
                     Thread.sleep(Utility.SLEEPTIME);
                     System.out.println("  _______      ___      .___  ___.  _______      ______   ____    ____  _______ .______      ");
                     System.out.println(" /  _____|    /   \\     |   \\/   | |   ____|    /  __  \\  \\   \\  /   / |   ____||   _  \\     ");
@@ -227,7 +227,7 @@ public class Combat {
             Attack playerAttack = new Attack(combatantPlayer, targetMonster);
 
             Thread.sleep(Utility.SLEEPTIME);
-            System.out.println(ConsoleColors.NEWLINE + combatantPlayer.getName() + " gör sig redo för attack!");
+            System.out.println(ConsoleColors.NEWLINE + combatantPlayer.getName() + " getting ready for attack!");
 
             boolean isCrit = combatantPlayer.checkIfCritical();
 
@@ -235,10 +235,10 @@ public class Combat {
 
                 if (isCrit) {
                     Thread.sleep(Utility.SLEEPTIME);
-                    System.out.print(ConsoleColors.YELLOW_BOLD + "Kritiskträff! " + targetMonster.toString(true) + " tar 2 skada." + ConsoleColors.RESET);
+                    System.out.print(ConsoleColors.YELLOW_BOLD + "Critical hit! " + targetMonster.toString(true) + " takes 2 dmg." + ConsoleColors.RESET);
                 } else {
                     Thread.sleep(Utility.SLEEPTIME);
-                    System.out.print(ConsoleColors.GREEN_BOLD + "Träff! " + targetMonster.toString(true) + " tar 1 skada." + ConsoleColors.RESET);
+                    System.out.print(ConsoleColors.GREEN_BOLD + "Hit! " + targetMonster.toString(true) + " takes 1 dmg." + ConsoleColors.RESET);
                 }
 
                 targetMonster.lowerCombatEndurance(isCrit);
@@ -249,7 +249,7 @@ public class Combat {
             }
 
             Thread.sleep(Utility.SLEEPTIME);
-            System.out.println(" - " + playerCharacter.getName() + " attackerar för " + ConsoleColors.RED_BOLD + playerAttack.getAttackScore() + ConsoleColors.RESET + " och " + targetMonster.toString(true) + " försvarar sig för " + ConsoleColors.BLUE_BOLD + playerAttack.getDefenseScore() + ConsoleColors.RESET + ".");
+            System.out.println(" - " + playerCharacter.getName() + " attacks for " + ConsoleColors.RED_BOLD + playerAttack.getAttackScore() + ConsoleColors.RESET + " and " + targetMonster.toString(true) + " defends for " + ConsoleColors.BLUE_BOLD + playerAttack.getDefenseScore() + ConsoleColors.RESET + ".");
 
             if (isCrit) {
                 Thread.sleep(Utility.SLEEPTIME);
@@ -268,7 +268,7 @@ public class Combat {
             Attack monsterAttack = new Attack(combatantMonster, playerCharacter);
 
             Thread.sleep(Utility.SLEEPTIME);
-            System.out.println(ConsoleColors.NEWLINE + combatantMonster.toString(true) + " gör sig redo för attack!");
+            System.out.println(ConsoleColors.NEWLINE + combatantMonster.toString(true) + " getting ready for attack!");
 
             boolean shieldBlockUsed = false;
 
@@ -276,12 +276,12 @@ public class Combat {
 
                 if (playerCharacter instanceof Knight && !Knight.isShieldBlockUsed()) {
                     Thread.sleep(Utility.SLEEPTIME);
-                    System.out.print(ConsoleColors.BLUE_BOLD + "Sköldblock! " + ConsoleColors.RESET);
+                    System.out.print(ConsoleColors.BLUE_BOLD + "Shield block! " + ConsoleColors.RESET);
                     shieldBlockUsed = true;
                     Knight.setShieldBlockUsed(true);
                 } else {
                     Thread.sleep(Utility.SLEEPTIME);
-                    System.out.print(ConsoleColors.RED_BOLD + "Träff! " + playerCharacter.toString(true) + " " + playerCharacter.getName() + " tar 1 skada." + ConsoleColors.RESET);
+                    System.out.print(ConsoleColors.RED_BOLD + "Hit! " + playerCharacter.toString(true) + " " + playerCharacter.getName() + " takes 1 dmg." + ConsoleColors.RESET);
                     playerCharacter.lowerCombatEndurance();
                 }
 
@@ -292,12 +292,12 @@ public class Combat {
 
             if (shieldBlockUsed) {
                 Thread.sleep(Utility.SLEEPTIME);
-                System.out.println(playerCharacter.getName() + " blockerar " + combatantMonster.toString(true) + "s attack med sin sköld.");
+                System.out.println(playerCharacter.getName() + " block " + combatantMonster.toString(true) + "s attack with the shield.");
             } else {
                 Thread.sleep(Utility.SLEEPTIME);
                 System.out.println(" - " + combatantMonster.toString(true)
-                        + " attackerar för " + ConsoleColors.RED_BOLD + monsterAttack.getAttackScore() + ConsoleColors.RESET
-                        + " och du försvarar dig för " + ConsoleColors.BLUE_BOLD + monsterAttack.getDefenseScore() + ConsoleColors.RESET + "."
+                        + " attacks for " + ConsoleColors.RED_BOLD + monsterAttack.getAttackScore() + ConsoleColors.RESET
+                        + " and you defend for " + ConsoleColors.BLUE_BOLD + monsterAttack.getDefenseScore() + ConsoleColors.RESET + "."
                 );
             }
 
@@ -311,7 +311,7 @@ public class Combat {
 
             if (monsterAttack.isSuccess() || allCombatants.indexOf(combatant) == allCombatants.size()-1 ) {
                 Thread.sleep(Utility.SLEEPTIME);
-                System.out.println(ConsoleColors.NEWLINE + playerCharacter.toString(true) + " " + playerCharacter.getName() + " - Hälsa " + displayColoredHealth(playerCharacter.getCombatEndurance(), playerCharacter.getEndurance()));
+                System.out.println(ConsoleColors.NEWLINE + playerCharacter.toString(true) + " " + playerCharacter.getName() + " - Health " + displayColoredHealth(playerCharacter.getCombatEndurance(), playerCharacter.getEndurance()));
             }
 
         }
@@ -363,19 +363,19 @@ public class Combat {
         if (playerCharacter instanceof Wizard) {
             chanceToFleePercentage = 0.8;
             Thread.sleep(Utility.SLEEPTIME);
-            System.out.println(ConsoleColors.PURPLE_BOLD + "Ljussken: " + playerCharacter.getName() + " bländar fienden med ett starkt magiskt ljus!" + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.PURPLE_BOLD + "Bright Light: " + playerCharacter.getName() + " blinds the ennemy with a strong bright light!" + ConsoleColors.RESET);
         }
 
         if (chanceToFleePercentage > Math.random()) {
             fleeSuccess = true;
             Thread.sleep(Utility.SLEEPTIME);
-            System.out.println(ConsoleColors.GREEN + playerCharacter.getName() + " lyckas fly oskadd från striden.");
+            System.out.println(ConsoleColors.GREEN + playerCharacter.getName() + " Sucsess on fleeing, got unharmed from the battle.");
             for (Monster monster: allMonsters) {
                 monster.refreshCombatEndurance();
             }
         } else {
             Thread.sleep(Utility.SLEEPTIME);
-            System.out.println(ConsoleColors.RED + playerCharacter.getName() + " misslyckades med att fly! Striden fortsätter.");
+            System.out.println(ConsoleColors.RED + playerCharacter.getName() + " failure to flee! combat continue.");
         }
 
         return fleeSuccess;

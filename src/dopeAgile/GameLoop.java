@@ -33,13 +33,13 @@ public class GameLoop {
 
                 if (playerIsFleeing) {
                     Thread.sleep(Utility.SLEEPTIME);
-                    System.out.println(ConsoleColors.ITALIC + ConsoleColors.YELLOW + "Du flyr tillbaka till föregående rum." + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.ITALIC + ConsoleColors.YELLOW + "You fled back to the previus room." + ConsoleColors.RESET);
                     loadedMap.setPlayerCurrentRoom(previousRoom);
                     playerIsFleeing = false;
                 }
 
                 Thread.sleep(Utility.SLEEPTIME);
-                System.out.print(ConsoleColors.NEWLINE + "<Tryck ENTER för att fortsätta vidare>");
+                System.out.print(ConsoleColors.NEWLINE + "<press ENTER to continue>");
                 Scanner sc = new Scanner(System.in);
                 String userInput = sc.nextLine();
 
@@ -50,7 +50,7 @@ public class GameLoop {
     public void displayRoom() throws InterruptedException {
 
         Thread.sleep(Utility.SLEEPTIME);
-        System.out.println(ConsoleColors.NEWLINE + ConsoleColors.BOLD + "Händelser:" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.NEWLINE + ConsoleColors.BOLD + "Actions:" + ConsoleColors.RESET);
         if (!currentRoom.isSpawnRoom()) {
             Thread.sleep(Utility.SLEEPTIME);
             System.out.println(ConsoleColors.NEWLINE + ConsoleColors.ITALIC + currentRoom.getRoomMessage() + ConsoleColors.RESET);
@@ -66,7 +66,7 @@ public class GameLoop {
                 playerIsFleeing = roomCombat.isPlayerIsFleeing();
             } else {
                 Thread.sleep(Utility.SLEEPTIME);
-                System.out.println(ConsoleColors.ITALIC + "Det är tyst och stilla i rummet..." + ConsoleColors.RESET);
+                System.out.println(ConsoleColors.ITALIC + "It´s silent and still in the room..." + ConsoleColors.RESET);
             }
 
         }
@@ -74,13 +74,13 @@ public class GameLoop {
         if (loadedCharacter.isAlive() && !playerIsFleeing) {
             if (currentRoom.getRoomTreasure().getTreasureList() == null) {
                 Thread.sleep(Utility.SLEEPTIME);
-                System.out.println(ConsoleColors.NEWLINE + "Du söker igenom rummet, och inser att du varit här förut.");
+                System.out.println(ConsoleColors.NEWLINE + "You´re looking around in the room, and realise that you been here befor.");
             } else if (currentRoom.getRoomTreasure().getTreasureList().isEmpty()) {
                 Thread.sleep(Utility.SLEEPTIME);
-                System.out.println(ConsoleColors.NEWLINE + "Du söker igenom rummet, men du hittar bara damm.");
+                System.out.println(ConsoleColors.NEWLINE + "You looking around in the room, but you only find dust.");
             } else {
                 Thread.sleep(Utility.SLEEPTIME);
-                System.out.print(ConsoleColors.NEWLINE + "Du söker igenom rummet, och hittar [" + ConsoleColors.YELLOW_BOLD);
+                System.out.print(ConsoleColors.NEWLINE + "You´re searching the room, and find [" + ConsoleColors.YELLOW_BOLD);
 //                music.treasureSound();
                 ArrayList<Treasure.treasureTypes> treasures = currentRoom.getRoomTreasure().getTreasureList();
                 //TODO lägg treasure sound här
@@ -89,12 +89,12 @@ public class GameLoop {
                     if (i == 0) {
                         System.out.print(treasures.get(i));
                     } else {
-                        System.out.print(" och " + treasures.get(i));
+                        System.out.print(" and " + treasures.get(i));
                     }
                 }
-                System.out.print(ConsoleColors.RESET + "] för ett värde av "
+                System.out.print(ConsoleColors.RESET + "] for a value of "
                         + ConsoleColors.YELLOW_BOLD + currentRoom.getRoomTreasure().getTreasureTotalValue()
-                        + ConsoleColors.RESET + " poäng." + ConsoleColors.NEWLINE
+                        + ConsoleColors.RESET + " points." + ConsoleColors.NEWLINE
                 );
                 loadedCharacter.addPoints(currentRoom.getRoomTreasure().getTreasureTotalValue());
             }
@@ -119,7 +119,7 @@ public class GameLoop {
         }
 
         Thread.sleep(Utility.SLEEPTIME);
-        System.out.println(ConsoleColors.NEWLINE + ConsoleColors.BOLD + "Dina skatter är värda " + ConsoleColors.YELLOW_BOLD + loadedCharacter.getPoints() + ConsoleColors.WHITE_BOLD + " poäng.");
+        System.out.println(ConsoleColors.NEWLINE + ConsoleColors.BOLD + "You´re skatter are worth " + ConsoleColors.YELLOW_BOLD + loadedCharacter.getPoints() + ConsoleColors.WHITE_BOLD + " poäng.");
         Thread.sleep(Utility.SLEEPTIME);
         System.out.println(ConsoleColors.NEWLINE + ConsoleColors.BOLD + "-*-*-*-*-*-*-*-*-*-*-");
         Thread.sleep(Utility.SLEEPTIME);
@@ -135,7 +135,7 @@ public class GameLoop {
             Thread.sleep(Utility.SLEEPTIME);
             System.out.println("\n\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
             Thread.sleep(Utility.SLEEPTIME);
-            System.out.println("\033[1m -- Äventyret slutar -- \033[0m");
+            System.out.println("\033[1m -- Adventure ends -- \033[0m");
             Thread.sleep(Utility.SLEEPTIME);
             System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
             System.out.println(leaveMapMessage());
@@ -179,7 +179,7 @@ public class GameLoop {
         for (int i = 0; i < menuOptions.size(); i++) {
             if (menuOptions.get(i) == Map.cardinalDirection.LEAVE) {
                 Thread.sleep(Utility.SLEEPTIME);
-                System.out.println("5. Lämna dungeon och avsluta äventyret (SPARA).");
+                System.out.println("5. leave the dungeon and quit the adventure (SAVE).");
             } else {
                 if (currentRoom.getSpecificAdjacentRoom(menuOptions.get(i)) == null) {
                     Thread.sleep(Utility.SLEEPTIME);
@@ -187,7 +187,7 @@ public class GameLoop {
                     menuOptions.set(i, null);
                 } else {
                     Thread.sleep(Utility.SLEEPTIME);
-                    System.out.println(i + 1 + ". Gå mot " + menuOptions.get(i).toString().toLowerCase() + ".");
+                    System.out.println(i + 1 + ". Go towards " + menuOptions.get(i).toString().toLowerCase() + ".");
                 }
             }
         }
@@ -203,7 +203,7 @@ public class GameLoop {
                 returnDirection = menuOptions.get(userInputInt - 1);
                 if (returnDirection == null) {
                     Thread.sleep(Utility.SLEEPTIME);
-                    System.out.println("Ogiltigt kommando! Försök igen.");
+                    System.out.println("Try another command.");
                     --i;
                 }
             } catch (NumberFormatException e) {
@@ -215,12 +215,12 @@ public class GameLoop {
                     }
                 } else {
                     Thread.sleep(Utility.SLEEPTIME);
-                    System.out.println("Ogiltigt riktning! Försök igen.");
+                    System.out.println("Try another path.");
                     --i;
                 }
             } catch (IndexOutOfBoundsException e) {
                 Thread.sleep(Utility.SLEEPTIME);
-                System.out.println("Ogiltigt kommando! Försök igen.");
+                System.out.println("Try another command.");
                 --i;
             }
 
@@ -232,7 +232,7 @@ public class GameLoop {
 
     // Message for leaving the dungeon map
     private String leaveMapMessage() {
-        return "Hjälten " + loadedCharacter.getName() + " lämnar dungeon efter att ha samlat på sig skatter värda \033[1m\u001B[33m" + loadedCharacter.getPoints() + " poäng.\u001B[0m\033[0m";
+        return "Hero " + loadedCharacter.getName() + "is leaving the dungeon after collecting skatter thats worth \033[1m\u001B[33m" + loadedCharacter.getPoints() + " points.\u001B[0m\033[0m";
     }
 
 }
