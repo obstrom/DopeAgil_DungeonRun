@@ -11,7 +11,6 @@ The game is made using Java JDK 8.
 This project uses [Java Native Access](https://github.com/java-native-access/jna) to properly display ANSI color codes in Windows 10.
 
 ## System requirements and instructions
-För att spela krävs minst Java (JRE) 8. Spelet går att spela på Windows, Mac och Linux baserade operativsystem och bör fungera i varierande grad.
 To play you need Java (JRE), atleast version 8, pre-installed on your system. The game should be compatible with all desktop operatingsystems running Java and a compatible terminal.
 
 ### Windows 10 (EXE)
