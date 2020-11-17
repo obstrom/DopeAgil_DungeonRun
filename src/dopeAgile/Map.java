@@ -42,25 +42,25 @@ public class Map {
         N {
             @Override
             public String toString() {
-                return "Norr";
+                return "North";
             }
         },
         W {
             @Override
             public String toString() {
-                return "Väst";
+                return "West";
             }
         },
         S {
             @Override
             public String toString() {
-                return "Söder";
+                return "Soulth";
             }
         },
         E {
             @Override
             public String toString() {
-                return "Öst";
+                return "East";
             }
         }, NW, NE, SW, SE, LEAVE;
     }
@@ -152,7 +152,7 @@ public class Map {
         }
 
         if (showLegend) {
-            result += "\n[\u001B[32m*\u001B[0m] = Din position | [\u001B[34m?\u001B[0m] = Obesökt rum\n[ ] = Besökt rum | [\u001B[31m!\u001B[0m] = Rum med monster";
+            result += "\n[\u001B[32m*\u001B[0m] = You´re position | [\u001B[34m?\u001B[0m] = Obesökt rum\n[ ] = Viseted room | [\u001B[31m!\u001B[0m] = Rooms with monsters";
         }
 
         return result;
