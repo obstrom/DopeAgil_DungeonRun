@@ -21,7 +21,7 @@ To play you need Java (JRE), atleast version 8, pre-installed on your system. Th
 
 ### Windows 10 (JAR)
 1. Download the latest version of `DungeonRun.jar` from the [release page](https://github.com/obstrom/DopeAgil_DungeonRun/releases/).
-2. Open *Command Prompt* - from the start menu or by pressing `CTRL + R` and typing `cmd`.
+2. Open *Command Prompt* - from the start menu or by pressing `WINDOWS + R` and typing `cmd`.
 3. In the Command Prompt navigate to the folder where you downloaded the JAR-file by using the command `cd` followed by the folder path
 4. Then run the game by typing `java -jar DungeonRun.jar`.
 
