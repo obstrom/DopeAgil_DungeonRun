@@ -21,7 +21,7 @@ public class Skeleton extends Monster {
 
     @Override
     public String toString(boolean conjugate) {
-        return (conjugate) ? "Skelettet" : "Skelett";
+        return (conjugate) ? "The Skeleton" : "Skeleton";
     }
 
     @Override
@@ -30,11 +30,11 @@ public class Skeleton extends Monster {
         int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
         if (rand < 3) {
-            return "Skelettet tar av sin ena arm och använder det som ett vapen. du blir träffad.";
+            return "Skeleton, throws its rusty sheild at you, it hits";
         } else if (rand < 5) {
-            return "Skelettet hugger dig med sitt svärd.";
+            return "The Skeleton Strikes you with it´s rusty sword, you start to bleed.";
         } else {
-            return "Skelettet tar upp sten från marken och kastar på Hjälten, den träffar.";
+            return "Skeleton picks up a rock from the ground and then throws it at the Hero, it hits.";
         }
     }
 
@@ -44,30 +44,30 @@ public class Skeleton extends Monster {
         int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
         if (rand < 3) {
-            return "Skelettet försöker attackera dig men missar.";
+            return "Skeleton, throws its rusty shield at you, but it lands infron of you.";
         } else if (rand < 5) {
-            return "skelettet försöker hugga dig men du lyckas hoppa undan.";
+            return "The Skeleton strikes at you with it´s rusty sword but you parried it.";
         } else {
-            return "Skelettet tar upp sten från marken och kastar på Hjälten, den missar.";
+            return "Skeleton picks up a rock from the ground and then throws it but it missed you by a mile.";
         }
     }
 
     @Override
-    public String getEntryMessage() { return "Ett skelett reser sig från marken!"; }
+    public String getEntryMessage() { return "A Skeleton rise from the groud!"; }
 
     @Override
     public String getKilledByMessage() {
-        return "Skelett dödar hjälte skelettet tar tag i din luftstrupe och drar ut den från din hals. du dör av syrebrist."; }
+        return "The Skeleton grabs you by your neck and ripps out your spine, you die SCREAMING."; }
 
     @Override
-    public String getDeathMessage() { return "Skellettet faller livlöst till marken i hög av ben."; }
+    public String getDeathMessage() { return "The Skeleton becomes a pile of life less bones."; }
 
     @Override
     public String getPlayerHitMessage() { return ""; }
 
     @Override
     public String getPlayerCritMessage() {
-        return "Tjuven hugger skelettets huvud och det exploderar.";
+        return "The Theif stricks the skeleton so hard that it´s bones shatter.";
     }
 
 }

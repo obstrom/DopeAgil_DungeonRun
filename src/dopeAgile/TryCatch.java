@@ -14,14 +14,14 @@ public class TryCatch {
             input = sc.nextLine();
             try {
                 if (input.isEmpty()) {
-                    throw new Exception("Error: Du har angivit namnet som: ` Tomt `, det fungerar tyvärr inte.\n"
+                    throw new Exception("Error: the name can´t be: ` Empty `, that just wont work.\n"
                             + "Prova igen");
                 } else {
                     loop = true;
                 }
 
             } catch (Exception e) {
-                System.out.println("Du har angivit namnet som: ` Tomt `, det fungerar tyvärr inte.");
+                System.out.println("Error: the name can´t be: ` Empty `, that just wont work");
                 loop = false;
             }
         } while (loop == false);
@@ -34,14 +34,14 @@ public class TryCatch {
             try {
                 intReturn = Integer.parseInt(input);
                 if (intReturn <= -1) {
-                    throw new Exception("Error: Du har angivit ett negativt tal: " + intReturn
-                            + ", Prova med posetivt tal.");
+                    throw new Exception("Error: you have selected a negativ number: " + intReturn
+                            + ", test with a posetiv number please.");
                 } else {
                     loop = true;
                 }
 
             } catch (Exception e) {
-                System.out.println("Error: Du behöver ange tal här: " + input + "är ej tillåtet val");
+                System.out.println("Error: you need to use numbers here : " + input + " this is not allowed here");
                 loop = false;
             }
 

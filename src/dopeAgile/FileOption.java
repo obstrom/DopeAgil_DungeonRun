@@ -22,9 +22,9 @@ public class FileOption extends Utility {
             loadingSaveFile();
         } else {
             while (noClue <= 0 || noClue > 3) {
-                System.out.println("Välj nedstående alternativ:\n"
-                        + "1: ladda en karaktär\n"
-                        + "2: tabort en karaktär\n"
+                System.out.println("pick one of the following:\n"
+                        + "1: load a character\n"
+                        + "2: delete a character\n"
                         + "3: reset highscore\n");
                 noClue = tryinput.TryIntInput();
                 if (noClue == 1) {
@@ -72,7 +72,7 @@ public class FileOption extends Utility {
             }
             myLoader.close();
         } catch (FileNotFoundException e) {
-            System.out.println("kunde inte hitta din fil, prova ett annat namn." + e);
+            System.out.println("could not find file with that name, it`s case-sensitiv." + e);
         }
         loadPlayer.setName(name);
         loadPlayer.setPoints(points);
@@ -80,14 +80,14 @@ public class FileOption extends Utility {
     }
 
     public void DeleteCharacter() throws InterruptedException {
-        System.out.println("tabort karaktären: ");
+        System.out.println("Delete a Character: ");
         input = tryinput.TryStringInput();
         File myFile = new File(input + ".txt");
         if (myFile.delete()) {
             System.out.println("DELETED: no return point...");
             Main.mainMenu();
         } else {
-            System.out.println("Misslyckades att tarbort " + myFile.getName());
+            System.out.println("failure to delete " + myFile.getName());
             Main.mainMenu();
         }
 
@@ -101,19 +101,19 @@ public class FileOption extends Utility {
             System.out.println("DELETED: reCreating empty-file");
             Main.mainMenu();
         } else {
-            System.out.println("Misslyckades att tarbort " + myFile.getName());
+            System.out.println("failure to delete " + myFile.getName());
             Main.mainMenu();
         }
 
         try {
             File myNewFile = new File("Input.txt");
             if (myNewFile.createNewFile()) {
-                System.out.println(myNewFile.getName() + " finns nu");
+                System.out.println(myNewFile.getName() + " Made");
             } else {
-                System.out.println(myNewFile.getName() + " finns");
+                System.out.println(myNewFile.getName() + " Error: Found");
             }
         } catch (IOException e) {
-            System.out.println("En error har hänt, " + e);
+            System.out.println("ERROR: " + e);
         }
 
     }

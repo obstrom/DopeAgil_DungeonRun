@@ -21,7 +21,7 @@ public class Troll extends Monster {
 
     @Override
     public String toString(boolean conjugate) {
-        return (conjugate) ? "Trollet" : "Troll";
+        return (conjugate) ? "The Oger" : "Oger";
     }
 
     @Override
@@ -29,11 +29,11 @@ public class Troll extends Monster {
         int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
         if (rand < 3) {
-            return "Trollet skapar ett lazzo av sin svans, svingar det mot dig och lyckas fånga dig.";
+            return "Oger charges you and slams you in to the wall.";
         } else if (rand < 5) {
-            return "Trollet förtrollar dig så du blir förstenad för en sekund.";
+            return "Oger throws a rock it hits you and you´re stunned for a second.";
         } else {
-            return "Trollet går SNABBT till attack innan du hinner reagera och du får ett slag i magen.";
+            return "Oger rushes, you diden´t reakt in time and got punched hard";
         }
     }
 
@@ -43,29 +43,29 @@ public class Troll extends Monster {
         int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
         if (rand < 3) {
-            return "Trollet skapar ett lazzo av sin svans, svingar det mot dig men missar sitt kast.";
+            return "Oger charges you but misses and slams into the wall behind you";
         } else if (rand < 5) {
-            return "Trollet försöker förtrolla dig, men du hinner undvika dess förtrollning.";
+            return "Oger throws a rock but it misses you";
         } else {
-            return "Trollet gör sig redo för att slå dig i magen, men du hinner parera slaget.";
+            return "Oger rushes, but it trips and kisses the floor";
         }
     }
 
     @Override
-    public String getEntryMessage() { return "Ett troll kommer in genom en av dörrarna!"; }
+    public String getEntryMessage() { return "An Oger apears from the door a head"; }
 
     @Override
-    public String getKilledByMessage() { return "Trollet lyfter upp dig från huvudet och bryter nacken."; }
+    public String getKilledByMessage() { return "The Oger grabs you by the head and lift you up and breaks you´re neck."; }
 
     @Override
-    public String getDeathMessage() { return "Trollet faller livlös till marken med en hög duns."; }
+    public String getDeathMessage() { return "The Oger falls life less to the ground with a loud boom."; }
 
     @Override
     public String getPlayerHitMessage() { return ""; }
 
     @Override
     public String getPlayerCritMessage() {
-        return "Tjuven kastar en kniv den träffar höftkulan. Trollets ena ben verkar inte vara fungerande längre.";
+        return "The Theif throws a knife, you hear a cracking sound as the knife hits the knee and the Oger SCREAMS in pain.";
     }
 
 }

@@ -19,7 +19,7 @@ public class Rogue extends Character {
 
     @Override
     public String toString(boolean conjugate) {
-        return (conjugate) ? "Tjuven" : "Tjuv";
+        return (conjugate) ? "The Theif" : "Theif";
     }
 
     @Override
@@ -33,36 +33,36 @@ public class Rogue extends Character {
             int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
             if (rand < 4) {
-                return "Tjuven hugger orcen i bröstet och orcen rytter i smärta. ";
+                return "The Theif stabs the ork in the chest and the ork growls in pain. ";
             } else {
-                return "Tjuven springer fram och lyckas skära orcen på baksidan av låret så att den faller till marken.";
+                return "The Theif dashes forward gets behind the ork and slashes it´s leg so it falls to the ground.";
             }
 
         } else if (monster instanceof Spider) {
             int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
             if (rand < 4) {
-                return "Tjuven kastar en kniv mot spindeln, den träffar och spindeln skriker i smärta.";
+                return "Trowing a dagger at the spider, it hits and the spider squells in pain. ";
             } else {
-                return "Tjuven tar sin kniv och hugger av av ena benet på spindeln.";
+                return "The Theif slahes of a limb of the spider.";
             }
 
         } else if (monster instanceof Skeleton) {
             int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
             if (rand < 4) {
-                return "Tjuven hoppar upp i luften och sparkar av skelettets huvud så att det flyger iväg.";
+                return "The Theif jumps up in the air and kicks of the head of skeleton, so the skull fly´s away like a ball.";
             } else {
-                return "Tjuven tacklar skelettet så att det faller till marken.";
+                return "The Theif runns at the skeleton and tackles it down to the gorund.";
             }
 
         } else if (monster instanceof Troll ) {
             int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
             if (rand < 4) {
-                return "Tjuven springer fram och hugger trollet i magen, blod sprutar ut från såret.";
+                return "The Theif dashes forward and stabs the oger in the belly, blood flushes out of the wound.";
             } else {
-                return "Tjuven lyckas hugga av ett antal fingrar på trollet.";
+                return "The Theif sprints in and slashes of some finger´s of the oger.";
             }
 
         } else {
@@ -80,36 +80,36 @@ public class Rogue extends Character {
             int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
             if (rand < 4) {
-                return "Tjuven försöker hugga orcen men puttas enkelt undan av orcen.";
+                return "Trying to Stab the ork but it pushes you easly away...";
             } else {
-                return "Tjuven springer fram och försöker skära orcen, men missar.";
+                return "The Theif sprints to get behind the ork but stumbles and you land on you´re back.";
             }
 
         } else if (monster instanceof Spider) {
             int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
             if (rand < 4) {
-                return "Tjuven kastar en kniv mot spindeln, spindeln hinner hoppa åt sidan och kniven missar.";
+                return "Trowing a dagger at the spider, but the spider jumps to the side.";
             } else {
-                return "Tjuven tar sin kniv och förbereder sig för att attackera spindeln, men spindeln springer iväg.";
+                return "The Theif draws his dagger and prepar to charge at the spider, but the spider sees this coming and runns away.";
             }
 
         } else if (monster instanceof Skeleton) {
             int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
             if (rand < 4) {
-                return "Tjuven hoppar upp i luften och försöker sparka av skelettets huvud, men missar och faller till marken.";
+                return "The Theif jumps up and trying to kick the skeleton of the head, but misses and falls to the ground.";
             } else {
-                return "Tjuven försöker tackla skelettet, men det hoppar undan.";
+                return "The Theif charges the skeleton to tackel it, but stumbles in the charge and faceplants the ground.";
             }
 
         } else if (monster instanceof Troll ) {
             int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
             if (rand < 4) {
-                return "Tjuven springer fram och försöker hugga trollet, men trollet hoppar undan.";
+                return "You run up to the oger and try to stab it, the oger sees this coming and steps to the side.";
             } else {
-                return "Tjuven försöker hugga trollet men sparkas bort. ";
+                return "You try to get closer to the oger, but it push you away. ";
             }
 
         } else {

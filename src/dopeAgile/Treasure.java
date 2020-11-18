@@ -11,31 +11,31 @@ public class Treasure {
         COIN(2) {
             @Override
             public String toString() {
-                return "småmynt";
+                return "A few coins";
             }
         },
         MONEYPOUCH(6) {
             @Override
             public String toString() {
-                return "en pengapung";
+                return "A sack of coins";
             }
         },
         GOLDJEWELRY(10) {
             @Override
             public String toString() {
-                return "ett guldsmycke";
+                return "A golden neckless";
             }
         },
         GEMSTONE(14) {
             @Override
             public String toString() {
-                return "en ädelsten";
+                return "A ruby";
             }
         },
         SMALLCHEST(20) {
             @Override
             public String toString() {
-                return "en liten skattkista";
+                return "A Small chest";
             }
         };
 

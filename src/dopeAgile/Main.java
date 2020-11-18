@@ -5,6 +5,7 @@ import com.sun.jna.*;
 import com.sun.jna.platform.win32.WinDef.*;
 import com.sun.jna.platform.win32.WinNT.HANDLE;
 
+
 import java.util.Scanner;
 
 public class Main {
@@ -44,7 +45,7 @@ public class Main {
         sf.CreateFileInput();
         Startpage.Startpage();
         Thread.sleep(Utility.SLEEPTIME);
-        System.out.println("\n\033[1mVälkommen till Dungeon Run\033[0m");
+        System.out.println("\n\033[1mWelcome to Dungeon Run\033[0m");
 
         //MusicPlayer audios = new MusicPlayer();
         //audios.DungeonMusic();
@@ -56,7 +57,7 @@ public class Main {
             Thread.sleep(Utility.SLEEPTIME);
             System.out.println("\n\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
             Thread.sleep(Utility.SLEEPTIME);
-            System.out.println("\033[1m -- Ett nytt äventyr börjar! -- \033[0m");
+            System.out.println("\033[1m -- A new adventur begins! -- \033[0m");
             Thread.sleep(Utility.SLEEPTIME);
             System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
             GameLoop gameSession = new GameLoop(loadedMap, Utility.getSingleCharacter(0));
@@ -72,7 +73,7 @@ public class Main {
         while (input < 0) {
 
             Thread.sleep(Utility.SLEEPTIME);
-            System.out.println("1: Highscore\n" + "2: Skapa Karaktär\n" + "3: Ladda Karaktär\n" + "0: Avsluta\n");
+            System.out.println("1: High-Score\n" + "2: Create New Adventure\n" + "3: Option: Load/Delete \n" + "0: Exit Game\n");
             input = tryinput.TryIntInput();
 //            MusicPlayer sound = new MusicPlayer();
 //            sound.confirmSound();
@@ -82,7 +83,7 @@ public class Main {
         switch (input) {
             case 1:
                 Thread.sleep(Utility.SLEEPTIME);
-                System.out.println("Highscore");
+                System.out.println("High-Score");
                 Score.displayHighScore();
                 mainMenu();
                 break;
@@ -91,12 +92,12 @@ public class Main {
                 break;
             case 3:
                 Thread.sleep(Utility.SLEEPTIME);
-                System.out.println("Välj Sparad Karaktär");
+                System.out.println("Option: Load/Delete");
                 op.options(2);
                 break;
             default:
                 Thread.sleep(Utility.SLEEPTIME);
-                System.out.println("Avslutar Spelet");
+                System.out.println("Exit Game");
                 System.exit(0);
         }
 
@@ -110,11 +111,11 @@ public class Main {
         boolean run = true;
 
         Thread.sleep(Utility.SLEEPTIME);
-        System.out.println("\033[1m --- Välj en hjälte! --- \033[0m");
+        System.out.println("\033[1m --- Pick A hero! --- \033[0m");
         Thread.sleep(Utility.SLEEPTIME);
-        System.out.println("1. Riddaren");
+        System.out.println("1. Knight");
         Thread.sleep(Utility.SLEEPTIME);
-        System.out.println(" Iniativ: 5, Tålighet: 9, Attack: 6, Smidighet: 4 \n");
+        System.out.println(" Iniativ: 5, Endurance: 9, Attack: 6, Agility: 4 \n");
         System.out.println("    .-.");
         System.out.println("  __|=|__");
         System.out.println(" (_/`-`\\_)");
@@ -126,9 +127,9 @@ public class Main {
         System.out.println("   /_|_\\ ");
 
         Thread.sleep(Utility.SLEEPTIME);
-        System.out.println("2. Magiker");
+        System.out.println("2. Wizard");
         Thread.sleep(Utility.SLEEPTIME);
-        System.out.println(" Iniativ: 6, Tålighet: 4, Attack: 9, Smidighet: 5 \n");
+        System.out.println(" Iniativ: 6, Endurance: 4, Attack: 9, Agility: 5 \n");
         System.out.println("     __/\\__");
         System.out.println(". _  \\\\''//");
         System.out.println("-( )-/_||_\\");
@@ -139,9 +140,9 @@ public class Main {
         System.out.println(" .'. ,\\_____'. ");
 
         Thread.sleep(Utility.SLEEPTIME);
-        System.out.println("3. Tjuv");
+        System.out.println("3. Theif");
         Thread.sleep(Utility.SLEEPTIME);
-        System.out.println(" Iniativ: 7, Tålighet: 5, Attack: 5, Smidighet: 7 \n");
+        System.out.println(" Iniativ: 7, Endurance: 5, Attack: 5, Agility: 7 \n");
         System.out.println("   / \\     ");
         System.out.println("  _|\"|_   /");
         System.out.println("0/ \\ /   /");
@@ -162,11 +163,11 @@ public class Main {
                     run = false;
                 } else {
                     Thread.sleep(Utility.SLEEPTIME);
-                    System.out.println("Ange ett tal mellan 1 och 3");
+                    System.out.println("pick a number between 1 - 3");
                 }
             } catch (NumberFormatException e) {
                 Thread.sleep(Utility.SLEEPTIME);
-                System.out.println("Ange endast siffror");
+                System.out.println("Only Numbers");
             }
 
         }
@@ -175,19 +176,19 @@ public class Main {
         switch (characterMenuChoice) {
             case 1:
                 Thread.sleep(Utility.SLEEPTIME);
-                System.out.println("Du har valt Riddaren!");
+                System.out.println("You Picked the Knight!");
                 characterChoice = CharacterType.RIDDARE;
                 player = new Knight();
                 break;
             case 2:
                 Thread.sleep(Utility.SLEEPTIME);
-                System.out.println("Du har valt Magikern!");
+                System.out.println("You picked the Wizard!");
                 characterChoice = CharacterType.MAGIKER;
                 player = new Wizard();
                 break;
             case 3:
                 Thread.sleep(Utility.SLEEPTIME);
-                System.out.println("Du har valt Tjuven!");
+                System.out.println("You picked the Theif!");
                 characterChoice = CharacterType.TJUV;
                 player = new Rogue();
                 break;
@@ -202,7 +203,7 @@ public class Main {
         Utility.addPlayer(player);
 
         Thread.sleep(Utility.SLEEPTIME);
-        System.out.println("\nKaraktären heter " + name + " och är en " + characterChoice + "\n");
+        System.out.println("\n the Adventure is named " + name + " and is a " + characterChoice + "\n");
 
         return characterChoice;
 
@@ -211,7 +212,7 @@ public class Main {
     public static String characterName() throws InterruptedException {
         String characterName;
         Thread.sleep(Utility.SLEEPTIME);
-        System.out.println("\nVälj ett namn för din hjälte");
+        System.out.println("\nPick a name for you´re hero");
         characterName = tryinput.TryStringInput();
 //        MusicPlayer sound = new MusicPlayer();
 //        sound.confirmSound();
@@ -229,15 +230,15 @@ public class Main {
             Thread.sleep(Utility.SLEEPTIME);
             System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
             Thread.sleep(Utility.SLEEPTIME);
-            System.out.println("\033[1m -- Välj storlek på kartan -- \033[0m");
+            System.out.println("\033[1m -- Pick size for map -- \033[0m");
             Thread.sleep(Utility.SLEEPTIME);
             System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
             Thread.sleep(Utility.SLEEPTIME);
-            System.out.println("1. Liten karta (4x4)");
+            System.out.println("1. Small map (4x4)");
             Thread.sleep(Utility.SLEEPTIME);
-            System.out.println("2. Medium karta (5x5)");
+            System.out.println("2. Medium map (5x5)");
             Thread.sleep(Utility.SLEEPTIME);
-            System.out.println("3. Stor karta (8x8)");
+            System.out.println("3. Large map (8x8)");
 
             int mapChoice = 0;
             for (int i = 0; i < 1; i++) {
@@ -246,14 +247,14 @@ public class Main {
 //                MusicPlayer sound = new MusicPlayer();
 //                sound.confirmSound();
 
-                if (userInput.equals("1") || userInput.contains("liten")) {
+                if (userInput.equals("1") || userInput.contains("small")) {
                     mapChoice = 1;
                 } else if (userInput.equals("2") || userInput.contains("medium")) {
                     mapChoice = 2;
                 } else if (userInput.equals("3") || userInput.contains("large")) {
                     mapChoice = 3;
                 } else {
-                    System.out.println("Ogiltigt kommando! Försök igen.");
+                    System.out.println("Try another command.");
                     --i;
                 }
             }
@@ -262,17 +263,17 @@ public class Main {
             Thread.sleep(Utility.SLEEPTIME);
             System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
             Thread.sleep(Utility.SLEEPTIME);
-            System.out.println("\033[1m -- Vart på kartan vill du börja -- \033[0m");
+            System.out.println("\033[1m -- Where on the map do you want to start -- \033[0m");
             Thread.sleep(Utility.SLEEPTIME);
             System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
             Thread.sleep(Utility.SLEEPTIME);
-            System.out.println("1. Nordvästra hörnet");
+            System.out.println("1. Northwest cornor");
             Thread.sleep(Utility.SLEEPTIME);
-            System.out.println("2. Nordöstra hörnet");
+            System.out.println("2. Northeast cornor");
             Thread.sleep(Utility.SLEEPTIME);
-            System.out.println("3. Sydvästra hörnet");
+            System.out.println("3. soulthwest cornor");
             Thread.sleep(Utility.SLEEPTIME);
-            System.out.println("4. Sydöstra hörnet");
+            System.out.println("4. soultheast cornor");
 
             Map.cardinalDirection cardinal = null;
             for (int i = 0; i < 1; i++) {
@@ -281,17 +282,17 @@ public class Main {
 //                MusicPlayer sound = new MusicPlayer();
 //                sound.confirmSound();
 
-                if (userInput.equals("1") || userInput.contains("nordväst") || userInput.contains("nw")) {
+                if (userInput.equals("1") || userInput.contains("northwest") || userInput.contains("nw")) {
                     cardinal = Map.cardinalDirection.NW;
-                } else if (userInput.equals("2") || userInput.contains("nordöst") || userInput.contains("ne")) {
+                } else if (userInput.equals("2") || userInput.contains("northeast") || userInput.contains("ne")) {
                     cardinal = Map.cardinalDirection.NE;
-                } else if (userInput.equals("3") || userInput.contains("sydväst") || userInput.contains("sw")) {
+                } else if (userInput.equals("3") || userInput.contains("soulthwest") || userInput.contains("sw")) {
                     cardinal = Map.cardinalDirection.SW;
-                } else if (userInput.equals("4") || userInput.contains("sydöst") || userInput.contains("se")) {
+                } else if (userInput.equals("4") || userInput.contains("soultheast") || userInput.contains("se")) {
                     cardinal = Map.cardinalDirection.SE;
                 } else {
                     Thread.sleep(Utility.SLEEPTIME);
-                    System.out.println("Ogiltigt kommando! Försök igen.");
+                    System.out.println("Try another command.");
                     --i;
                 }
             }
@@ -314,7 +315,7 @@ public class Main {
             Thread.sleep(Utility.SLEEPTIME);
             System.out.println("\n\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
             Thread.sleep(Utility.SLEEPTIME);
-            System.out.println("\033[1m -- Förhandsgranska karta -- \033[0m");
+            System.out.println("\033[1m -- Preveiw the map -- \033[0m");
             Thread.sleep(Utility.SLEEPTIME);
             System.out.println("\033[1m-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\033[0m");
             Thread.sleep(Utility.SLEEPTIME);
@@ -328,19 +329,19 @@ public class Main {
 
             for (int i = 0; i < 1; i++) {
                 Thread.sleep(Utility.SLEEPTIME);
-                System.out.print("\nAnvänd denna karta? (Y/N) ");
+                System.out.print("\nUse this map? (Y/N) ");
                 Scanner sc = new Scanner(System.in);
                 String userInput = sc.nextLine().toLowerCase();
 //                MusicPlayer sound = new MusicPlayer();
 //                sound.choiceSound();
 
-                if (userInput.equals("y") || userInput.contains("yes") || userInput.contains("ja")) {
+                if (userInput.equals("y") || userInput.contains("yes") || userInput.contains("yeah")) {
                     break mapMenuLoop;
-                } else if (userInput.equals("n") || userInput.contains("no") || userInput.contains("nej")) {
+                } else if (userInput.equals("n") || userInput.contains("no") || userInput.contains("nope")) {
                     break;
                 } else {
                     Thread.sleep(Utility.SLEEPTIME);
-                    System.out.println("Ogiltigt kommando! Försök igen.");
+                    System.out.println("Try another command.");
                     --i;
                 }
             }
