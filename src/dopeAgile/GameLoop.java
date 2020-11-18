@@ -119,11 +119,11 @@ public class GameLoop {
         }
 
         Thread.sleep(Utility.SLEEPTIME);
-        System.out.println(ConsoleColors.NEWLINE + ConsoleColors.BOLD + "You´re skatter are worth " + ConsoleColors.YELLOW_BOLD + loadedCharacter.getPoints() + ConsoleColors.WHITE_BOLD + " poäng.");
+        System.out.println(ConsoleColors.NEWLINE + ConsoleColors.BOLD + "You´re treasure´s are worth " + ConsoleColors.YELLOW_BOLD + loadedCharacter.getPoints() + ConsoleColors.WHITE_BOLD + " poäng.");
         Thread.sleep(Utility.SLEEPTIME);
         System.out.println(ConsoleColors.NEWLINE + ConsoleColors.BOLD + "-*-*-*-*-*-*-*-*-*-*-");
         Thread.sleep(Utility.SLEEPTIME);
-        System.out.println(ConsoleColors.BOLD + " -- Välj riktning -- ");
+        System.out.println(ConsoleColors.BOLD + " -- pick direktion -- ");
         Thread.sleep(Utility.SLEEPTIME);
         System.out.println(ConsoleColors.BOLD +"-*-*-*-*-*-*-*-*-*-*-" + ConsoleColors.RESET);
 
@@ -232,7 +232,7 @@ public class GameLoop {
 
     // Message for leaving the dungeon map
     private String leaveMapMessage() {
-        return "Hero " + loadedCharacter.getName() + "is leaving the dungeon after collecting skatter thats worth \033[1m\u001B[33m" + loadedCharacter.getPoints() + " points.\u001B[0m\033[0m";
+        return "Hero " + loadedCharacter.getName() + "is leaving the dungeon after collecting treasure´s thats worth \033[1m\u001B[33m" + loadedCharacter.getPoints() + " points.\u001B[0m\033[0m";
     }
 
 }

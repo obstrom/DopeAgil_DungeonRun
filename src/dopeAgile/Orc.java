@@ -21,7 +21,7 @@ public class Orc extends Monster {
 
     @Override
     public String toString(boolean conjugate) {
-        return (conjugate) ? "Orcen" : "Orc";
+        return (conjugate) ? "The Ork" : "Ork";
     }
 
     @Override
@@ -29,11 +29,11 @@ public class Orc extends Monster {
         int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
         if (rand < 3) {
-            return "Orcen tar sats, hoppar på dig och biter dig med sina huggtänder.";
+            return "The Ork jumps on top of you and bites you with its shap teeth.";
         } else if (rand < 5) {
-            return "Orcen tar upp sin yxa, kastar den mot dig och träffar dig i låret.";
+            return "Ork throws it´s axe at you and hits your leg and you start to bleed.";
         } else {
-            return "Orcen tar upp en öltunna, lyfter den över sitt huvud och kastar den på dig.";
+            return "The Orke charges you with its axe at the ready, and strikes you.";
         }
     }
 
@@ -42,29 +42,29 @@ public class Orc extends Monster {
         int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
         if (rand < 3) {
-            return "Orcen hoppar mot dig för att bita dig med sina kraftiga huggtänder, men du hinner slänga dig åt sidan.";
+            return "THe Ork jumps at you, but you saw it coming and gracefuly step out of it´s attack.";
         } else if (rand < 5) {
-            return "Orcen tar upp sin yxa, kastar den mot dig, du hinner precis kasta dig bakom en pelare. ";
+            return "Ork throws it´s axe at you and it hits the wall behind you. ";
         } else {
-            return "Orcen tar upp en öltunna, lyfter den över sitt huvud och kastar mot dig men missar.";
+            return "The Ork charges you with its axe at the ready, and during the charge the ork fails to see the indent on the ground and faceplants hard.";
         }
     }
 
     @Override
-    public String getEntryMessage() { return "En orc kommer ut ur skuggan!"; }
+    public String getEntryMessage() { return "A Big Ork steps out of the shadow´s!"; }
 
     @Override
-    public String getKilledByMessage() { return "Orcen tar strypgrepp på dig, biter av halspulsådern och du förblöder till döds."; }
+    public String getKilledByMessage() { return "The Ork bites you by the neck and you sufficate by you´re own blood."; }
 
     @Override
-    public String getDeathMessage() { return "Orcen ryter och faller livlöst till marken."; }
+    public String getDeathMessage() { return "The Ork grows as it falls life less to the ground."; }
 
     @Override
     public String getPlayerHitMessage() { return ""; }
 
     @Override
     public String getPlayerCritMessage() {
-        return "Tjuven kastar en kniv och träffar ena ögat, orcen skriker i smärta.";
+        return "The Thef throws a knife at the Ork and hit´s one of it´s eyes, the Ork SCREAMS IN PAIN.";
     }
 
 }

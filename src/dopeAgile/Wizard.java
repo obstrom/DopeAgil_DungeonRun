@@ -18,7 +18,7 @@ public class Wizard extends Character {
 
     @Override
     public String toString(boolean conjugate) {
-        return (conjugate) ? "Trollkarlen" : "Trollkarl";
+        return (conjugate) ? "The Wizard" : "Wizard";
     }
 
     @Override
@@ -32,36 +32,36 @@ public class Wizard extends Character {
             int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
             if (rand < 4) {
-                return "Trollkarlen säger en besvärjelse och en magisk pil skapas och avfyras, den träffar orcen i knäet.";
+                return "Wizard is conuring a spell, an arcane arrrow apears and hits the ork in the knee.";
             } else {
-                return "Trollkarlen tar sin stav med två händer och svingar underifrån. Den träffar undersidan av orcens haka och orcen faller till marken ";
+                return "The Wizard swings around the staff, it hits the ork under the chin the ork falls to the ground confuesd. ";
             }
 
         } else if (monster instanceof Spider) {
             int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
             if (rand < 4) {
-                return "Trollkarlen skapar ett eldklot och avfyrar det mot spindeln. Eldklotet träffar, spindeln skriker i smärta.";
+                return "Wizard conuring a fire spell, a ball of fire apears in the hand of the Wizard and throws it at the spider, it hits and the spider squells in pain.";
             } else {
-                return "Trollkarlen tar sin stav med två händer över huvudet och slår ner i mitten av spindelns kropp så att spindel faller platt ner på marken.";
+                return "The Wizard swings the staff ower the head and slams the spider on its back, the spider falls flat on the ground.";
             }
 
         } else if (monster instanceof Skeleton) {
             int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
             if (rand < 4) {
-                return "Trollkarlen slår ner sin stav i marken och avfyrar en blixt från sin trollstav, den träffar och skelettet flyger bakåt. ";
+                return "The Wizard strikes the back end of the staff in the ground and it sends out a bolt of lighting that strikes the skeleton so hard that it fly´s backwards. ";
             } else {
-                return "Trollkarlen tar sin stav med två händer och träffar skelettets huvud så att det flyger iväg. Skelettet springer iväg för hämta sitt huvud.";
+                return "Wizard uses his staff like a baseball bat, swings it at the skeleton and hits its skull clean of and it fly´s of in the distance.";
             }
 
         } else if (monster instanceof Troll ) {
             int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
             if (rand < 4) {
-                return "Trollkarlen säger en besvärjelse och en rot växer ut från marken som sedan med sin vassa ände hugger trollet i benet.";
+                return "The Wizard conuring a spell, a chilly frezing fog apears the fog turns in to a floating sharp shard of ice it hits the leg of the oger and blood flushes out of the wound.";
             } else {
-                return "Trollkarlen tar sin stav med två händer och använder sin stav som ett spjut och skjuter in änden av staven i trollets bröst så att han faller till marken. ";
+                return "Wizard is couning a rooky spike on the top end of the staff and pokes the oger in the chest, the spike explodes and the oger falls to the ground on its back. ";
             }
 
         } else {
@@ -79,36 +79,36 @@ public class Wizard extends Character {
             int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
             if (rand < 4) {
-                return "Trollkarlen säger en besvärjelse och en magisk pil skapas och avfyras, den träffar marken framför och orcen skrattar åt dig.";
+                return "Wizard is conuring a spell, a arcane arrow apears and fires away at the ork, it lands in front of its intended target and the ork looks at you and start to laught at you.";
             } else {
-                return "Trollkarlen tar sin stav med två händer och svingar underifrån. Slaget missar och träffar taket. ";
+                return "The Wizard swing the staff around and hits the celling, the ork just looks at you with a grin. ";
             }
 
         } else if (monster instanceof Spider) {
             int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
             if (rand < 4) {
-                return "Trollkarlen skapar ett eldklot och avfyrar det mot spindeln. Eldklotet missar och träffar väggen bakom. ";
+                return "The Wizard conuring a fire spell, a ball of fire apears in the hand of the Wizard and fires it at the spider, but you aimed to high and it flyes ower the spider and hits the wall behind it. ";
             } else {
-                return "Trollkarlen tar sin stav med två händer över huvudet och slår ner och siktar på mitten av spindelns kropp, men missar och träffar marken";
+                return "Wizard swings the staff apove and tryies to smash the spider, the spider moves away and the strike hits the ground";
             }
 
         } else if (monster instanceof Skeleton) {
             int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
             if (rand < 4) {
-                return "Trollkarlen slår ner sin stav i marken och avfyrar en blixt från sin trollstav, den missar och träffar marken bredvid ";
+                return "The Wizard Srikes the back end of the staff in the ground a bolt of lightning apears and stirkes at the skeleton, but it passes and hits the wall behind the skeleton. ";
             } else {
-                return "Trollkarlen tar sin stav med två händer och siktar på huvudet av skelettet, men missar. ";
+                return "Wizard swings his staff like a baseball bat, takes aim at the skull of the skeleton but, trips druing the swing and lands on the butt. ";
             }
 
         } else if (monster instanceof Troll ) {
             int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
             if (rand < 4) {
-                return "Trollkarlen säger en besvärjelse och en rot växer ut från marken som sedan försöker hugga trollet men missar. ";
+                return "The Wizard conuring a spell that apears under the oger a root grows up but the oger eats it. ";
             } else {
-                return "Trollkarlen tar sin stav med två händer och använder sin stav som ett spjut och försöker skjuta änden av staven i trollet men missar  ";
+                return "Wizard is conuring a rock spike on the top side of his staff and try to poke the oger, but tripps on the mentel instead and the spike shatters when it tuches the ground.  ";
             }
 
         } else {

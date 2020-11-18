@@ -21,7 +21,7 @@ public class Spider extends Monster {
 
     @Override
     public String toString(boolean conjugate) {
-        return (conjugate) ? "Jättespindeln" : "Jättespindel";
+        return (conjugate) ? "The Gaiantspider" : "Gaiantspider";
     }
 
     @Override
@@ -29,11 +29,11 @@ public class Spider extends Monster {
         int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
         if (rand < 3) {
-            return "Spindeln hugger Hjälten med sitt ben och träffar hjältens arm.";
+            return "The spider strikes with one of it´s legs and hits the hero.";
         } else if (rand < 5) {
-            return "Spindeln skjuter en spindelnäts boll mot hjälten, den träffar.";
+            return "Spider spits a sticky ball of web it hits the hero.";
         } else {
-            return "spindel biter hjälten i armen.";
+            return "The Spider bites the hero in the arm.";
         }
 
     }
@@ -44,30 +44,31 @@ public class Spider extends Monster {
         int rand = Utility.throwSixSidedDie(); // random number 1 <-> 6
 
         if (rand < 3) {
-            return "Spindeln sveper över med sitt ben men missar hjälten.";
+            return "The Spider strikes with one of it´s legs at the hero but it missed.";
         } else if (rand < 5) {
-            return "Spindeln skjuter en spindelnäts boll mot hjälten, den missar.";
+            return "Spider spits a sticky ball of web it lands infron of the hero.";
         } else {
-            return "spindeln försöker bita dig men du lyckas hoppa undan.";
+            return "The Spider rushes to bite the hero, but the hero step aside so the spider miss.";
         }
     }
 
     @Override
-    public String getEntryMessage() { return "En jättespindel faller ner från taket!"; }
+    public String getEntryMessage() { return "A nasty big spider drops from the celling!"; }
 
     @Override
     public String getKilledByMessage() {
-        return "Spindeln springer fram och biter av ditt ansikte."; }
+        return "The Spider rushes the hero, binds the hero with its webb so it can lay it´s eggs, you died some days later as the eggs hached.."; }
 
     @Override
-    public String getDeathMessage() { return "Spindeln gör ett sista ljud innan den dör: SCHREEEEE….."; }
+    public String getDeathMessage() { return "The Spider makes one last sound befor it dies: SCHREEEEE….."; }
 
     @Override
     public String getPlayerHitMessage() { return ""; }
 
     @Override
     public String getPlayerCritMessage() {
-        return "Tjuven springer mot spindeln och glider under och skär upp hela undersidan av spindeln, den ryter av smärta då dess tarmar flyger ut.";
+        return "The Theif starts to sprint at the spider, then slides under the spider,\n"
+                + " with a dagger pointing up and cuts the Sider open so it´s intestens fall out, the Spider: SCHREEEEE… in pain";
     }
     
 }
