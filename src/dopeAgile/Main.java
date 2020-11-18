@@ -3,7 +3,7 @@ package dopeAgile;
 // imports to handle Windows 10 console ANSI colors
 import com.sun.jna.*;
 import com.sun.jna.platform.win32.WinDef.*;
-import com.sun.jna.platform.win32.WinNT.*;
+import com.sun.jna.platform.win32.WinNT.HANDLE;
 
 
 import java.util.Scanner;
